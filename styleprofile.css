@@ -1,0 +1,114 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    flex: 1;
+    max-width: 1800px;
+    margin: 0 auto;
+    padding-left: 0; /* Αφαίρεσε το περιθώριο από αριστερά */
+    padding-right: 0; /* Αφαίρεσε το περιθώριο από δεξιά */
+}
+
+
+.sidebar {
+    background-color: #002144;
+    color: white;
+    height: 100%;
+    padding-left: 0; /* Αφαίρεσε το περιθώριο από αριστερά */
+    padding-right: 0; /* Αφαίρεσε το περιθώριο από δεξιά */
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 10px 20px;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.main-content {
+    background-color: white;
+    padding: 20px;
+    flex: 1;
+    padding-left: 0; /* Αφαίρεσε το περιθώριο από αριστερά */
+    padding-right: 0; /* Αφαίρεσε το περιθώριο από δεξιά */
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+}
+
+.profile-header img {
+    width: 100px;
+    height: auto;
+    margin-right: 20px;
+}
+
+.profile-info {
+    flex-grow: 1;
+}
+
+.profile-info h1 {
+    font-size: 24px;
+    margin: 0;
+}
+
+.profile-info hr {
+    margin: 10px 0;
+}
+
+.profile-details {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.profile-details .detail {
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+
+.profile-details .label {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+
+
+
+
+.custom-col {
+    max-width: 12.51%; /* Το 16.666667% αντιστοιχεί στο πλάτος του col-md-2 σε Bootstrap */
+    background-color: #002144;
+}
+
+
+
+/* name */
+
+#container {
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+    background: #868484;
+  }
+
+  #name {
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-size: 36px;
+    line-height: 100px;
+  }

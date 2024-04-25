@@ -1,0 +1,533 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+
+  overflow-x: hidden; /* Αποφεύγει την οριζόντια κύλιση */
+
+  /* font-family: 'Poppins', sans-serif; */
+}
+
+nav {
+  background-color: #ffffff;
+  color: #002144;
+}
+
+
+.il {
+    color: #002144; /* ή το επιθυμητό χρώμα */
+}
+
+
+
+
+/* h2 */
+.namechange{
+	color: #002144;
+	font-weight: bold;
+}
+
+
+
+.navbar {
+    background-color: #ffffff;
+    color: #002144;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2px 15px; /* Προσαρμόστε τα πλάγια περιθώρια */
+}
+
+.navbar img {
+    height: 32px;
+    margin-top: 5px; /* Μετακίνηση λίγο προς τα πάνω */
+    margin-bottom: -5px; /* Αρνητικό περιθώριο για να μετακινήσετε την εικόνα προς τα πάνω */
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.navbar .nav-link ion-icon {
+    font-size: 25px;
+    margin-top: 15px;
+    margin-bottom: auto;
+    margin-left: 6px; /* Αυξήστε το περιθώριο αριστερά για τα εικονίδια */
+    color: #002144; /* Χρώμα εικονιδίων */
+}
+
+.navbar-toggler {
+    border: none;
+}
+
+.navbar-toggler-icon {
+    background-color: #ffffff;
+}
+
+@media (min-width: 1200px) {
+    .navbar .navbar-nav {
+        margin-left: 800px; /* Μετακίνηση των εικονιδίων δεξιά */
+    }
+}
+
+@media (max-width: 767px) {
+    .navbar img {
+        height: 28px; /* Μικρότερο μέγεθος εικονιδίων σε μικρές οθόνες */
+    }
+}
+
+
+/* minibox */
+
+
+.minibox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 10vh; Το ύψος της οθόνης */
+	max-height: 5px;
+	position: relative; /* Χρησιμοποιούμε position: relative; για να διατηρήσουμε το custom-box στη ροή του εγγράφου */
+    z-index: 1; /* Το custom-box είναι πάνω από τα υπόλοιπα στοιχεία */
+}
+
+
+.minibox ul {
+    margin: 0 5px; /* Προσθήκη ελαφριάς απόστασης μεταξύ των στοιχείων */
+}
+
+.mincontaomers{
+	color: white;
+	font-size: 17px;
+	margin-left: 2px;
+	border: 1px solid #002144;
+	width: 280px;
+    height: 50px;
+	background-color: #002144;
+	border-radius: 8px;
+	display: inline-block;
+	margin: 15px; /* Προσθέτει κενό 10px γύρω από το κουτί */
+
+    line-height: 50px; /* Κατακόρυφη ευθυγράμμιση στο κέντρο */
+}
+
+
+
+
+/* .container {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.bar1, .bar2, .bar3 {
+  width: 35px;
+  height: 5px;
+  background-color: #002144;
+  margin: 6px 0;
+  transition: 0.4s;
+}
+
+.change .bar1 {
+  transform: translate(0, 11px) rotate(-45deg);
+}
+
+.change .bar2 {opacity: 0;}
+
+.change .bar3 {
+  transform: translate(0, -11px) rotate(45deg);
+} */
+
+
+
+
+
+
+
+
+/* ul {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+} */
+
+.logo {
+  margin-right: auto;
+}
+
+.nav-icons {
+  display: flex;
+  align-items: center;
+}
+
+.nav-icons li {
+  margin-left: 10px;
+}
+
+.nav-icons i {
+  font-size: 1.6em;
+}
+
+a {
+  text-decoration: none;
+  color: #002144;
+}
+
+img {
+  height: 85px;
+}
+
+/*  */
+
+/* blue box */
+
+.custom-box {
+    background-color: #002144;
+    height: 350px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 340px;
+    position: relative;
+}
+
+.custom-box p {
+  margin: 0;
+  font-weight: bold;
+}
+
+/* grid-2 */
+.card.horizontal {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	background-color: #fff;
+	border-radius: 20px;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+	overflow: hidden;
+}
+
+.image-container {
+	flex: 1;
+	max-width: 250px;
+	margin-right: 50px; /* Μειώστε το περιθώριο δεξιά */
+	margin-left: 10px; /* Μειώστε το περιθώριο αριστερά */
+  }
+  
+  .image-container img {
+	width: 100%; /* Αλλαγή του πλάτους της εικόνας στο 100% */
+	height: auto; /* Αυτόματο ύψος για διατήρηση της αναλογίας */
+  }
+
+  @media (min-width: 300px) {
+	.image-container img {
+		transform: scale(2.0); /* Αφαιρέστε το μέγιστο πλάτος για να επιτραπεί μεγαλύτερο μέγεθος */
+	}
+	}
+
+  @media (min-width: 400px) {
+	.image-container img {
+		transform: scale(1.7); /* Αφαιρέστε το μέγιστο πλάτος για να επιτραπεί μεγαλύτερο μέγεθος */
+	}
+	}
+  
+  @media (min-width: 1200px) {
+	.image-container img {
+		transform: scale(1.7);  /* Μεγαλύτερο πλάτος εικόνας για μεγάλες οθόνες */
+	}
+  }
+  
+  
+  @media (max-width: 700px) {
+	.grid-images {
+	  padding: 20px; /* Περισσότερο μικρότερο padding για μικρότερες οθόνες */
+	}
+	
+	.text-container,
+	.image-container {
+	  order: initial; /* Επαναφέρετε την προκαθορισμένη σειρά εμφάνισης */
+	}
+  }
+
+.text-container {
+	flex: 2;
+	padding: 20px;
+}
+
+
+/* booking bar */
+
+.section {
+	position: relative;
+	height: 15vh;
+}
+
+.section .section-center {
+	position: relative;
+	top: 0;
+	left: 0;
+	right: 0;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+
+
+.booking-form {
+    top: 10px; /* Ρυθμίστε την απόσταση που θέλετε η φόρμα να είναι κάτω από το κέντρο της custom-box */
+	position: relative;
+	background: #ffffff;  /* χρώμα του κουτιου */
+	max-width: 642px;
+	max-height: 450px;
+	width: 100%;
+	margin: auto;
+	padding: 45px 25px 200px;
+	border-radius: 4px;
+	-webkit-box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.4);
+	box-shadow: 0px 0px 10px -5px rgba(0, 0, 0, 0.4);
+}
+
+.booking-form .form-group {
+	position: relative;
+	margin-bottom: 20px;
+}
+
+.booking-form .form-control {
+	background-color: #ffffff;
+	height: 65px;
+	padding: 0px 15px;
+	padding-top: 24px;
+	color: #191a1e;
+	border: 2px solid #d5d5d5;
+	font-size: 16px;
+	font-weight: 700;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	border-radius: 4px;
+	-webkit-transition: 0.2s all;
+	transition: 0.2s all;
+}
+
+.booking-form .form-control::-webkit-input-placeholder {
+	color: #dfe5e9;
+}
+
+.booking-form .form-control:-ms-input-placeholder {
+	color: #dfe5e9;
+}
+
+.booking-form .form-control::placeholder {
+	color: #dfe5e9;
+}
+
+.booking-form .form-control:focus {
+	background: #f9fafb;
+}
+
+.booking-form input[type="date"].form-control:invalid {
+	color: #7b7b7b;
+}
+
+.booking-form select.form-control {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+
+.booking-form select.form-control+.select-arrow {
+	position: absolute;
+	right: 6px;
+	bottom: 6px;
+	width: 32px;
+	line-height: 32px;
+	height: 32px;
+	text-align: center;
+	pointer-events: none;
+	color: #dfe5e9;
+	font-size: 14px;
+}
+
+.booking-form select.form-control+.select-arrow:after {
+	content: '\279C';
+	display: block;
+	-webkit-transform: rotate(90deg);
+	transform: rotate(90deg);
+}
+
+.booking-form .form-label {
+	position: absolute;
+	top: 6px;
+	left: 20px;
+	font-weight: 700;
+	text-transform: uppercase;
+	line-height: 24px;
+	height: 24px;
+	font-size: 12px;
+	color: #288AC9;
+}
+
+.booking-form .form-checkbox input {
+	position: absolute !important;
+	margin-left: -9999px !important;
+	visibility: hidden !important;
+}
+
+.booking-form .form-checkbox label {
+	position: relative;
+	padding-top: 4px;
+	padding-left: 30px;
+	font-weight: 700;
+	color: #191a1e;
+}
+
+.booking-form .form-checkbox label+label {
+	margin-left: 15px;
+}
+
+.booking-form .form-checkbox input+span {
+	position: absolute;
+	left: 2px;
+	top: 4px;
+	width: 20px;
+	height: 20px;
+	background: #fff;
+	border: 2px solid #dfe5e9;
+	border-radius: 50%;
+}
+
+.booking-form .form-checkbox input+span:after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 0px;
+	height: 0px;
+	border-radius: 50%;
+	background-color: #288AC9;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	-webkit-transition: 0.2s all;
+	transition: 0.2s all;
+}
+
+.booking-form .form-checkbox input:not(:checked)+span:after {
+	opacity: 0;
+}
+
+.booking-form .form-checkbox input:checked+span:after {
+	opacity: 1;
+	width: 10px;
+	height: 10px;
+}
+
+.booking-form .submit-btn {
+	color: #fff;
+	/* background-color: #4fa3e3; */
+  background: linear-gradient(-135deg, #288CCA, #2B3D91);
+	font-weight: 400;
+	height: 65px;
+	font-size: 18px;
+	border: none;
+	width: 100%;
+	border-radius: 4px;
+	text-transform: uppercase
+}
+
+.booking-cta {
+	margin-top: 45px;
+}
+
+.booking-cta h1 {
+	font-size: 52px;
+	text-transform: uppercase;
+	color: #ffffff;
+	font-weight: 400;
+}
+
+.booking-cta p {
+	font-size: 22px;
+	color: #191a1e;
+}
+
+
+
+
+
+
+
+
+/* grid 1 */
+
+.grid-images {
+	padding: 50px; /* Μειώστε το padding στο section */
+	width: 100%;
+  }
+  
+  @media (max-width: 768px) {
+	.grid-images {
+	  padding: 20px; /* Περισσότερο μικρότερο padding για μικρότερες οθόνες */
+	}
+  }
+
+
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.card {
+  width: 100%;
+  display: flex;
+  border: 1px solid #C1C1C1;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
+}
+
+.horizontal {
+  flex-direction: row;
+}
+
+.vertical {
+  flex-direction: column;
+}
+
+.image-container {
+  flex: 1;
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  max-height: 500px; /*allagi */
+}
+
+.text-container {
+  flex: 1;
+  padding: 15px;
+  order: 2; /* Αλλάξτε την σειρά εμφάνισης των περιεχομένων */
+}
+
+.text-container h2 {
+  margin: 0;
+  font-size: 1.6em;
+}
+
+.text-container p {
+  margin: 5px 0;
+  font-size: 0.9em;
+}
+
+
+
+
+
+
+
