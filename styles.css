@@ -13,8 +13,8 @@ body {
   .btn-show-flights {
     background-color: #002144; /* Button color */
     color: #fff; /* Button text color */
+    
   }
-  
 
   .custom-box {
     background-color: #002144;
@@ -22,12 +22,12 @@ body {
     color: #fff;
     display: flex;
     justify-content: center;
-    align-items: center;
-    min-width: 340px;
-    position: relative;
-}
+    align-items: flex-start; /* Αλλάξαμε την ευθυγράμμιση σε flex-start */
+    padding-top: 50px; /* Προσθέσαμε padding στο επάνω μέρος για να μετακινήσουμε το κείμενο πιο πάνω */
+  }
 
-.custom-box p {
-  margin: 0;
-  font-weight: bold;
-}
+  .custom-box p {
+    margin: 0;
+    font-weight: bold;
+    font-size: 24px; /* Μεγαλώσαμε το μέγεθος των γραμμάτων */
+  }
