@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $travelClass = $_POST['travel-class'];
 
     // You can process the booking data here, e.g., save to database, send confirmation email, etc.
-
+    
     // For demonstration purpose, let's just display the submitted data
     echo "<h2>Booking Details</h2>";
     echo "<p>Flight Type: $flightType</p>";
