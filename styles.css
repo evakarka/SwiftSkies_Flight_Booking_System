@@ -22,12 +22,16 @@ body {
     color: #fff;
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Αλλάξαμε την ευθυγράμμιση σε flex-start */
-    padding-top: 50px; /* Προσθέσαμε padding στο επάνω μέρος για να μετακινήσουμε το κείμενο πιο πάνω */
+    align-items: flex-start; 
+    padding-top: 50px; 
   }
 
   .custom-box p {
     margin: 0;
     font-weight: bold;
-    font-size: 24px; /* Μεγαλώσαμε το μέγεθος των γραμμάτων */
+    font-size: 24px; 
   }
+
+.booking{
+    
+}

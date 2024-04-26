@@ -77,9 +77,9 @@
         </div>
       </nav>
 
+      <div class="custom-box"></div>
 
-
-      <div class="container-fluid p-0">
+      <!-- <div class="container-fluid p-0">
         <div class="row m-0">
             <div class="col-12 p-0">
                 <div class="custom-box ">
@@ -87,9 +87,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     
-    <div id="booking" class="section">
+    <!-- <div id="booking" class="section">
         <div class="section-center">
             <div class="container">
                 <div class="row justify-content-center">
@@ -180,8 +180,73 @@
                     </div>
                 </div>
             </div>
+        </div> --> 
+
+    <div class="booking">
+        <div class="container" id="homepage">
+            <h1><b>Search Flights</b></h1>
+            <br />
+            <p><b>Choose your flight option</b></p>
+            <div class="btn-group btn-group-justified">			
+                <div class="btn-group">
+                    <button id="button1" type="button" href="#oneway" class="btn btn-primary">One-way</button>
+                </div>
+                <div class="btn-group">
+                    <button id="button2" type="button" href="#roundtrip" class="btn btn-primary">Round-trip</button>
+                </div>
+                <div class="btn-group">
+                    <button id="button3" type="button" href="#all" class="btn btn-primary">Search all flights</button>
+                </div>
+            </div>
+            <hr />
+            <div id="oneway" style="padding-left: 20px; padding-right: 20px;">
+                <form role="form" action="SearchResultOneway.php" method="post">
+                    <div class="form-group">
+                        <label for="from">From:</label>
+                        <input type="text" class="form-control" id="from" name="from" placeholder="City or Code" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="to">To:</label>
+                        <input type="text" class="form-control" id="to" name="to" placeholder="City or Code" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="depart">Depart:</label>
+                        <input type="date" class="form-control" id="depart" name="depart" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="return">Return:</label>
+                        <input type="date" class="form-control" id="return" name="return">
+                    </div>
+                    <div class="form-group">
+                        <label for="class">Class:</label>
+                        <select class="form-control" name="class">
+                            <option value="Economy">Economy</option>
+                            <option value="Business">Business</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="adults">Adults:</label>
+                        <input type="number" class="form-control" id="adults" name="adults" min="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="children">Children:</label>
+                        <input type="number" class="form-control" id="children" name="children" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label class="radio-inline">
+                            <input type="radio" name="stop" value="nonstop" checked>Non-Stop
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="stop" value="1stop">1 Stop
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                    <button type="reset" class="btn btn-info" value="Reset">Reset</button>
+                </form>
+            </div>
         </div>
-    
+    </div>
+        
 
       
 
