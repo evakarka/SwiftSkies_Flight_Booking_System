@@ -5,3 +5,12 @@
         backdrop-filter: blur(10px);
     }
 }
+
+
+body {
+    background-color: #f8f9fa; /* Bootstrap background color light */
+  }
+  .btn-show-flights {
+    background-color: #002144; /* Button color */
+    color: #fff; /* Button text color */
+  }
