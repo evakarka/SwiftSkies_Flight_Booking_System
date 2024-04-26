@@ -14,3 +14,20 @@ body {
     background-color: #002144; /* Button color */
     color: #fff; /* Button text color */
   }
+  
+
+  .custom-box {
+    background-color: #002144;
+    height: 350px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 340px;
+    position: relative;
+}
+
+.custom-box p {
+  margin: 0;
+  font-weight: bold;
+}
