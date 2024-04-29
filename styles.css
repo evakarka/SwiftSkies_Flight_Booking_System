@@ -148,5 +148,27 @@ body {
 
     line-height: 50px; /* Κατακόρυφη ευθυγράμμιση στο κέντρο */
 }
+.card {
+    padding: 20px;
+}
+
+
+.card-img {
+    max-width: 100%;
+    height: auto;
+}
+
+.card-body {
+    padding: 1.25rem;
+}
+
+.card-title {
+    font-size: 1.25rem;
+}
+
+.card-text {
+    margin-bottom: .75rem;
+    font-size: 1rem;
+}
 
 
