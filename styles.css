@@ -35,7 +35,7 @@ body {
 }
 
 .booking-cta {
-    margin-top: -270px; /* Προσαρμογή της αρνητικής τιμής για να μετακινήσει πάνω το Flight Booking Bar */
+    margin-top: -310px; /* Προσαρμογή της αρνητικής τιμής για να μετακινήσει πάνω το Flight Booking Bar */
     position: relative; /* Χρησιμοποίησε την σχετική θέση */
     z-index: 3; /* Αυξήστε το z-index για να εμφανίζεται επάνω από το Flight Booking Bar */
 }
@@ -54,7 +54,7 @@ body {
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: -250px; /* Προσαρμογή της αρνητικής τιμής για να μετακινήσει πάνω το Flight Booking Bar */
+    margin-top: -160px; /* Προσαρμογή της αρνητικής τιμής για να μετακινήσει πάνω το Flight Booking Bar */
     position: relative; /* Χρησιμοποίησε την σχετική θέση */
     z-index: 2; /* Αυξήστε το z-index για να εμφανίζεται πίσω από το κείμενο "Book Your Flight Today" */
 }
