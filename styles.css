@@ -6,7 +6,6 @@
     }
 }
 
-
 body {
     background-color: #f8f9fa; /* Bootstrap background color light */
   }
@@ -18,20 +17,118 @@ body {
 
   .custom-box {
     background-color: #002144;
-    height: 350px;
+    height: 100px; /* Προσαρμόστε το ύψος όπως επιθυμείτε */
+}
+
+.booking-cta {
+    margin-top: 20px; /* Προσθέστε κάποιο κενό από την κορυφή για να διαχωρίσετε το flight booking bar από το κείμενο */
+}
+
+
+
+/* booking bar */
+
+.custom-box {
+    background-color: #002144;
     color: #fff;
+    padding: 20px 0;
+}
+
+.booking-cta {
+    margin-top: 20px;
+}
+
+.booking-cta h1 {
+    font-size: 28px;
+}
+
+.booking-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.booking-form .form-group {
+    margin-bottom: 20px;
+}
+
+.booking-form .form-control {
+    height: 50px;
+    padding: 0 15px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+}
+
+.booking-form .form-control:focus {
+    border-color: #002144;
+    box-shadow: 0 0 5px rgba(0, 33, 68, 0.5);
+}
+
+.booking-form .submit-btn {
+    background-color: #002144;
+    color: #fff;
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.booking-form .submit-btn:hover {
+    background-color: #001529;
+}
+
+.submit-btn {
+    background-image: linear-gradient(-135deg, #288CCA, #2B3D91);
+    color: #fff;
+    padding: 20px 40px; /* Αλλαγή του padding για να αυξηθεί το μέγεθος οριζόντια και κατακόρυφα */
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    line-height: 1.5; /* Αλλαγή του line-height για να αυξηθεί το ύψος του κουμπιού */
+}
+
+.submit-btn:hover {
+    background-image: linear-gradient(-135deg, #1C5480, #1E2A66);
+}
+
+
+
+
+/* minibox */
+
+
+.minibox {
     display: flex;
     justify-content: center;
-    align-items: flex-start; 
-    padding-top: 50px; 
-  }
+    align-items: center;
+    /* height: 10vh; Το ύψος της οθόνης */
+	max-height: 5px;
+	position: relative; /* Χρησιμοποιούμε position: relative; για να διατηρήσουμε το custom-box στη ροή του εγγράφου */
+    z-index: 1; /* Το custom-box είναι πάνω από τα υπόλοιπα στοιχεία */
+}
 
-  .custom-box p {
-    margin: 0;
-    font-weight: bold;
-    font-size: 24px; 
-  }
 
-.booking{
-    
+.minibox ul {
+    margin: 0 5px; /* Προσθήκη ελαφριάς απόστασης μεταξύ των στοιχείων */
+}
+
+.mincontaomers{
+	color: white;
+	font-size: 17px;
+	margin-left: 2px;
+	border: 1px solid #002144;
+	width: 280px;
+    height: 50px;
+	background-color: #002144;
+	border-radius: 8px;
+	display: inline-block;
+	margin: 15px; /* Προσθέτει κενό 10px γύρω από το κουτί */
+
+    line-height: 50px; /* Κατακόρυφη ευθυγράμμιση στο κέντρο */
 }
