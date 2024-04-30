@@ -21,6 +21,11 @@
     <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -105,33 +110,35 @@
                                           </div>
                                       </div>
                                       <div class="row">
-                                          <div class="col-md-6">
-                                              <div class="form-group">
-                                                  <span class="form-label">FLYING FROM</span>
-                                                  <input class="form-control" type="text" name="from" placeholder="City or airport">
-                                              </div>
-                                          </div>
-                                          <div class="col-md-6">
-                                              <div class="form-group">
-                                                  <span class="form-label">FLYING TO</span>
-                                                  <input class="form-control" type="text" name="to" placeholder="City or airport">
-                                              </div>
-                                          </div>
-                                      </div>
-                                      <div class="row">
-                                          <div class="col-md-6">
-                                              <div class="form-group">
-                                                  <span class="form-label">DEPARTING</span>
-                                                  <input class="form-control" type="date" name="departing" required>
-                                              </div>
-                                          </div>
-                                          <div class="col-md-6">
-                                              <div class="form-group">
-                                                  <span class="form-label">RETURNING</span>
-                                                  <input class="form-control" type="date" name="returning" required>
-                                              </div>
-                                          </div>
-                                      </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <span class="form-label">FLYING FROM</span>
+                                                <input class="form-control" type="text" name="from" id="from" placeholder="City or airport">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <span class="form-label">FLYING TO</span>
+                                                <input class="form-control" type="text" name="to" id="to" placeholder="City or airport">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label">Departing</label>
+                                                <input class="form-control" type="date" name="departing" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label">Returning</label>
+                                                <input class="form-control" type="date" name="returning" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                       <div class="row">
                                           <div class="col-md-4">
                                               <div class="form-group">
@@ -526,6 +533,36 @@
         </div>
         <!-- Copyright -->
     </footer>
+
+
+    <script>
+        $(function() {
+            var availableAirports = [
+                "Los Angeles International Airport (LAX), Los Angeles",
+                "London Heathrow Airport (LHR), London",
+                "Eleftherios Venizelos Athens International Airport (ATH), Greece",
+                "Leonardo da Vinci–Fiumicino Airport (FCO), Rome",
+                "Stockholm Arlanda Airport (ARN), Stockholm",
+                "Adolfo Suárez Madrid–Barajas Airport (MAD), Madrid",
+                "Oslo Gardermoen Airport (OSL), Oslo",
+                "Charles de Gaulle Airport (CDG), Paris",
+                "Henri Coandă International Airport (OTP), Bucharest",
+                "Václav Havel Airport Prague (PRG), Prague",
+                "Abu Dhabi International Airport (AUH), Abu Dhabi",
+                "Amsterdam Airport Schiphol (AMS), Amsterdam",
+                "John F. Kennedy International Airport (JFK), New York",
+                "Dubai International Airport (DXB), Dubai",
+                "Tokyo Haneda Airport (HND), Tokyo",
+                "Toronto Pearson International Airport (YYZ), Toronto"
+
+            ];
+            $( "#from, #to" ).autocomplete({
+                source: availableAirports
+            });
+        });
+        </script>
+        
+        
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">

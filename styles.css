@@ -226,3 +226,31 @@ body {
     }
 }
 
+
+/* styles.css */
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table th {
+    border-bottom: solid 2px black;
+    padding: 3px;
+  }
+  
+  .table td {
+    padding: 3px;
+    border: solid 1px rgb(255, 255, 255);
+    transition: background-color 0.3s ease; 
+  }
+  
+  .table tbody tr:hover {
+    background-color: antiquewhite;
+  }
+  
+  .table tbody tr:hover td {
+    background-color: #9dd1f1; 
+  }
+  
+
