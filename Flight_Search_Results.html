@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Search Results</title>
+    <style>
+        .flight {
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            padding: 10px;
+        }
+        .flight-logo {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        .flight-info {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .flight-price {
+            font-weight: bold;
+            color: green;
+        }
+        .book-button {
+            background-color: blue;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="flight">
+    <img class="flight-logo" src="img/logo.png" alt="Airline 1">
+    <div class="flight-info">
+        <div>Departure: 10:00</div>
+        <div>Arrival: 12:00</div>
+        <div>From: New York</div>
+        <div>To: London</div>
+    </div>
+    <div class="flight-price">$200</div>
+    <button class="book-button">Book Now</button>
+</div>
+
+<div class="flight">
+    <img class="flight-logo" src="img/logo.png" alt="Airline 2">
+    <div class="flight-info">
+        <div>Departure: 13:00</div>
+        <div>Arrival: 15:00</div>
+        <div>From: London</div>
+        <div>To: New York</div>
+    </div>
+    <div class="flight-price">$250</div>
+    <button class="book-button">Book Now</button>
+</div>
+
+<!-- Add more flights as needed -->
+
+</body>
+</html>
