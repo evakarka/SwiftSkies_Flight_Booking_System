@@ -1,40 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flight Search Results</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .result-card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .flight-logo {
+            max-height: 50px;
+        }
+        .flight-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .flight-price {
+            font-size: 1.5em;
+            color: #FF4600;
+        }
+    </style>
 </head>
-
 <body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-transparent">
     <div class="container">
-        <h1 class="mt-5 mb-4">Flight Search Results</h1>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card mb-3">
-                    <div class="card-header">
-                        Flight Details
+        <a class="navbar-brand" href="#"><img src="img/SwiftSkies_logo.png" alt="logo" height="32"></a>
+        <!-- Toggle Btn -->
+        <button class="navbar-toggler shadow-none border-0" 
+                type="button" 
+                data-bs-toggle="offcanvas" 
+                data-bs-target="#offcanvasNavbar" 
+                aria-controls="offcanvasNavbar" 
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- SideBar -->
+        <div class="sidebar offcanvas offcanvas-start" 
+            tabindex="-1" 
+            id="offcanvasNavbar" 
+            aria-labelledby="offcanvasNavbarLabel">
+            <!-- SideBar Header -->
+            <div class="offcanvas-header text-white border-bottom">
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel" style="color: #002144; font-weight: bold; font-size: 1.2em;">SWIFTSKIES</h5>
+                <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <!-- SideBar Body -->
+            <div class="offcanvas-body d-flex flex-column flex-lg-row p-4 p-lg-0">
+                <ul class="navbar-nav justify-content-center align-items-center fs-5 flex-grow-1 pe-3">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#" style="color: #002144; font-weight: bold;">Home</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="#about" style="color: #002144; font-weight: bold;">About</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="#service" style="color: #002144; font-weight: bold;">Service</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="#contact" style="color: #002144; font-weight: bold;">Contact</a>
+                    </li>
+                </ul>
+                <!-- Login / Sign up -->
+                <div class="d-flex flex-column flex-lg-row justify-content-center align-items-center gap-3">
+                    <a href="loginform.html" class="text-white">Login</a>
+                    <a href="registerform.html" 
+                    class="text-white text-decoration-none px-3 py-1 rounded-4"
+                    style="background-color: #f94ca4"
+                    >Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Flight Search Results -->
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="result-card">
+                <div class="flight-details">
+                    <div>
+                        <img src="img/airline_logo_1.png" alt="Airline Logo" class="flight-logo">
+                        <span class="ms-2">Flight A123</span>
                     </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Flight from [Departure City] to [Destination City]</h5>
-                        <p class="card-text">Departure: [Departure Date and Time]</p>
-                        <p class="card-text">Arrival: [Arrival Date and Time]</p>
-                        <p class="card-text">Class: [Travel Class]</p>
-                        <p class="card-text">Price: [Price]</p>
+                    <span class="flight-price">$200</span>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>New York (JFK) <i class="fas fa-arrow-right"></i> Los Angeles (LAX)</p>
+                        <p>Departure Time: 08:00 AM</p>
+                        <p>Arrival Time: 10:00 AM</p>
+                        <button class="btn btn-primary mt-3">Book Now</button>
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <img src="img/destination_la.jpg" alt="Destination Image" class="img-fluid mt-3">
                     </div>
                 </div>
             </div>
-            <!-- Add more flight cards here if needed -->
+        </div>
+        <div class="col-md-6">
+            <div class="result-card">
+                <div class="flight-details">
+                    <div>
+                        <img src="img/airline_logo_2.png" alt="Airline Logo" class="flight-logo">
+                        <span class="ms-2">Flight B456</span>
+                    </div>
+                    <span class="flight-price">$250</span>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>Chicago (ORD) <i class="fas fa-arrow-right"></i> San Francisco (SFO)</p>
+                        <p>Departure Time: 10:00 AM</p>
+                        <p>Arrival Time: 12:00 PM</p>
+                        <button class="btn btn-primary mt-3">Book Now</button>
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <img src="img/destination_sf.jpg" alt="Destination Image" class="img-fluid mt-3">
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-    </script>
+
+
+<!-- Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
