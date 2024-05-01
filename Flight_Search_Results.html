@@ -10,11 +10,12 @@
     <style>
         body {
             background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
         }
         .result-card {
-            background-color: #f8f9fa;
+            background-color: #ffffff;
             border-radius: 15px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             padding: 20px;
             margin-bottom: 20px;
         }
@@ -33,112 +34,105 @@
         .destination-image {
             border-radius: 15px;
             overflow: hidden;
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+        .card-body {
+            padding: 1.25rem;
+        }
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 0.75rem;
+        }
+        .card-subtitle {
+            font-size: 1rem;
+            color: #6c757d;
+            margin-bottom: 0.5rem;
+        }
+        .departure-info, .arrival-info {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        .flight-time {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            color: #6c757d;
+        }
+        .book-button {
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+        .book-button:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-transparent">
-    <div class="container">
-        <a class="navbar-brand" href="#"><img src="img/SwiftSkies_logo.png" alt="logo" height="32"></a>
-        <!-- Toggle Btn -->
-        <button class="navbar-toggler shadow-none border-0" 
-                type="button" 
-                data-bs-toggle="offcanvas" 
-                data-bs-target="#offcanvasNavbar" 
-                aria-controls="offcanvasNavbar" 
-                aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <!-- SideBar -->
-        <div class="sidebar offcanvas offcanvas-start" 
-            tabindex="-1" 
-            id="offcanvasNavbar" 
-            aria-labelledby="offcanvasNavbarLabel">
-            <!-- SideBar Header -->
-            <div class="offcanvas-header text-white border-bottom">
-                <h5 class="offcanvas-title" id="offcanvasNavbarLabel" style="color: #002144; font-weight: bold; font-size: 1.2em;">SWIFTSKIES</h5>
-                <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <!-- SideBar Body -->
-            <div class="offcanvas-body d-flex flex-column flex-lg-row p-4 p-lg-0">
-                <ul class="navbar-nav justify-content-center align-items-center fs-5 flex-grow-1 pe-3">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#" style="color: #002144; font-weight: bold;">Home</a>
-                    </li>
-                    <li class="nav-item mx-2">
-                        <a class="nav-link" href="#about" style="color: #002144; font-weight: bold;">About</a>
-                    </li>
-                    <li class="nav-item mx-2">
-                        <a class="nav-link" href="#service" style="color: #002144; font-weight: bold;">Service</a>
-                    </li>
-                    <li class="nav-item mx-2">
-                        <a class="nav-link" href="#contact" style="color: #002144; font-weight: bold;">Contact</a>
-                    </li>
-                </ul>
-                <!-- Login / Sign up -->
-                <div class="d-flex flex-column flex-lg-row justify-content-center align-items-center gap-3">
-                    <a href="loginform.html" class="text-white">Login</a>
-                    <a href="registerform.html" 
-                    class="text-white text-decoration-none px-3 py-1 rounded-4"
-                    style="background-color: #f94ca4"
-                    >Sign Up</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</nav>
-
 <!-- Flight Search Results -->
-<div class="container mt-5">
+<section class="container mt-5">
     <div class="row">
         <div class="col-md-6">
-            <div class="result-card">
-                <div class="flight-details">
-                    <div>
+            <div class="card result-card">
+                <div class="card-body">
+                    <div class="flight-details">
                         <img src="img/logo.png" alt="Airline Logo" class="flight-logo">
-                        <span class="ms-2">Flight A123</span>
+                        <div>
+                            <h5 class="card-title">Flight A123</h5>
+                            <span class="flight-price">$200</span>
+                        </div>
                     </div>
-                    <span class="flight-price">$200</span>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <p>New York (JFK) <i class="fas fa-arrow-right"></i> Los Angeles (LAX)</p>
+                    <hr>
+                    <div class="departure-info">
+                        <p>Departure: New York (JFK)</p>
                         <p>Departure Time: 08:00 AM</p>
+                    </div>
+                    <div class="arrival-info">
+                        <p>Arrival: Los Angeles (LAX)</p>
                         <p>Arrival Time: 10:00 AM</p>
-                        <button class="btn btn-primary mt-3">Book Now</button>
                     </div>
-                    <div class="col-md-6 text-center">
-                        <img src="img/Amsterdam.png" alt="Destination Image" class="destination-image img-fluid mt-3">
+                    <div class="flight-time">
+                        <p>Total Flight Time: 2 hours</p>
                     </div>
+                    <button class="book-button">Book Now</button>
                 </div>
             </div>
         </div>
         <div class="col-md-6">
-            <div class="result-card">
-                <div class="flight-details">
-                    <div>
+            <div class="card result-card">
+                <div class="card-body">
+                    <div class="flight-details">
                         <img src="img/logo.png" alt="Airline Logo" class="flight-logo">
-                        <span class="ms-2">Flight B456</span>
+                        <div>
+                            <h5 class="card-title">Flight B456</h5>
+                            <span class="flight-price">$250</span>
+                        </div>
                     </div>
-                    <span class="flight-price">$250</span>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <p>Chicago (ORD) <i class="fas fa-arrow-right"></i> San Francisco (SFO)</p>
+                    <hr>
+                    <div class="departure-info">
+                        <p>Departure: Chicago (ORD)</p>
                         <p>Departure Time: 10:00 AM</p>
+                    </div>
+                    <div class="arrival-info">
+                        <p>Arrival: San Francisco (SFO)</p>
                         <p>Arrival Time: 12:00 PM</p>
-                        <button class="btn btn-primary mt-3">Book Now</button>
                     </div>
-                    <div class="col-md-6 text-center">
-                        <img src="img/AbuDhabi.png" alt="Destination Image" class="destination-image img-fluid mt-3">
+                    <div class="flight-time">
+                        <p>Total Flight Time: 2 hours</p>
                     </div>
+                    <button class="book-button">Book Now</button>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>
 
 <!-- Bootstrap Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
