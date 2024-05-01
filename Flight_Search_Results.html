@@ -6,6 +6,8 @@
     <title>Flight Search Results</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <style>
         body {
@@ -51,9 +53,17 @@
             color: #6c757d;
             margin-bottom: 0.5rem;
         }
-        .departure-info, .arrival-info {
-            font-size: 0.9rem;
+        .flight-info {
+            display: flex;
+            align-items: center;
             margin-bottom: 0.5rem;
+        }
+        .flight-info i {
+            margin-right: 0.5rem;
+            color: #6c757d;
+        }
+        .flight-info p {
+            margin-bottom: 0;
         }
         .flight-time {
             font-size: 0.9rem;
@@ -90,13 +100,21 @@
                         </div>
                     </div>
                     <hr>
-                    <div class="departure-info">
-                        <p>Departure: New York (JFK)</p>
-                        <p>Departure Time: 08:00 AM</p>
+                    <div class="flight-info">
+                        <i class="fas fa-plane-departure"></i>
+                        <p><strong>Departure:</strong> New York (JFK)</p>
                     </div>
-                    <div class="arrival-info">
-                        <p>Arrival: Los Angeles (LAX)</p>
-                        <p>Arrival Time: 10:00 AM</p>
+                    <div class="flight-info">
+                        <i class="far fa-clock"></i>
+                        <p><strong>Departure Time:</strong> 08:00 AM</p>
+                    </div>
+                    <div class="flight-info">
+                        <i class="fas fa-plane-arrival"></i>
+                        <p><strong>Arrival:</strong> Los Angeles (LAX)</p>
+                    </div>
+                    <div class="flight-info">
+                        <i class="far fa-clock"></i>
+                        <p><strong>Arrival Time:</strong> 10:00 AM</p>
                     </div>
                     <div class="flight-time">
                         <p>Total Flight Time: 2 hours</p>
@@ -116,13 +134,21 @@
                         </div>
                     </div>
                     <hr>
-                    <div class="departure-info">
-                        <p>Departure: Chicago (ORD)</p>
-                        <p>Departure Time: 10:00 AM</p>
+                    <div class="flight-info">
+                        <i class="fas fa-plane-departure"></i>
+                        <p><strong>Departure:</strong> Chicago (ORD)</p>
                     </div>
-                    <div class="arrival-info">
-                        <p>Arrival: San Francisco (SFO)</p>
-                        <p>Arrival Time: 12:00 PM</p>
+                    <div class="flight-info">
+                        <i class="far fa-clock"></i>
+                        <p><strong>Departure Time:</strong> 10:00 AM</p>
+                    </div>
+                    <div class="flight-info">
+                        <i class="fas fa-plane-arrival"></i>
+                        <p><strong>Arrival:</strong> San Francisco (SFO)</p>
+                    </div>
+                    <div class="flight-info">
+                        <i class="far fa-clock"></i>
+                        <p><strong>Arrival Time:</strong> 12:00 PM</p>
                     </div>
                     <div class="flight-time">
                         <p>Total Flight Time: 2 hours</p>
@@ -136,5 +162,7 @@
 
 <!-- Bootstrap Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Font Awesome -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
 </body>
 </html>
