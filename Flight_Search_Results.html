@@ -5,148 +5,118 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flight Search Results</title>
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        /* Custom CSS */
         body {
             background-color: #f8f9fa;
+            color: #002144;
         }
-        .result-card {
-            background-color: #ffffff;
+        .navbar-custom {
+            background-color: #002144;
+            color: white;
+        }
+        .btn-custom {
+            background-color: #FF4600;
+            border-color: #FF4600;
+        }
+        .btn-custom:hover {
+            background-color: #F94CA4;
+            border-color: #F94CA4;
+        }
+        .flight-card {
+            border: 1px solid #ced4da;
             border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
             margin-bottom: 20px;
         }
-        .flight-logo {
-            max-height: 50px;
+        .flight-card-header {
+            background-color: #FF4600;
+            color: white;
+            border-radius: 10px 10px 0 0;
         }
-        .flight-details {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .flight-price {
-            font-size: 1.5em;
-            color: #FF4600;
+        .flight-card-title {
+            color: #002144;
         }
     </style>
 </head>
 <body>
 
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
     <div class="container">
-        <a class="navbar-brand" href="#"><img src="img/SwiftSkies_logo.png" alt="logo" height="32"></a>
-        <!-- Toggle Btn -->
-        <button class="navbar-toggler shadow-none border-0" 
-                type="button" 
-                data-bs-toggle="offcanvas" 
-                data-bs-target="#offcanvasNavbar" 
-                aria-controls="offcanvasNavbar" 
-                aria-label="Toggle navigation">
+        <a class="navbar-brand" href="#">SwiftSkies</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <!-- SideBar -->
-        <div class="sidebar offcanvas offcanvas-start" 
-            tabindex="-1" 
-            id="offcanvasNavbar" 
-            aria-labelledby="offcanvasNavbarLabel">
-            <!-- SideBar Header -->
-            <div class="offcanvas-header text-white border-bottom">
-                <h5 class="offcanvas-title" id="offcanvasNavbarLabel" style="color: #002144; font-weight: bold; font-size: 1.2em;">SWIFTSKIES</h5>
-                <button type="button" class="btn-close btn-close-white shadow-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <!-- SideBar Body -->
-            <div class="offcanvas-body d-flex flex-column flex-lg-row p-4 p-lg-0">
-                <ul class="navbar-nav justify-content-center align-items-center fs-5 flex-grow-1 pe-3">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#" style="color: #002144; font-weight: bold;">Home</a>
-                    </li>
-                    <li class="nav-item mx-2">
-                        <a class="nav-link" href="#about" style="color: #002144; font-weight: bold;">About</a>
-                    </li>
-                    <li class="nav-item mx-2">
-                        <a class="nav-link" href="#service" style="color: #002144; font-weight: bold;">Service</a>
-                    </li>
-                    <li class="nav-item mx-2">
-                        <a class="nav-link" href="#contact" style="color: #002144; font-weight: bold;">Contact</a>
-                    </li>
-                </ul>
-                <!-- Login / Sign up -->
-                <div class="d-flex flex-column flex-lg-row justify-content-center align-items-center gap-3">
-                    <a href="loginform.html" class="text-white">Login</a>
-                    <a href="registerform.html" 
-                    class="text-white text-decoration-none px-3 py-1 rounded-4"
-                    style="background-color: #f94ca4"
-                    >Sign Up</a>
-                </div>
-            </div>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Service</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>
 
-<!-- Flight Search Results -->
-<div class="container mt-5">
+<!-- Flight Search Result -->
+<section class="container mt-5">
     <div class="row">
-        <div class="col-md-6">
-            <div class="result-card">
-                <div class="flight-details">
-                    <div>
-                        <img src="img/logo.png" alt="Airline Logo" class="flight-logo">
-                        <span class="ms-2">Flight A123</span>
-                    </div>
-                    <span class="flight-price">$200</span>
+        <div class="col">
+            <h2 class="text-center mb-4">Flight Search Results</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card flight-card">
+                <div class="card-header flight-card-header">
+                    Flight 1
                 </div>
-                <div class="row align-items-center">
-                    <div class="col-md-4">
-                        <p class="fw-bold text-end mb-0">ORD</p>
-                        <p class="text-end">10:00</p>
-                    </div>
-                    <div class="col-md-4 text-center">
-                        <p class="fw-bold">2h <i class="fas fa-long-arrow-alt-right"></i></p>
-                    </div>
-                    <div class="col-md-4">
-                        <p class="fw-bold mb-0">SFO</p>
-                        <p>12:00</p>
-                    </div>
+                <div class="card-body">
+                    <h5 class="card-title flight-card-title">Details for Flight 1</h5>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut libero magna. Sed ut mauris id urna tempus consequat. Ut in arcu eu ex efficitur interdum.</p>
+                    <a href="#" class="btn btn-custom">Select</a>
                 </div>
-                <button class="btn btn-primary mt-3">Book Now</button>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="result-card">
-                <div class="flight-details">
-                    <div>
-                        <img src="img/logo.png" alt="Airline Logo" class="flight-logo">
-                        <span class="ms-2">Flight B456</span>
-                    </div>
-                    <span class="flight-price">$250</span>
+        <div class="col-md-4">
+            <div class="card flight-card">
+                <div class="card-header flight-card-header">
+                    Flight 2
                 </div>
-                <div class="row align-items-center">
-                    <div class="col-md-4">
-                        <p class="fw-bold text-end mb-0">JFK</p>
-                        <p class="text-end">08:00</p>
-                    </div>
-                    <div class="col-md-4 text-center">
-                        <p class="fw-bold">2h <i class="fas fa-long-arrow-alt-right"></i></p>
-                    </div>
-                    <div class="col-md-4">
-                        <p class="fw-bold mb-0">LAX</p>
-                        <p>10:00</p>
-                    </div>
+                <div class="card-body">
+                    <h5 class="card-title flight-card-title">Details for Flight 2</h5>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut libero magna. Sed ut mauris id urna tempus consequat. Ut in arcu eu ex efficitur interdum.</p>
+                    <a href="#" class="btn btn-custom">Select</a>
                 </div>
-                <button class="btn btn-primary mt-3">Book Now</button>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card flight-card">
+                <div class="card-header flight-card-header">
+                    Flight 3
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title flight-card-title">Details for Flight 3</h5>
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ut libero magna. Sed ut mauris id urna tempus consequat. Ut in arcu eu ex efficitur interdum.</p>
+                    <a href="#" class="btn btn-custom">Select</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</section>
 
-
-
-
-
-<!-- Bootstrap Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
