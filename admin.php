@@ -8,12 +8,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-  <style>
-    .fa-circle-check,
-    .fa-circle-xmark {
-      cursor: pointer;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
@@ -52,21 +47,29 @@
         </tr>
       </thead>
       <tbody>
-        <?php include 'admin_records.php'; ?>
+        <?php
+          // Συμπερίληψη του αρχείου σύνδεσης στη βάση δεδομένων
+          include 'php/database.php';
+
+          // Εδώ θα πρέπει να προσθέσετε τον κώδικα PHP που επιλέγει τις εγγραφές από τη βάση δεδομένων
+
+          // Εδώ θα πρέπει να εμφανίσετε δυναμικά τις εγγραφές στον πίνακα
+        ?>
       </tbody>
     </table>
   </div>
 
-  <!-- Περιέχει σενάρια JavaScript για την αποδοχή και απόρριψη των εγγραφών -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <script>
-    function acceptRecord(id) {
-      // Εδώ θα πρέπει να προσθέσετε κώδικα JavaScript για την αποδοχή της εγγραφής με id=id
-      console.log("Accepted record with id " + id);
+    function acceptRecord(index) {
+      // Εδώ μπορείτε να προσθέσετε τον κώδικα JavaScript που θα εκτελεστεί όταν πατηθεί το εικονίδιο αποδοχής
+      console.log("Accepted record at index " + index);
     }
 
-    function rejectRecord(id) {
-      // Εδώ θα πρέπει να προσθέσετε κώδικα JavaScript για την απόρριψη της εγγραφής με id=id
-      console.log("Rejected record with id " + id);
+    function rejectRecord(index) {
+      // Εδώ μπορείτε να προσθέσετε τον κώδικα JavaScript που θα εκτελεστεί όταν πατηθεί το εικονίδιο απόρριψης
+      console.log("Rejected record at index " + index);
     }
   </script>
 </body>

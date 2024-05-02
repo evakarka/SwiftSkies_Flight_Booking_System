@@ -12,7 +12,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <style>
         .divider:after,
         .divider:before {
@@ -55,47 +54,30 @@
                         <div class="divider d-flex align-items-center my-4">
                             <p class="text-center fw-bold mx-3 mb-0">Or</p>
                         </div>
-                        <!-- Full Name input -->
                         <div class="form-outline mb-4">
                             <input type="text" id="fullName" class="form-control form-control-lg" placeholder="Full Name" name="fullName">
                         </div>
-                        <!-- Phone input -->
                         <div class="form-outline mb-4">
                             <input type="tel" id="phone" class="form-control form-control-lg" placeholder="Phone" name="phone">
                         </div>
-                        <!-- Email input -->
                         <div class="form-outline mb-4">
                             <input type="email" id="email" class="form-control form-control-lg" placeholder="Email" name="email">
                         </div>
-                        <!-- Password input -->
                         <div class="form-outline mb-4">
                             <input type="password" id="password" class="form-control form-control-lg" placeholder="Password" name="password">
                         </div>
-                        <!-- Confirm Password input -->
                         <div class="form-outline mb-4">
                             <input type="password" id="confirmPassword" class="form-control form-control-lg" placeholder="Confirm Password" name="confirmPassword">
                         </div>
-                        <!-- Select Role input -->
                         <div class="form-outline mb-4">
                             <p>Select Role:</p>                              
-                            <label for="user" class="radio-inline"><input type="radio" name="gender" id="user" checked>User</label>
-                            <label for="passenger" class="radio-inline"><input type="radio" name="gender" id="passenger">Passenger</label>
-                            <label for="staff" class="radio-inline"><input type="radio" name="gender" id="staff">Staff</label>
-                            <label for="pilot" class="radio-inline"><input type="radio" name="gender" id="pilot">Pilot</label>
-                            <label for="purser" class="radio-inline"><input type="radio" name="gender" id="purser">Purser</label>
+                            <label for="user" class="radio-inline"><input type="radio" name="role" id="user" checked>User</label>
+                            <label for="passenger" class="radio-inline"><input type="radio" name="role" id="passenger">Passenger</label>
+                            <label for="staff" class="radio-inline"><input type="radio" name="role" id="staff">Staff</label>
+                            <label for="pilot" class="radio-inline"><input type="radio" name="role" id="pilot">Pilot</label>
+                            <label for="purser" class="radio-inline"><input type="radio" name="role" id="purser">Purser</label>
                         </div>
-                        <!-- <div class="form-outline mb-4">
-                            <select class="form-select form-select-lg" id="role">
-                                <option selected>Select Role</option>
-                                <option value="user">User</option>
-                                <option value="passenger">Passenger</option>
-                                <option value="staff">Staff</option>
-                                <option value="pilot">Pilot</option>
-                                <option value="purser">Purser</option>
-                            </select>
-                        </div> -->
                         <div class="d-flex justify-content-between align-items-center">
-                            <!-- Checkbox -->
                             <div class="form-check mb-0">
                                 <input class="form-check-input me-2" type="checkbox" value="" id="rememberMe" checked>
                                 <label class="form-check-label" for="rememberMe">Remember me</label>
