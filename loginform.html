@@ -4,13 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SwiftSkies - Login</title>
-    <link rel="icon" href="img/logo.png" type="image/x-icon">
+    <link rel="icon"
+        href="img/logo.png"
+        type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <style>
         .divider:after,
         .divider:before {
@@ -34,19 +43,19 @@
         <div class="container-fluid h-custom">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-md-5">
-                    <img src="img/illustrator_3.png" class="img-fluid" alt="Sample image">
+                    <img src="img/illustrator_4.png" class="img-fluid" alt="Sample image">
                 </div>
                 <div class="col-md-6 offset-md-1">
-                    <form id="loginForm" action="loginform.php" method="POST">
+                    <form id="loginForm">
                         <div class="d-flex flex-row align-items-center justify-content-center justify-content-md-start">
                             <p class="lead fw-normal mb-0 me-3">Sign in with</p>
-                            <button type="button" class="btn btn-primary btn-floating mx-1"  style="background-color: #002144;">
+                            <button type="button" class="btn btn-primary btn-floating mx-1">
                                 <i class="fab fa-facebook-f"></i>
                             </button>
-                            <button type="button" class="btn btn-primary btn-floating mx-1"  style="background-color: #002144;">
+                            <button type="button" class="btn btn-primary btn-floating mx-1">
                                 <i class="fab fa-twitter"></i>
                             </button>
-                            <button type="button" class="btn btn-primary btn-floating mx-1"  style="background-color: #002144;">
+                            <button type="button" class="btn btn-primary btn-floating mx-1">
                                 <i class="fab fa-linkedin-in"></i>
                             </button>
                         </div>
@@ -55,11 +64,11 @@
                         </div>
                         <!-- Email input -->
                         <div class="form-outline mb-4">
-                            <input type="email" id="email" class="form-control form-control-lg" placeholder="Email" name="email">
+                            <input type="email" id="email" class="form-control form-control-lg" placeholder="Email">
                         </div>
                         <!-- Password input -->
                         <div class="form-outline mb-4">
-                            <input type="password" id="password" class="form-control form-control-lg" placeholder="Password" name="password">
+                            <input type="password" id="password" class="form-control form-control-lg" placeholder="Password">
                         </div>
                         <div class="d-flex justify-content-between align-items-center">
                             <!-- Checkbox -->
@@ -67,10 +76,10 @@
                                 <input class="form-check-input me-2" type="checkbox" value="" id="rememberMe" checked>
                                 <label class="form-check-label" for="rememberMe">Remember me</label>
                             </div>
-                            <a href="forgot-password.php" class="text-body">Forgot password?</a>
+                            <a href="#!" class="text-body">Forgot password?</a>
                         </div>
                         <div class="text-center text-md-start mt-4 pt-2">
-                            <button type="submit" id="loginBtn" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem; background-color: #002144;">Login</button>
+                            <button type="button" id="loginBtn" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
                             <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="registerform.html" class="link-danger">Sign Up</a></p>
                         </div>
                     </form>
