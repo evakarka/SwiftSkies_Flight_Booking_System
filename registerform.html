@@ -39,15 +39,15 @@
                 </div>
                 <div class="col-md-6 offset-md-1">
                     <form id="loginForm" action="registerform.php" method="post">
-                        <div class="d-flex flex-row align-items-center justify-content-center justify-content-md-start">
+                        <div class="d-flex flex-row align-items-center justify-content-center justify-content-md-start" >
                             <p class="lead fw-normal mb-0 me-3">Sign in with</p>
-                            <button type="button" class="btn btn-primary btn-floating mx-1">
+                            <button type="button" class="btn btn-primary btn-floating mx-1" style="background-color: #002144;">
                                 <i class="fab fa-facebook-f"></i>
                             </button>
-                            <button type="button" class="btn btn-primary btn-floating mx-1">
+                            <button type="button" class="btn btn-primary btn-floating mx-1"  style="background-color: #002144;">
                                 <i class="fa-brands fa-instagram"></i>
                             </button>
-                            <button type="button" class="btn btn-primary btn-floating mx-1">
+                            <button type="button" class="btn btn-primary btn-floating mx-1"  style="background-color: #002144;">
                                 <i class="fa-brands fa-discord"></i>
                             </button>
                         </div>
@@ -55,7 +55,8 @@
                             <p class="text-center fw-bold mx-3 mb-0">Or</p>
                         </div>
                         <div class="form-outline mb-4">
-                            <input type="text" id="fullName" class="form-control form-control-lg" placeholder="Full Name" name="fullName">
+                            <input type="text" name="name" id="name" class="form-control form-control-lg" placeholder="Username" name="fullName">
+                            <!-- <input type="text" id="fullName" class="form-control form-control-lg" placeholder="Full Name" name="fullName"> -->
                         </div>
                         <div class="form-outline mb-4">
                             <input type="tel" id="phone" class="form-control form-control-lg" placeholder="Phone" name="phone">
@@ -80,14 +81,14 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="form-check mb-0">
                                 <input class="form-check-input me-2" type="checkbox" value="" id="rememberMe" checked>
-                                <label class="form-check-label" for="rememberMe">Remember me</label>
+                                <label class="form-check-label"  for="rememberMe">Remember me</label>
                             </div>
                         </div>
-                        <input type="checkbox" name="terms" id="terms">
+                        <input type="checkbox"  name="terms" id="terms">
                         <label for="terms">I accept the terms and conditions</label>
                         
                         <div class="text-center text-md-start mt-4 pt-2">
-                            <button type="submit" id="loginBtn" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">Sign Up</button>
+                            <button type="submit" id="loginBtn" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;  background-color: #002144;">Sign Up</button>
                             <p class="small fw-bold mt-2 pt-1 mb-0">Already have an account? <a href="loginform.html" class="link-danger">Login</a></p>
                         </div>
                     </form>
