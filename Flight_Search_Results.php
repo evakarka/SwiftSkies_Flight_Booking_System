@@ -172,7 +172,7 @@
                             </div>
                         </div>
                     </div>
-                    <?php
+                <?php
                 }
             } else {
                 echo "0 results";
