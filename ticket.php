@@ -9,11 +9,16 @@ class PDF extends FPDF
         // Set font
         $this->SetFont('Arial', 'B', 16);
         // Set fill color
-        $this->SetFillColor(50, 50, 100);
+        $this->SetFillColor(0, 33, 68); // Dark blue background
+        // Set text color
+        $this->SetTextColor(255, 255, 255); // White text
         // Add a cell with background color
-        $this->Cell(0, 15, 'Airport Ticket', 0, 1, 'C', true);
+        $this->Cell(0, 20, 'SwiftSkies Airlines', 0, 1, 'C', true);
+        $this->SetFont('Arial', 'B', 14);
+        $this->Cell(0, 10, 'Border Pass', 0, 1, 'C', true);
+
         // Add an image logo (optional)
-        $this->Image('img\SwiftSkies_logo.png', 10, 10, 30);
+        $this->Image('img/SwiftSkies_logo.png', 10, 20, 30); // Adjusted y-coordinate to 20
         // Line break
         $this->Ln(20);
     }
@@ -22,11 +27,11 @@ class PDF extends FPDF
     function Footer()
     {
         // Set position 1.5 cm from bottom
-        $this->SetY(-15);
+        $this->SetY(-10);
         // Set font
         $this->SetFont('Arial', 'I', 8);
         // Set fill color for footer
-        $this->SetFillColor(230, 230, 230);
+        $this->SetFillColor(230, 230, 230); // Light grey background
         // Add a cell with background color
         $this->Cell(0, 10, 'Page ' . $this->PageNo(), 0, 0, 'C', true);
         // Add a bottom border
@@ -38,12 +43,20 @@ class PDF extends FPDF
     function StyledCell($width, $height, $text, $border, $ln, $align, $fill)
     {
         $this->SetFont('Arial', 'B', 12);
-        $this->SetTextColor(50, 50, 100);
+        $this->SetTextColor(0, 33, 68); // Dark blue text
+        $this->Cell($width, $height, $text, $border, $ln, $align, $fill);
+    }
+
+    // Modern styled value cell
+    function ValueCell($width, $height, $text, $border, $ln, $align, $fill)
+    {
+        $this->SetFont('Arial', '', 12);
+        $this->SetTextColor(0, 0, 0); // Black text
         $this->Cell($width, $height, $text, $border, $ln, $align, $fill);
     }
 }
 
-// Instanciation of inherited class
+// Instantiation of inherited class
 $pdf = new PDF();
 $pdf->AddPage();
 $pdf->SetFont('Arial', '', 12);
@@ -60,12 +73,13 @@ $ticket = [
     'Seat' => '12A',
     'Gate' => '22',
     'Class' => 'Economy',
+    'Boarding Pass' => 'Yes' // Adding a boarding pass entry
 ];
 
 // Display ticket information
 foreach ($ticket as $key => $value) {
     $pdf->StyledCell(50, 10, $key . ':', 1, 0, 'L', false);
-    $pdf->Cell(0, 10, $value, 1, 1);
+    $pdf->ValueCell(0, 10, $value, 1, 1, 'L', false);
 }
 
 // Output the PDF
