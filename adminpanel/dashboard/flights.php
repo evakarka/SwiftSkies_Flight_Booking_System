@@ -1,3 +1,38 @@
+<?php
+$servername = "localhost";
+$username = "root"; 
+$password = ""; 
+$dbname = "swiftskies"; 
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $flightNum = $_POST["FLIGHTNUM"];
+    $origin = $_POST["ORIGIN"];
+    $destination = $_POST["DEST"];
+    $date = $_POST["DATE"];
+    $arrTime = $_POST["ARR_TIME"];
+    $depTime = $_POST["DEP_TIME"];
+    $airid = $_POST["AIRPLANE_ID"];
+
+    $sql = "INSERT INTO flights (FLIGHTNUM, ORIGIN, DEST, DATE, ARR_TIME, DEP_TIME, AIRPLANE_ID) VALUES ('$flightNum', '$origin', '$destination', '$date', '$arrTime', '$depTime', '$airid')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "New record created successfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+}
+
+// Κλείσιμο σύνδεσης
+$conn->close();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
