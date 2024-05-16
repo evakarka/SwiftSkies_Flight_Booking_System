@@ -13,27 +13,73 @@
     <!-- Custom CSS for modal -->
     <style>
         /* Custom styles for the modal */
-    .modal-header {
-        background-color: #2A2185;
-        color: white;
-    }
+        .modal-header {
+            background-color: #2A2185;
+            color: white;
+        }
 
-    /* Περιθώρια για τον κεντρικό περιεχόμενο */
-    .main {
-        padding: 20px;
-    }
+        /* Padding for the main content */
+        .main {
+            padding: 20px;
+        }
 
-    /* Περιθώρια για τον πίνακα */
-    table {
-        margin-top: 20px;
-    }
+        /* Padding for the table */
+        table {
+            margin-top: 20px;
+        }
+
+        /* No padding for certain containers */
+        .padding_zero {
+            padding: 0;
+        }
+
+        /* Hamburger menu styles */
+        .hamburger {
+            display: none;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            z-index: 1001; /* Ensure it's on top of the sidebar */
+        }
+
+        .hamburger div {
+            width: 30px;
+            height: 3px;
+            background-color: #ffffff;
+            margin: 6px 0;
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: -250px;
+            background-color: #2A2185;
+            transition: all 0.3s ease;
+            z-index: 1000; /* Ensure it's below the hamburger menu */
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 15px;
+            color: #ffffff;
+            text-decoration: none;
+        }
     </style>
 </head>
 
 <body>
-    <!-- =============== Navigation ================ -->
-    <div class="container">
+    <!-- Navigation -->
+    <div class="container-fluid padding_zero">
         <div class="navigation">
+        <div class="hamburger" id="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
             <ul>
                 <li>
                     <a href="/index.html">
@@ -145,38 +191,62 @@
                 </li>
             </ul>
         </div>
+    </div>
 
-    <!-- Κεντρικό περιεχόμενο -->
     <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </div>
+
+                <div class="search">
+                    <label>
+                        <input type="text" placeholder="Search here">
+                        <ion-icon name="search-outline"></ion-icon>
+                    </label>
+                </div>
+
+                <div class="user">
+                    <img src="assets/imgs/customer01.jpg" alt="">
+                </div>
+            </div>
+
+    <!-- Main Content -->
+    <div class="details">
         <div class="container">
             <h2>Staff Information</h2>
             <div class="text-end">
-                <!-- Κουμπί προσθήκης με διακριτικό id για τη σύνδεση με το modal -->
+                <!-- Add Staff Button -->
                 <button type="button" class="btn btn-primary" style="background-color: #2A2185;" data-bs-toggle="modal"
                     data-bs-target="#addStaffModal">
                     Add Staff
                 </button>
             </div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>EMPNUM</th>
-                        <th>SURNAME</th>
-                        <th>NAME</th>
-                        <th>ADDRESS</th>
-                        <th>PHONE</th>
-                        <th>SALARY</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Υπόλοιπος κώδικας πίνακα εδώ... -->
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <!-- Staff Table -->
+                <table class="table">
+                    <!-- Table Header -->
+                    <thead>
+                        <tr>
+                            <th>EMPNUM</th>
+                            <th>SURNAME</th>
+                            <th>NAME</th>
+                            <th>ADDRESS</th>
+                            <th>PHONE</th>
+                            <th>SALARY</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <!-- Table Body -->
+                    <tbody>
+                        <!-- Data rows will be added here -->
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Add Staff Modal -->
     <div class="modal fade" id="addStaffModal" tabindex="-1" aria-labelledby="addStaffModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -213,47 +283,46 @@
             </div>
         </div>
     </div>
+    </div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+    <!-- Custom JavaScript -->
     <script>
-        $(document).ready(function () {
-            // Όταν η φόρμα υποβάλλεται
-            $("#addStaffForm").submit(function (event) {
-                // Αποτροπή της προεπιλεγμένης συμπεριφοράς φόρμας υποβολής
-                event.preventDefault();
-                
-                // Ανάκτηση των δεδομένων από τη φόρμα
-                var formData = $(this).serialize();
-
-                // Αποστολή δεδομένων φόρμας μέσω AJAX
-                $.ajax({
-                    type: "POST",
-                    url: "add_staff.php", // Το αρχείο PHP που θα διαχειριστεί την εισαγωγή στη βάση δεδομένων
-                    data: formData,
-                    success: function(response) {
-                        // Κλείσιμο του modal
-                        $('#addStaffModal').modal('hide');
-                        // Επαναφορά της φόρμας
-                        $('#addStaffForm')[0].reset();
-                        // Ανανέωση των δεδομένων στον πίνακα
-                        // Προσαρμόστε τον κώδικα ανάλογα με το πώς ανανεώνετε τα δεδομένα του πίνακα
-                    }
-                });
+    $(document).ready(function () {
+        // Form submission handling
+        $("#addStaffForm").submit(function (event) {
+            event.preventDefault();
+            var formData = $(this).serialize();
+            $.ajax({
+                type: "POST",
+                url: "add_staff.php", // Change this to the appropriate URL for handling form submission
+                data: formData,
+                success: function(response) {
+                    $('#addStaffModal').modal('hide');
+                    $('#addStaffForm')[0].reset();
+                    // Refresh table data or perform any other necessary actions
+                },
+                error: function(xhr, status, error) {
+                    // Handle errors here
+                    console.error(xhr.responseText);
+                }
             });
         });
-    </script>
-    <script src="assets/js/main.js"></script>
+    });
+</script>
 
-<!-- ====== ionicons ======= -->
-<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+<script src="assets/js/main.js"></script>
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>
