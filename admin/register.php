@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+
 include('includes/header.php'); 
 include('includes/navbar.php'); 
 ?>
@@ -59,6 +62,15 @@ include('includes/navbar.php');
   </div>
 
   <div class="card-body">
+
+  <?php
+
+  if(isset($_SESSION['success']) && $_SESSION['success'] !='')
+  {
+    echo '<h2> '.$_SESSION['success'].' </h2>';
+    unsert($_SESSION['success']);
+  }
+  ?>
 
     <div class="table-responsive">
 
