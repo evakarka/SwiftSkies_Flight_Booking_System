@@ -1,8 +1,9 @@
 <?php
+// Κώδικας PHP για τη σύνδεση στη βάση δεδομένων και την επεξεργασία δεδομένων
 $servername = "localhost";
-$username = "root"; 
-$password = ""; 
-$dbname = "swiftskies"; 
+$username = "root";
+$password = "";
+$dbname = "swiftskies";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -11,27 +12,24 @@ if ($conn->connect_error) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $flightNum = $_POST["FLIGHTNUM"];
-    $origin = $_POST["ORIGIN"];
-    $destination = $_POST["DEST"];
-    $date = $_POST["DATE"];
-    $arrTime = $_POST["ARR_TIME"];
-    $depTime = $_POST["DEP_TIME"];
-    $airid = $_POST["AIRPLANE_ID"];
+    $sql = "INSERT INTO flights (id, FLIGHTNUM, ORIGIN, DEST, DATE, ARR_TIME, DEP_TIME, AIRPLANE_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
 
-    $sql = "INSERT INTO flights (FLIGHTNUM, ORIGIN, DEST, DATE, ARR_TIME, DEP_TIME, AIRPLANE_ID) VALUES ('$flightNum', '$origin', '$destination', '$date', '$arrTime', '$depTime', '$airid')";
+    if ($stmt === false) {
+        die("Error: " . $conn->error);
+    }
 
-    if ($conn->query($sql) === TRUE) {
+    $stmt->bind_param("sssssss", $_POST["id"], $_POST["flightNum"], $_POST["origin"], $_POST["destination"], $_POST["date"], $_POST["arrTime"], $_POST["depTime"], $_POST["airplane_id"]);
+
+    if ($stmt->execute()) {
         echo "New record created successfully";
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
+
+    $stmt->close();
 }
-
-// Κλείσιμο σύνδεσης
-$conn->close();
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -39,7 +37,7 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Staff Information</title>
+    <title>Flight Information</title>
     <!-- ======= Styles ====== -->
     <link rel="stylesheet" href="assets/css/style.css">
     <!-- Bootstrap CSS -->
@@ -246,84 +244,138 @@ $conn->close();
                 </div>
             </div>
 
-    <!-- Main Content -->
-    <div class="details">
-        <div class="container">
-            <h2>Flights Information</h2>
-            <div class="text-end">
-                <!-- Add Staff Button -->
-                <button type="button" class="btn btn-primary" style="background-color: #2A2185;" data-bs-toggle="modal"
-                    data-bs-target="#addStaffModal">
-                    Add Flight
-                </button>
+            <div class="details">
+            <div class="container">
+                <h2>Flights Information</h2>
+                <div class="text-end">
+                    <!-- Add Staff Button -->
+                    <button type="button" class="btn btn-primary" style="background-color: #2A2185;" data-bs-toggle="modal"
+                        data-bs-target="#addFlightModal">
+                        Add Flight
+                    </button>
+                </div>
+                <div class="table-responsive">
+                    <!-- Staff Table -->
+                    <table class="table">
+                        <!-- Table Header -->
+                        <thead>
+                            <tr>
+                                <th>NUM</th>
+                                <th>FLIGHTNUM</th>
+                                <th>ORIGIN</th>
+                                <th>DEST</th>
+                                <th>DATE</th>
+                                <th>ARR-TIME</th>
+                                <th>DEP-TIME</th>
+                                <th>AIRPLANE_ID</th>
+                            </tr>
+                        </thead>
+                        <!-- Table Body -->
+                        <tbody>
+                            <?php
+                            // Εκτέλεση ερωτήματος SQL για την ανάκτηση των δεδομένων
+                            $sql = "SELECT * FROM flights";
+                            $result = $conn->query($sql);
+
+                            // Έλεγχος αν υπάρχουν δεδομένα
+                            if ($result->num_rows > 0) {
+                                // Εμφάνιση κάθε γραμμής δεδομένων ως σειρά στον πίνακα
+                                while($row = $result->fetch_assoc()) {
+                                    echo "<tr>";
+                                    echo "<td>".(isset($row["id"]) ? $row["id"] : "")."</td>";
+                                    echo "<td>".$row["FLIGHTNUM"]."</td>";
+                                    echo "<td>".$row["ORIGIN"]."</td>";
+                                    echo "<td>".$row["DEST"]."</td>";
+                                    echo "<td>".$row["DATE"]."</td>";
+                                    echo "<td>".(isset($row["ARR_TIME"]) ? $row["ARR_TIME"] : "")."</td>";
+                                    echo "<td>".(isset($row["DEP_TIME"]) ? $row["DEP_TIME"] : "")."</td>";
+                                    echo "<td>".$row["AIRPLANE_ID"]."</td>";
+                                    echo "</tr>";
+
+                                }                                
+                            } else {
+                                echo "0 results";
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div class="table-responsive">
-                <!-- Staff Table -->
-                <table class="table">
-                    <!-- Table Header -->
-                    <thead>
-                        <tr>
-                        <th>NUM</th>
-                        <th>FLIGHTNUM</th>
-                        <th>ORIGIN</th>
-                        <th>DEST</th>
-                        <th>DATE</th>
-                        <th>ARR-TIME</th>
-                        <th>DEP-TIME</th>
-                        </tr>
-                    </thead>
-                    <!-- Table Body -->
-                    <tbody>
-                        <!-- Data rows will be added here -->
-                    </tbody>
-                </table>
+        </div>
+
+        <!-- Add Staff Modal -->
+        <!-- CHANGE AIRPLANE TO FLIGHT -->
+        <div class="modal fade" id="addFlightModal" tabindex="-1" aria-labelledby="addFlightModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addFlightModalLabel">Add New Flight</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Εδώ μπορείτε να προσθέσετε τα πεδία εισαγωγής για τα στοιχεία του εργαζόμενου -->
+                        <form id="addFlightForm" method="post" action="add_flight.php">
+                            <div class="mb-3">
+                                <label for="flightNum" class="form-label">Flight Number</label>
+                                <input type="text" class="form-control"
+                                id="flightNum" name="flightNum" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="origin" class="form-label">Origin</label>
+                                <input type="text" class="form-control" id="origin" name="origin">
+                            </div>
+                            <div class="mb-3">
+                                <label for="destination" class="form-label">Destination</label>
+                                <input type="text" class="form-control" id="destination" name="destination">
+                            </div>
+                            <div class="mb-3">
+                                <label for="date" class="form-label">Date</label>
+                                <input type="date" class="form-control" id="date" name="date">
+                            </div>
+                            <div class="mb-3">
+                                <label for="arrTime" class="form-label">Arrival Time</label>
+                                <input type="time" class="form-control" id="arrTime" name="arrTime">
+                            </div>
+                            <div class="mb-3">
+                                <label for="depTime" class="form-label">Departure Time</label>
+                                <input type="time" class="form-control" id="depTime" name="depTime">
+                            </div>
+                            <div class="mb-3">
+                                <label for="airplane_id" class="form-label">Airplane ID</label>
+                                <input type="text" class="form-control" id="airplane_id" name="airplane_id">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Add Staff Modal -->
-    <!-- CHANGE AIRPLANE TO FLIGHT -->
-    <div class="modal fade" id="addStaffModal" tabindex="-1" aria-labelledby="addStaffModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addAirplaneModalLabel">Add New Flight</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- Εδώ μπορείτε να προσθέσετε τα πεδία εισαγωγής για τα στοιχεία του εργαζόμενου -->
-                    <form id="addAirplaneForm">
-                    <div class="mb-3">
-                        <label for="flightNum" class="form-label">Flight Number</label>
-                        <input type="text" class="form-control" id="flightNum" name="flightNum">
-                    </div>
-                    <div class="mb-3">
-                        <label for="origin" class="form-label">Origin</label>
-                        <input type="text" class="form-control" id="origin" name="origin">
-                    </div>
-                    <div class="mb-3">
-                        <label for="destination" class="form-label">Destination</label>
-                        <input type="text" class="form-control" id="destination" name="destination">
-                    </div>
-                    <div class="mb-3">
-                        <label for="date" class="form-label">Date</label>
-                        <input type="date" class="form-control" id="date" name="date">
-                    </div>
-                    <div class="mb-3">
-                        <label for="arrTime" class="form-label">Arrival Time</label>
-                        <input type="time" class="form-control" id="arrTime" name="arrTime">
-                    </div>
-                    <div class="mb-3">
-                        <label for="depTime" class="form-label">Departure Time</label>
-                        <input type="time" class="form-control" id="depTime" name="depTime">
-                    </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
+    <!-- Custom JavaScript -->
+    <script>
+        $(document).ready(function () {
+            // Χειρισμός υποβολής της φόρμας
+            $("#addFlightForm").submit(function (event) {
+                event.preventDefault(); // Αποτροπή προεπιλεγμένης συμπεριφοράς φόρμας
+                var formData = $(this).serialize(); // Παίρνουμε τα δεδομένα της φόρμας
+                $.ajax({
+                    type: "POST", // Μέθοδος HTTP
+                    url: "add_flight.php", // Η διεύθυνση URL για την επεξεργασία της φόρμας
+                    data: formData, // Τα δεδομένα που θα σταλούν
+                    success: function(response) {
+                        $('#addFlightModal').modal('hide'); // Κλείσιμο του modal
+                        $('#addFlightForm')[0].reset(); // Επαναφορά της φόρμας
+                        // Εδώ μπορείτε να κάνετε οποιαδήποτε άλλη ενέργεια χρειάζεται μετά την υποβολή
+                    },
+                    error: function(xhr, status, error) {
+                        // Χειρισμός σφαλμάτων
+                        console.error(xhr.responseText);
+                    }
+                });
+            });
+        });
+    </script>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
@@ -333,33 +385,7 @@ $conn->close();
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <!-- Custom JavaScript -->
-    <script>
-    $(document).ready(function () {
-        // Form submission handling
-        $("#addAirplaneForm").submit(function (event) {
-            event.preventDefault();
-            var formData = $(this).serialize();
-            $.ajax({
-                type: "POST",
-                url: "add_staff.php", // Change this to the appropriate URL for handling form submission
-                data: formData,
-                success: function(response) {
-                    $('#addAirplaneModalLabel').modal('hide');
-                    $('#addAirplaneForm')[0].reset();
-                    // Refresh table data or perform any other necessary actions
-                },
-                error: function(xhr, status, error) {
-                    // Handle errors here
-                    console.error(xhr.responseText);
-                }
-            });
-        });
-    });
-</script>
-
-
-<script src="assets/js/main.js"></script>
+    <script src="assets/js/main.js"></script>
     <!-- Ionicons -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
