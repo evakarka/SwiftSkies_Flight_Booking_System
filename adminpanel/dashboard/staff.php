@@ -2,42 +2,32 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <title>Airline Company - Passengers</title>
-  <link rel="stylesheet" href="assets/css/style.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Information</title>
+    <!-- ======= Styles ====== -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Custom CSS for modal -->
     <style>
-        
-        .table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        
-        .table th {
-            border-bottom: solid 2px black;
-            padding: 3px;
-        }
-        
-        .table td {
-            padding: 3px;
-            border: solid 1px rgb(255, 255, 255);
-            transition: background-color 0.3s ease; 
-        }
-        
-        .table tbody tr:hover {
-            background-color: antiquewhite;
-        }
-        
-        .table tbody tr:hover td {
-            background-color: #9dd1f1; 
-        }
-        
+        /* Custom styles for the modal */
+    .modal-header {
+        background-color: #2A2185;
+        color: white;
+    }
 
+    /* Περιθώρια για τον κεντρικό περιεχόμενο */
+    .main {
+        padding: 20px;
+    }
+
+    /* Περιθώρια για τον πίνακα */
+    table {
+        margin-top: 20px;
+    }
     </style>
-
 </head>
 
 <body>
@@ -156,50 +146,110 @@
             </ul>
         </div>
 
-
-        <div class="main">
-            <div class="container">
-                <h2>Staff Information</h2>
-                <table class="table">
+    <!-- Κεντρικό περιεχόμενο -->
+    <div class="main">
+        <div class="container">
+            <h2>Staff Information</h2>
+            <div class="text-end">
+                <!-- Κουμπί προσθήκης με διακριτικό id για τη σύνδεση με το modal -->
+                <button type="button" class="btn btn-primary" style="background-color: #2A2185;" data-bs-toggle="modal"
+                    data-bs-target="#addStaffModal">
+                    Add Staff
+                </button>
+            </div>
+            <table class="table">
                 <thead>
                     <tr>
-                    <th>EMPNUM</th>
-                    <th>SURNAME</th>
-                    <th>NAME</th>
-                    <th>ADDRESS</th>
-                    <th>PHONE</th>
-                    <th>SALARY</th>
+                        <th>EMPNUM</th>
+                        <th>SURNAME</th>
+                        <th>NAME</th>
+                        <th>ADDRESS</th>
+                        <th>PHONE</th>
+                        <th>SALARY</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    
-                    <tr>
-                    <td>1</td>
-                    <td>Loudaros</td>
-                    <td>George</td>
-                    <td>Koropi</td>
-                    <td>2109653200</td>
-                    <td>730,00</td>
-                    </tr>
-                    <tr>
-                    <td>2</td>
-                    <td>Karka</td>
-                    <td>Evangelia</td>
-                    <td>Kitsi</td>
-                    <td>2109600100</td>
-                    <td>1150,00</td>
-                    </tr>
-                    
+                    <!-- Υπόλοιπος κώδικας πίνακα εδώ... -->
                 </tbody>
-                </table>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="addStaffModal" tabindex="-1" aria-labelledby="addStaffModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addStaffModalLabel">Add New Staff</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Εδώ μπορείτε να προσθέσετε τα πεδία εισαγωγής για τα στοιχεία του εργαζόμενου -->
+                    <form id="addStaffForm">
+                        <div class="mb-3">
+                            <label for="surname" class="form-label">Surname</label>
+                            <input type="text" class="form-control" id="surname" name="surname">
+                        </div>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" name="name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Address</label>
+                            <input type="text" class="form-control" id="address" name="address">
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Phone</label>
+                            <input type="text" class="form-control" id="phone" name="phone">
+                        </div>
+                        <div class="mb-3">
+                            <label for="salary" class="form-label">Salary</label>
+                            <input type="text" class="form-control" id="salary" name="salary">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
             </div>
         </div>
+    </div>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
-  </script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
 
-<script src="assets/js/main.js"></script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Όταν η φόρμα υποβάλλεται
+            $("#addStaffForm").submit(function (event) {
+                // Αποτροπή της προεπιλεγμένης συμπεριφοράς φόρμας υποβολής
+                event.preventDefault();
+                
+                // Ανάκτηση των δεδομένων από τη φόρμα
+                var formData = $(this).serialize();
+
+                // Αποστολή δεδομένων φόρμας μέσω AJAX
+                $.ajax({
+                    type: "POST",
+                    url: "add_staff.php", // Το αρχείο PHP που θα διαχειριστεί την εισαγωγή στη βάση δεδομένων
+                    data: formData,
+                    success: function(response) {
+                        // Κλείσιμο του modal
+                        $('#addStaffModal').modal('hide');
+                        // Επαναφορά της φόρμας
+                        $('#addStaffForm')[0].reset();
+                        // Ανανέωση των δεδομένων στον πίνακα
+                        // Προσαρμόστε τον κώδικα ανάλογα με το πώς ανανεώνετε τα δεδομένα του πίνακα
+                    }
+                });
+            });
+        });
+    </script>
+    <script src="assets/js/main.js"></script>
 
 <!-- ====== ionicons ======= -->
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
