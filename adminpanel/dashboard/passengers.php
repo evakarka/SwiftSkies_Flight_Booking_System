@@ -262,7 +262,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <tbody>
                         <?php
-                            $sql = "SELECT * FROM airplanes";
+                            $sql = "SELECT * FROM passenger";
                             $result = $conn->query($sql);
 
                             if ($result->num_rows > 0) {
