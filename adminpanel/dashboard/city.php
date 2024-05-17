@@ -1,3 +1,42 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "swiftskies";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST["CITY_ID"]) && isset($_POST["CITY_NAME"])) {
+        $sql = "INSERT INTO city (CITY_ID, CITY_NAME) VALUES (?, ?)";
+        $stmt = $conn->prepare($sql);
+
+        if ($stmt === false) {
+            die("Error: " . $conn->error);
+        }
+
+        $stmt->bind_param("ss", $_POST["CITY_ID"], $_POST["CITY_NAME"]);
+
+        if ($stmt->execute()) {
+            echo "New record created successfully";
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+
+        $stmt->close();
+    } else {
+        echo "Required fields are missing.";
+    }
+}
+
+// Βεβαιωθείτε ότι η σύνδεση κλείνει στο τέλος
+// Η HTML/JS εκτέλεση βρίσκεται εδώ
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,6 +49,9 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <!-- Custom CSS for modal -->
     <style>
         /* Custom styles for the modal */
@@ -40,7 +82,7 @@
             top: 20px;
             right: 20px;
             cursor: pointer;
-            z-index: 1001; /* Ensure it's on top of the sidebar */
+            z-index: 1001;
         }
 
         .hamburger div {
@@ -59,7 +101,7 @@
             left: -250px;
             background-color: #2A2185;
             transition: all 0.3s ease;
-            z-index: 1000; /* Ensure it's below the hamburger menu */
+            z-index: 1000;
         }
 
         .sidebar a {
@@ -75,7 +117,7 @@
     <!-- Navigation -->
     <div class="container-fluid padding_zero">
         <div class="navigation">
-        <div class="hamburger" id="hamburger">
+            <div class="hamburger" id="hamburger">
                 <div></div>
                 <div></div>
                 <div></div>
@@ -87,10 +129,8 @@
                             <img src="assets/imgs/logo.png" alt="logo" style="height: 30px;">
                         </span>
                         <span class="title">SwiftSkies</span>
-                        
                     </a>
                 </li>
-
                 <li>
                     <a href="index.html">
                         <span class="icon">
@@ -99,7 +139,6 @@
                         <span class="title">Dashboard</span>
                     </a>
                 </li>
-
                 <li>
                     <a href="passengers.php">
                         <span class="icon">
@@ -108,7 +147,6 @@
                         <span class="title">Passengers</span>
                     </a>
                 </li>
-
                 <li>
                     <a href="flights.php">
                         <span class="icon">
@@ -117,7 +155,6 @@
                         <span class="title">Flights</span>
                     </a>
                 </li>
-
                 <li>
                     <a href="airplanes.php">
                         <span class="icon">
@@ -126,25 +163,22 @@
                         <span class="title">Airplanes</span>
                     </a>
                 </li>
-
                 <li>
                     <a href="staff.php">
                         <span class="icon">
-                            <ion-icon name="person-outline">></ion-icon>
+                            <ion-icon name="person-outline"></ion-icon>
                         </span>
                         <span class="title">Staff</span>
                     </a>
                 </li>
-
                 <li>
                     <a href="city.php">
                         <span class="icon">
-                            <ion-icon name="globe-outline">></ion-icon>
+                            <ion-icon name="globe-outline"></ion-icon>
                         </span>
                         <span class="title">City</span>
                     </a>
                 </li>
-
                 <li>
                     <a href="adminprofile.php">
                         <span class="icon">
@@ -153,7 +187,6 @@
                         <span class="title">Admin Profile</span>
                     </a>
                 </li>
-
                 <li>
                     <a href="help.php">
                         <span class="icon">
@@ -162,7 +195,6 @@
                         <span class="title">Help</span>
                     </a>
                 </li>
-
                 <li>
                     <a href="setting.php">
                         <span class="icon">
@@ -171,7 +203,6 @@
                         <span class="title">Settings</span>
                     </a>
                 </li>
-
                 <li>
                     <a href="password.php">
                         <span class="icon">
@@ -180,7 +211,6 @@
                         <span class="title">Password</span>
                     </a>
                 </li>
-
                 <li>
                     <a href="signout.php">
                         <span class="icon">
@@ -194,120 +224,137 @@
     </div>
 
     <div class="main">
-            <div class="topbar">
-                <div class="toggle">
-                    <ion-icon name="menu-outline"></ion-icon>
-                </div>
-
-                <div class="search">
-                    <label>
-                        <input type="text" placeholder="Search here">
-                        <ion-icon name="search-outline"></ion-icon>
-                    </label>
-                </div>
-
-                <div class="user">
-                    <img src="assets/imgs/customer01.jpg" alt="">
-                </div>
+        <div class="topbar">
+            <div class="toggle">
+                <ion-icon name="menu-outline"></ion-icon>
             </div>
-
-    <!-- Main Content -->
-    <div class="details">
-        <div class="container">
-            <h2>City Information</h2>
-            <div class="text-end">
-                <!-- Add Staff Button -->
-                <button type="button" class="btn btn-primary" style="background-color: #2A2185;" data-bs-toggle="modal"
-                    data-bs-target="#addStaffModal">
-                    Add City
-                </button>
+            <div class="search">
+                <label>
+                    <input type="text" placeholder="Search here">
+                    <ion-icon name="search-outline"></ion-icon>
+                </label>
             </div>
-            <div class="table-responsive">
-                <!-- Staff Table -->
-                <table class="table">
-                    <!-- Table Header -->
-                    <thead>
-                        <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Country</th>
-                        </tr>
-                    </thead>
-                    <!-- Table Body -->
-                    <tbody>
-                        <!-- Data rows will be added here -->
-                    </tbody>
-                </table>
+            <div class="user">
+                <img src="assets/imgs/customer01.jpg" alt="">
             </div>
         </div>
-    </div>
 
-    <!-- Add Staff Modal -->
-    <!-- CHANGE STAFF TO CITY -->
-    <div class="modal fade" id="addStaffModal" tabindex="-1" aria-labelledby="addStaffModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addStaffModalLabel">Add New City</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <!-- Main Content -->
+        <div class="details">
+            <div class="container">
+                <h2>City Information</h2>
+                <div class="text-end">
+                    <!-- Add City Button -->
+                    <button type="button" class="btn btn-primary" style="background-color: #2A2185;" data-bs-toggle="modal"
+                        data-bs-target="#addCityModal">
+                        Add City
+                    </button>
                 </div>
-                <div class="modal-body">
-                    <!-- Εδώ μπορείτε να προσθέσετε τα πεδία εισαγωγής για τα στοιχεία του εργαζόμενου -->
-                    <form id="addStaffForm">
-                        <div class="mb-3">
-                            <label for="surname" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="surname" name="surname">
-                        </div>
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Country</label>
-                            <input type="text" class="form-control" id="name" name="name">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
+                <div class="table-responsive">
+                    <!-- City Table -->
+                    <table class="table">
+                        <!-- Table Header -->
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>City ID</th>
+                                <th>City Name</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <!-- Table Body -->
+                        <tbody>
+                            <?php
+                                $sql = "SELECT * FROM city";
+                                $result = $conn->query($sql);
+
+                                if ($result->num_rows > 0) {
+                                    while($row = $result->fetch_assoc()) {
+                                        echo "<tr>";
+                                        echo "<td>".$row["CITY_ID"]."</td>";
+                                        echo "<td>".$row["CITY_NAME"]."</td>";
+                                        echo "<td><a href='#' class='update-btn' data-bs-toggle='modal' data-bs-target='#updateCityModal'><i class='fas fa-edit'></i></a></td>";
+                                        echo "<td><a href='#' class='delete-btn' data-bs-toggle='modal' data-bs-target='#deleteCityModal'><i class='fas fa-trash-alt'></i></a></td>";
+                                        echo "</tr>";
+                                    }                                
+                                } else {
+                                    echo "0 results";
+                                }
+                            ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-    </div>
-    </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
+        <!-- Add City Modal -->
+        <div class="modal fade" id="addCityModal" tabindex="-1" aria-labelledby="addCityModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addCityModalLabel">Add New City</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="addCityForm">
+                            <div class="mb-3">
+                                <label for="CITY_ID" class="form-label">City ID</label>
+                                <input type="text" class="form-control" id="CITY_ID" name="CITY_ID">
+                            </div>
+                            <div class="mb-3">
+                                <label for="CITY_NAME" class="form-label">City Name</label>
+                                <input type="text" class="form-control" id="CITY_NAME" name="CITY_NAME">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <!-- jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
-    <!-- Custom JavaScript -->
-    <script>
-    $(document).ready(function () {
-        // Form submission handling
-        $("#addStaffForm").submit(function (event) {
-            event.preventDefault();
-            var formData = $(this).serialize();
-            $.ajax({
-                type: "POST",
-                url: "add_staff.php", // Change this to the appropriate URL for handling form submission
-                data: formData,
-                success: function(response) {
-                    $('#addStaffModal').modal('hide');
-                    $('#addStaffForm')[0].reset();
-                    // Refresh table data or perform any other necessary actions
-                },
-                error: function(xhr, status, error) {
-                    // Handle errors here
-                    console.error(xhr.responseText);
-                }
+        <!-- jQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <!-- Custom JavaScript -->
+        <script>
+            $(document).ready(function () {
+                // Form submission handling
+                $("#addCityForm").submit(function (event) {
+                    event.preventDefault();
+                    var formData = $(this).serialize();
+                    $.ajax({
+                        type: "POST",
+                        url: "add_City.php", // Change this to the appropriate URL for handling form submission
+                        data: formData,
+                        success: function(response) {
+                            $('#addCityModal').modal('hide');
+                            $('#addCityForm')[0].reset();
+                            // Refresh table data or perform any other necessary actions
+                            location.reload(); // Reload the page to see the new city
+                        },
+                        error: function(xhr, status, error) {
+                            // Handle errors here
+                            console.error(xhr.responseText);
+                        }
+                    });
+                });
             });
-        });
-    });
-</script>
+        </script>
 
-
-<script src="assets/js/main.js"></script>
-    <!-- Ionicons -->
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <script src="assets/js/main.js"></script>
+        <!-- Ionicons -->
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    </div>
 </body>
 
 </html>
+
+<?php
+// Κλείσιμο της σύνδεσης
+$conn->close();
+?>

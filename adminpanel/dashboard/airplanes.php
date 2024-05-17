@@ -273,13 +273,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </tr>
                     </thead>
                     <?php
-                        // Εκτέλεση ερωτήματος SQL για την ανάκτηση των δεδομένων
                         $sql = "SELECT * FROM airplanes";
                         $result = $conn->query($sql);
 
-                        // Έλεγχος αν υπάρχουν δεδομένα
                         if ($result->num_rows > 0) {
-                            // Εμφάνιση κάθε γραμμής δεδομένων ως σειρά στον πίνακα
                             while($row = $result->fetch_assoc()) {
                                 echo "<tr>";
                                 echo "<td>".(isset($row["id"]) ? $row["id"] : "")."</td>";
@@ -287,7 +284,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 echo "<td>".$row["MANUFACTURER"]."</td>";
                                 echo "<td>".$row["MODEL"]."</td>";
                                 echo "<td>".$row["AIRPLANE_ID"]."</td>";
-                                // Προσθήκη εικονιδίων επεξεργασίας και διαγραφής
                                 echo "<td><a href='#' class='update-btn' data-bs-toggle='modal' data-bs-target='#updateAirplaneModal'><i class='fas fa-edit'></i></a></td>";
                                 echo "<td><a href='#' class='delete-btn' data-bs-toggle='modal' data-bs-target='#deleteAirplaneModal'><i class='fas fa-trash-alt'></i></a></td>";
                                 echo "</tr>";
@@ -298,7 +294,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         
                         ?>
                     <tbody>
-                        <!-- Data rows will be added here -->
                     </tbody>
                 </table>
             </div>
