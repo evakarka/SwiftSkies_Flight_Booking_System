@@ -144,24 +144,24 @@
                         <div class="card result-card">
                             <div class="card-body">
                                 <div class="flight-details">
-                                    <img src="<?php echo $row['logo']; ?>" alt="Airline Logo" class="flight-logo">
+                                    <img src="img/logo.png" style="height: 60px;" alt="logo">
                                     <div>
-                                        <h5 class="card-title"><?php echo $row['flight_number']; ?></h5>
-                                        <span class="flight-price">$<?php echo $row['price']; ?></span>
+                                        <h5 class="card-title"><?php echo isset($row['FLIGHTNUM']) ? $row['FLIGHTNUM'] : ''; ?></h5>
+                                        <span class="flight-price">$<?php echo isset($row['price']) ? $row['price'] : '0'; ?></span>
                                     </div>
                                 </div>
                                 <hr>
                                 <div class="flight-info">
-                                    <p><?php echo $row['departure']; ?></p>
+                                    <p><?php echo isset($row['departure']) ? $row['departure'] : 'Unknown'; ?></p>
                                     <i class="fa-solid fa-plane"></i>
-                                    <p><?php echo $row['destination']; ?></p>
+                                    <p><?php echo isset($row['destination']) ? $row['destination'] : 'Unknown'; ?></p>
                                 </div>
                                 <div class="flight-info">
-                                    <p><?php echo $row['departure_time']; ?></p>
-                                    <p><?php echo $row['arrival_time']; ?></p>
+                                    <p><?php echo isset($row['departure_time']) ? $row['departure_time'] : 'Unknown'; ?></p>
+                                    <p><?php echo isset($row['arrival_time']) ? $row['arrival_time'] : 'Unknown'; ?></p>
                                 </div>
                                 <div class="flight-time">
-                                    <p>Total Flight Time: <?php echo $row['flight_duration']; ?> hours</p>
+                                    <p>Total Flight Time: <?php echo isset($row['flight_duration']) ? $row['flight_duration'] : 'Unknown'; ?> hours</p>
                                 </div>
                                 <button class="book-button">Book Now</button>
                             </div>
@@ -186,11 +186,11 @@
         function stickNavbar() {
           if (window.pageYOffset > sticky) {
             navbar.classList.add("sticky");
-          } else {
+          }
+          else {
             navbar.classList.remove("sticky");
           }
         }
-
         
         const slides = document.querySelector('.slides');
         const slide = document.querySelectorAll('.slide');
@@ -224,11 +224,6 @@
         closebtn.addEventListener("click", () => {
           sidebar.style.width = "0";
         });
-        </script>
-
-    <!-- Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Font Awesome -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+    </script>
 </body>
 </html>

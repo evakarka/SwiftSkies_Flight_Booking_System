@@ -247,6 +247,7 @@ $result = $conn->query($sql);
                                 <th>DATE</th>
                                 <th>ARR-TIME</th>
                                 <th>DEP-TIME</th>
+                                <th>price</th>
                                 <th>AIRPLANE_ID</th>
                             </tr>
                         </thead>
@@ -262,6 +263,7 @@ $result = $conn->query($sql);
                                         echo "<td>" . $row["DATE"] . "</td>";
                                         echo "<td>" . (isset($row["ARR_TIME"]) ? $row["ARR_TIME"] : "") . "</td>";
                                         echo "<td>" . (isset($row["DEP_TIME"]) ? $row["DEP_TIME"] : "") . "</td>";
+                                        echo "<td>" . $row["price"] . "</td>";
                                         echo "<td>" . $row["AIRPLANE_ID"] . "</td>";
                                         echo "</tr>";
                                     }
@@ -310,6 +312,10 @@ $result = $conn->query($sql);
                             <div class="mb-3">
                                 <label for="depTime" class="form-label">Departure Time</label>
                                 <input type="time" class="form-control" id="depTime" name="depTime">
+                            </div>
+                            <div class="mb-3">
+                                <label for="price" class="form-label">Price</label>
+                                <input type="number" class="form-control" id="price" name="price">
                             </div>
                             <div class="mb-3">
                                 <label for="airplane_id" class="form-label">Airplane ID</label>
