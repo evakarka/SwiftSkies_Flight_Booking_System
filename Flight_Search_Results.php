@@ -178,7 +178,14 @@
                                     }
                                     ?>
                                 </div>
-                                <button class="book-button">Book Now</button>
+                                <button class="book-button" onclick="redirectToPay()">Book Now</button>
+
+                                <script>
+                                    function redirectToPay() {
+                                        window.location.href = "checkout.php";
+                                    }
+                                </script>
+
                             </div>
                         </div>
                     </div>
