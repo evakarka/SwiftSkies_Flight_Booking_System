@@ -182,7 +182,7 @@
 
                                 <script>
                                     function redirectToPay() {
-                                        window.location.href = "bookingticket.html";
+                                        window.location.href = "bookingticket.php";
                                     }
                                 </script>
 
