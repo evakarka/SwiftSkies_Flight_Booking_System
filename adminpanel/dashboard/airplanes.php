@@ -1,3 +1,35 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "swiftskies";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $sql = "INSERT INTO airplanes (SERNUM, MANUFACTURER, MODEL, AIRPLANE_ID) VALUES (?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+
+    if ($stmt === false) {
+        die("Error: " . $conn->error);
+    }
+
+    $stmt->bind_param("ssss", $_POST["SERNUM"], $_POST["MANUFACTURER"], $_POST["MODEL"], $_POST["AIRPLANE_ID"]);
+
+    if ($stmt->execute()) {
+        echo "New record created successfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+
+    $stmt->close();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,6 +42,10 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    
+    <!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
     <!-- Custom CSS for modal -->
     <style>
         /* Custom styles for the modal */
@@ -218,7 +254,7 @@
             <div class="text-end">
                 <!-- Add Staff Button -->
                 <button type="button" class="btn btn-primary" style="background-color: #2A2185;" data-bs-toggle="modal"
-                    data-bs-target="#addStaffModal">
+                    data-bs-target="#addAirplaneModal">
                     Add Airplane
                 </button>
             </div>
@@ -228,12 +264,39 @@
                     <!-- Table Header -->
                     <thead>
                         <tr>
-                        <th>EMPNUM</th>
+                        <th>id</th>
+                        <th>SERNUM</th>
                         <th>MANUFACTURER</th>
                         <th>MODEL</th>
+                        <th>AIRPLANE_ID</th>
+                        <th>Actions</th>
                         </tr>
                     </thead>
-                    <!-- Table Body -->
+                    <?php
+                        // Εκτέλεση ερωτήματος SQL για την ανάκτηση των δεδομένων
+                        $sql = "SELECT * FROM airplanes";
+                        $result = $conn->query($sql);
+
+                        // Έλεγχος αν υπάρχουν δεδομένα
+                        if ($result->num_rows > 0) {
+                            // Εμφάνιση κάθε γραμμής δεδομένων ως σειρά στον πίνακα
+                            while($row = $result->fetch_assoc()) {
+                                echo "<tr>";
+                                echo "<td>".(isset($row["id"]) ? $row["id"] : "")."</td>";
+                                echo "<td>".$row["SERNUM"]."</td>";
+                                echo "<td>".$row["MANUFACTURER"]."</td>";
+                                echo "<td>".$row["MODEL"]."</td>";
+                                echo "<td>".$row["AIRPLANE_ID"]."</td>";
+                                // Προσθήκη εικονιδίων επεξεργασίας και διαγραφής
+                                echo "<td><a href='#' class='update-btn' data-bs-toggle='modal' data-bs-target='#updateAirplaneModal'><i class='fas fa-edit'></i></a></td>";
+                                echo "<td><a href='#' class='delete-btn' data-bs-toggle='modal' data-bs-target='#deleteAirplaneModal'><i class='fas fa-trash-alt'></i></a></td>";
+                                echo "</tr>";
+                            }                                
+                        } else {
+                            echo "0 results";
+                        }
+                        
+                        ?>
                     <tbody>
                         <!-- Data rows will be added here -->
                     </tbody>
@@ -243,7 +306,7 @@
     </div>
 
     <!-- Add Staff Modal -->
-    <div class="modal fade" id="addStaffModal" tabindex="-1" aria-labelledby="addStaffModalLabel" aria-hidden="true">
+    <div class="modal fade" id="addAirplaneModal" tabindex="-1" aria-labelledby="addAirplaneModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -252,26 +315,22 @@
                 </div>
                 <div class="modal-body">
                     <!-- Εδώ μπορείτε να προσθέσετε τα πεδία εισαγωγής για τα στοιχεία του εργαζόμενου -->
-                    <form id="addAirplaneForm">
+                    <form id="addAirplaneForm" method="POST" action="">
                         <div class="mb-3">
-                            <label for="manufacturer" class="form-label">Manufacturer</label>
-                            <input type="text" class="form-control" id="surname" name="surname">
+                            <label for="SERNUM" class="form-label">SERNUM</label>
+                            <input type="text" class="form-control" id="SERNUM" name="SERNUM">
                         </div>
                         <div class="mb-3">
-                            <label for="model" class="form-label">Model</label>
-                            <input type="text" class="form-control" id="name" name="name">
+                            <label for="MANUFACTURER" class="form-label">Manufacturer</label>
+                            <input type="text" class="form-control" id="MANUFACTURER" name="MANUFACTURER">
                         </div>
                         <div class="mb-3">
-                            <label for="address" class="form-label">Address</label>
-                            <input type="text" class="form-control" id="address" name="address">
+                            <label for="MODEL" class="form-label">Model</label>
+                            <input type="text" class="form-control" id="MODEL" name="MODEL">
                         </div>
                         <div class="mb-3">
-                            <label for="phone" class="form-label">Phone</label>
-                            <input type="text" class="form-control" id="phone" name="phone">
-                        </div>
-                        <div class="mb-3">
-                            <label for="salary" class="form-label">Salary</label>
-                            <input type="text" class="form-control" id="salary" name="salary">
+                            <label for="AIRPLANE_ID" class="form-label">Airplane ID</label>
+                            <input type="text" class="form-control" id="AIRPLANE_ID" name="AIRPLANE_ID">
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
@@ -280,6 +339,62 @@
         </div>
     </div>
     </div>
+
+<!-- Update Airplane Modal -->
+<div class="modal fade" id="updateAirplaneModal" tabindex="-1" aria-labelledby="updateAirplaneModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="updateAirplaneModalLabel">Update Airplane</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="updateAirplaneForm" method="POST" action="">
+                    <input type="hidden" id="update_id" name="update_id">
+                    <div class="mb-3">
+                        <label for="update_SERNUM" class="form-label">SERNUM</label>
+                        <input type="text" class="form-control" id="update_SERNUM" name="update_SERNUM">
+                    </div>
+                    <div class="mb-3">
+                        <label for="update_MANUFACTURER" class="form-label">Manufacturer</label>
+                        <input type="text" class="form-control" id="update_MANUFACTURER" name="update_MANUFACTURER">
+                    </div>
+                    <div class="mb-3">
+                        <label for="update_MODEL" class="form-label">Model</label>
+                        <input type="text" class="form-control" id="update_MODEL" name="update_MODEL">
+                    </div>
+                    <div class="mb-3">
+                        <label for="update_AIRPLANE_ID" class="form-label">Airplane ID</label>
+                        <input type="text" class="form-control" id="update_AIRPLANE_ID" name="update_AIRPLANE_ID">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Delete Airplane Confirmation Modal -->
+<!-- Delete Airplane Modal -->
+<div class="modal fade" id="deleteAirplaneModal" tabindex="-1" aria-labelledby="deleteAirplaneModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteAirplaneModalLabel">Delete Airplane</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this airplane?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" id="confirmDelete">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
@@ -291,27 +406,95 @@
 
     <!-- Custom JavaScript -->
     <script>
-    $(document).ready(function () {
-        // Form submission handling
-        $("#addAirplaneForm").submit(function (event) {
-            event.preventDefault();
-            var formData = $(this).serialize();
-            $.ajax({
-                type: "POST",
-                url: "add_staff.php", // Change this to the appropriate URL for handling form submission
-                data: formData,
-                success: function(response) {
-                    $('#addAirplaneModalLabel').modal('hide');
-                    $('#addAirplaneForm')[0].reset();
-                    // Refresh table data or perform any other necessary actions
-                },
-                error: function(xhr, status, error) {
-                    // Handle errors here
-                    console.error(xhr.responseText);
-                }
+        $(document).ready(function () {
+            // Χειρισμός υποβολής της φόρμας
+            $("#addAirplaneForm").submit(function (event) {
+                event.preventDefault(); // Αποτροπή προεπιλεγμένης συμπεριφοράς φόρμας
+                var formData = $(this).serialize(); // Παίρνουμε τα δεδομένα της φόρμας
+                $.ajax({
+                    type: "POST", // Μέθοδος HTTP
+                    url: "add_Airplane.php", // Η διεύθυνση URL για την επεξεργασία της φόρμας
+                    data: formData, // Τα δεδομένα που θα σταλούν
+                    success: function(response) {
+                        $('#addAirplaneModal').modal('hide'); // Κλείσιμο του modal
+                        $('#addAirplaneForm')[0].reset(); // Επαναφορά της φόρμας
+                        // Εδώ μπορείτε να κάνετε οποιαδήποτε άλλη ενέργεια χρειάζεται μετά την υποβολή
+                    },
+                    error: function(xhr, status, error) {
+                        // Χειρισμός σφαλμάτων
+                        console.error(xhr.responseText);
+                    }
+                });
             });
         });
+    </script>
+
+<script>
+    // DELETE
+    $(document).ready(function () {
+    // Χειρισμός κλικ στο εικονίδιο διαγραφής
+    $(".delete-btn").click(function () {
+        var airplaneId = $(this).closest("tr").find("td:eq(0)").text(); // Παίρνουμε το ID του αεροσκάφους από την πρώτη στήλη
+        $("#confirmDelete").attr("data-id", airplaneId); // Ορίζουμε το attribute data-id του κουμπιού διαγραφής με το ID του αεροσκάφους
     });
+
+    // Χειρισμός κλικ στο κουμπί διαγραφής μέσα στο modal
+    $("#confirmDelete").click(function () {
+        var airplaneId = $(this).attr("data-id"); // Παίρνουμε το ID του αεροσκάφους από το attribute data-id
+        $.ajax({
+            type: "POST", // Μέθοδος HTTP
+            url: "delete_Airplane.php", // Η διεύθυνση URL για την επεξεργασία της διαγραφής
+            data: { id: airplaneId }, // Το ID του αεροσκάφους που θα διαγραφεί
+            success: function (response) {
+                $('#deleteAirplaneModal').modal('hide'); // Κλείσιμο του modal
+                // Εδώ μπορείτε να κάνετε οποιαδήποτε άλλη ενέργεια χρειάζεται μετά την διαγραφή
+            },
+            error: function (xhr, status, error) {
+                // Χειρισμός σφαλμάτων
+                console.error(xhr.responseText);
+            }
+        });
+    });
+});
+
+// UPDATE
+$(document).ready(function () {
+    // Χειρισμός κλικ στο εικονίδιο επεξεργασίας
+    $(".update-btn").click(function () {
+    var airplaneId = $(this).closest("tr").find("td:eq(0)").text();
+    var manufacturer = $(this).closest("tr").find("td:eq(2)").text();
+    var model = $(this).closest("tr").find("td:eq(3)").text();
+    var airplaneIdToUpdate = $(this).closest("tr").find("td:eq(4)").text();
+
+    $("#update_SERNUM").val(airplaneId);
+    $("#update_MANUFACTURER").val(manufacturer);
+    $("#update_MODEL").val(model);
+    $("#update_AIRPLANE_ID").val(airplaneIdToUpdate);
+});
+
+    // Χειρισμός υποβολής της φόρμας επεξεργασίας
+    $("#updateAirplaneForm").submit(function (event) {
+        event.preventDefault(); // Αποτροπή προεπιλεγμένης συμπεριφοράς φόρμας
+        var formData = $(this).serialize(); // Παίρνουμε τα δεδομένα της φόρμας
+        $.ajax({
+            type: "POST", // Μέθοδος HTTP
+            url: "update_Airplane.php", // Η διεύθυνση URL για την επεξεργασία της φόρμας
+            data: formData, // Τα δεδομένα που θα σταλούν
+            success: function(response) {
+                $('#updateAirplaneModal').modal('hide'); // Κλείσιμο του modal
+                $('#updateAirplaneForm')[0].reset(); // Επαναφορά της φόρμας
+                // Εδώ μπορείτε να κάνετε οποιαδήποτε άλλη ενέργεια χρειάζεται μετά την επεξεργασία
+            },
+            error: function(xhr, status, error) {
+                // Χειρισμός σφαλμάτων
+                console.error(xhr.responseText);
+            }
+        });
+    });
+});
+
+
+
 </script>
 
 
