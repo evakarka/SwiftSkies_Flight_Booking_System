@@ -41,7 +41,6 @@
                 </tr>
             </thead>
             <tbody id="bookedTickets">
-                <!-- This is where booked tickets will be displayed -->
             </tbody>
         </table>
     </div>
@@ -50,17 +49,15 @@
 
 
     <script>
-        // This is just a mock data for demonstration
 const bookedTicketsData = [
     { bookingNumber: '123456', departure: 'ATH - AMS', destination: 'Amsterdam' },
     { bookingNumber: '789012', departure: 'ATH - AUH', destination: 'Abu Dhabi' },
     { bookingNumber: '345678', departure: 'ATH - PRG', destination: 'Prague' }
 ];
 
-// Function to populate booked tickets table
 function populateBookedTicketsTable() {
     const bookedTicketsTable = $('#bookedTickets');
-    bookedTicketsTable.empty(); // Clear existing data
+    bookedTicketsTable.empty(); 
     
     bookedTicketsData.forEach(ticket => {
         const row = $('<tr>');
@@ -71,7 +68,6 @@ function populateBookedTicketsTable() {
     });
 }
 
-// Call the function to initially populate the booked tickets table
 $(document).ready(function() {
     populateBookedTicketsTable();
 });

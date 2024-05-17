@@ -16,12 +16,10 @@
             <th>Action</th>
         </tr>
         <?php
-            // Σύνδεση με τη βάση δεδομένων και επιλογή εκκρεμών εγγραφών
             $conn = new mysqli('localhost', 'root', '', 'swiftskies');
             $sql = "SELECT * FROM registration WHERE approved IS NULL";
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
-                // Εμφάνιση των εγγραφών προς επεξεργασία
                 while($row = $result->fetch_assoc()) {
                     echo "<tr>";
                     echo "<td>".$row["fullName"]."</td>";

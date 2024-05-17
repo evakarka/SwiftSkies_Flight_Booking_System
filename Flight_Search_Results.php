@@ -122,51 +122,57 @@
     <section class="container mt-5">
         <div class="row">
             <?php
-            // Σύνδεση με τη βάση δεδομένων
             $servername = "localhost";
-            $username = "root"; // Το όνομα χρήστη της βάσης
-            $password = ""; // Ο κωδικός πρόσβασης της βάσης
-            $dbname = "swiftskies"; // Το όνομα της βάσης δεδομένων
-    
-            // Δημιουργία σύνδεσης
+            $username = "root"; 
+            $password = "";
+            $dbname = "swiftskies"; 
+
             $conn = new mysqli($servername, $username, $password, $dbname);
     
-            // Έλεγχος σύνδεσης
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
             }
-    
-            // Ερώτημα προς τη βάση δεδομένων
-            $sql = "SELECT * FROM flight";
+   
+            $sql = "SELECT * FROM flights";
             $result = $conn->query($sql);
     
-            // Έλεγχος αποτελεσμάτων
             if ($result->num_rows > 0) {
-                // Εκτύπωση δεδομένων για κάθε πτήση
                 while($row = $result->fetch_assoc()) {
                     ?>
                     <div class="col-md-6">
                         <div class="card result-card">
                             <div class="card-body">
                                 <div class="flight-details">
+                                    <?php if(isset($row['logo'])): ?>
                                     <img src="<?php echo $row['logo']; ?>" alt="Airline Logo" class="flight-logo">
+                                    <?php endif; ?>
                                     <div>
+                                        <?php if(isset($row['flight_number'])): ?>
                                         <h5 class="card-title"><?php echo $row['flight_number']; ?></h5>
+                                        <?php endif; ?>
+                                        <?php if(isset($row['price'])): ?>
                                         <span class="flight-price">$<?php echo $row['price']; ?></span>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                                 <hr>
                                 <div class="flight-info">
+                                    <?php if(isset($row['departure']) && isset($row['destination'])): ?>
                                     <p><?php echo $row['departure']; ?></p>
                                     <i class="fa-solid fa-plane"></i>
                                     <p><?php echo $row['destination']; ?></p>
+                                    <?php endif; ?>
                                 </div>
                                 <div class="flight-info">
+                                    <?php if(isset($row['departure_time']) && isset($row['arrival_time'])): ?>
                                     <p><?php echo $row['departure_time']; ?></p>
                                     <p><?php echo $row['arrival_time']; ?></p>
+                                    <?php endif; ?>
                                 </div>
                                 <div class="flight-time">
+                                    <?php if(isset($row['flight_duration'])): ?>
                                     <p>Total Flight Time: <?php echo $row['flight_duration']; ?> hours</p>
+                                    <?php endif; ?>
                                 </div>
                                 <button class="book-button">Book Now</button>
                             </div>

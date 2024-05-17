@@ -43,46 +43,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>City Information</title>
+    <title>Staff Information</title>
     <!-- ======= Styles ====== -->
     <link rel="stylesheet" href="assets/css/style.css">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <!-- Custom CSS for modal -->
     <style>
-        /* Custom styles for the modal */
         .modal-header {
             background-color: #2A2185;
             color: white;
         }
 
-        /* Padding for the main content */
         .main {
             padding: 20px;
         }
 
-        /* Padding for the table */
         table {
             margin-top: 20px;
         }
 
-        /* No padding for certain containers */
         .padding_zero {
             padding: 0;
         }
 
-        /* Hamburger menu styles */
         .hamburger {
             display: none;
             position: absolute;
             top: 20px;
             right: 20px;
             cursor: pointer;
-            z-index: 1001;
+            z-index: 1001; 
         }
 
         .hamburger div {
@@ -92,7 +84,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             margin: 6px 0;
         }
 
-        /* Sidebar styles */
         .sidebar {
             height: 100%;
             width: 250px;

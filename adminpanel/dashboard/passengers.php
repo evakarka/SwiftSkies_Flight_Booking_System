@@ -1,3 +1,35 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "swiftskies";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $sql = "INSERT INTO passenger (PASSENGER_ID, SURNAME, NAME, ADDRESS, PHONE) VALUES (?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+
+    if ($stmt === false) {
+        die("Error: " . $conn->error);
+    }
+
+    $stmt->bind_param("ssss", $_POST["PASSENGER_ID"], $_POST["SURNAME"], $_POST["NAME"], $_POST["ADDRESS"], $_POST["PHONE"]);
+
+    if ($stmt->execute()) {
+        echo "New record created successfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+
+    $stmt->close();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,37 +42,36 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
     <!-- Custom CSS for modal -->
     <style>
-        /* Custom styles for the modal */
         .modal-header {
             background-color: #2A2185;
             color: white;
         }
 
-        /* Padding for the main content */
         .main {
             padding: 20px;
         }
 
-        /* Padding for the table */
         table {
             margin-top: 20px;
         }
 
-        /* No padding for certain containers */
         .padding_zero {
             padding: 0;
         }
 
-        /* Hamburger menu styles */
         .hamburger {
             display: none;
             position: absolute;
             top: 20px;
             right: 20px;
             cursor: pointer;
-            z-index: 1001; /* Ensure it's on top of the sidebar */
+            z-index: 1001; 
         }
 
         .hamburger div {
@@ -59,7 +90,7 @@
             left: -250px;
             background-color: #2A2185;
             transition: all 0.3s ease;
-            z-index: 1000; /* Ensure it's below the hamburger menu */
+            z-index: 1000; 
         }
 
         .sidebar a {
@@ -216,9 +247,8 @@
         <div class="container">
             <h2>Passengers Information</h2>
             <div class="table-responsive">
-                <!-- Staff Table -->
                 <table class="table">
-                    <!-- Table Header -->
+
                     <thead>
                         <tr>
                         <th>ERNAME</th>
@@ -226,56 +256,40 @@
                         <th>NAME</th>
                         <th>ADDRESS</th>
                         <th>PHONE</th>
+                        <th>ACTION</th>
                         </tr>
                     </thead>
 
-                    <!-- Table Body -->
                     <tbody>
-                        <!-- Data rows will be added here -->
+                        <?php
+                            $sql = "SELECT * FROM airplanes";
+                            $result = $conn->query($sql);
+
+                            if ($result->num_rows > 0) {
+                                while($row = $result->fetch_assoc()) {
+                                    echo "<tr>";
+                                    echo "<td>".(isset($row["id"]) ? $row["id"] : "")."</td>";
+                                    echo "<td>".$row["PASSENGER_ID"]."</td>";
+                                    echo "<td>".$row["SURNAME"]."</td>";
+                                    echo "<td>".$row["NAME"]."</td>";
+                                    echo "<td>".$row["ADDRESS"]."</td>";
+                                    echo "<td>".$row["PHONE"]."</td>";
+
+                                    echo "<td><a href='#' class='update-btn' data-bs-toggle='modal' data-bs-target='#updateAirplaneModal'><i class='fas fa-edit'></i></a></td>";
+                                    echo "<td><a href='#' class='delete-btn' data-bs-toggle='modal' data-bs-target='#deleteAirplaneModal'><i class='fas fa-trash-alt'></i></a></td>";
+                                    echo "</tr>";
+                                }                                
+                            } else {
+                                echo "0 results";
+                            }
+                            
+                            ?>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 
-    <!-- Add Staff Modal -->
-    <div class="modal fade" id="addStaffModal" tabindex="-1" aria-labelledby="addStaffModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addStaffModalLabel">Add New Staff</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- Εδώ μπορείτε να προσθέσετε τα πεδία εισαγωγής για τα στοιχεία του εργαζόμενου -->
-                    <form id="addStaffForm">
-                        <div class="mb-3">
-                            <label for="surname" class="form-label">Surname</label>
-                            <input type="text" class="form-control" id="surname" name="surname">
-                        </div>
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" name="name">
-                        </div>
-                        <div class="mb-3">
-                            <label for="address" class="form-label">Address</label>
-                            <input type="text" class="form-control" id="address" name="address">
-                        </div>
-                        <div class="mb-3">
-                            <label for="phone" class="form-label">Phone</label>
-                            <input type="text" class="form-control" id="phone" name="phone">
-                        </div>
-                        <div class="mb-3">
-                            <label for="salary" class="form-label">Salary</label>
-                            <input type="text" class="form-control" id="salary" name="salary">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
@@ -285,24 +299,20 @@
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <!-- Custom JavaScript -->
     <script>
     $(document).ready(function () {
-        // Form submission handling
-        $("#addStaffForm").submit(function (event) {
+        $("#addPassengerForm").submit(function (event) {
             event.preventDefault();
             var formData = $(this).serialize();
             $.ajax({
                 type: "POST",
-                url: "add_staff.php", // Change this to the appropriate URL for handling form submission
+                url: "add_Passenger.php", 
                 data: formData,
                 success: function(response) {
-                    $('#addStaffModal').modal('hide');
-                    $('#addStaffForm')[0].reset();
-                    // Refresh table data or perform any other necessary actions
+                    $('#addPassengerModal').modal('hide');
+                    $('#addPassengerForm')[0].reset();
                 },
                 error: function(xhr, status, error) {
-                    // Handle errors here
                     console.error(xhr.responseText);
                 }
             });

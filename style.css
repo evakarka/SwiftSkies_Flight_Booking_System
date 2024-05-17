@@ -9,7 +9,7 @@ body {
   padding: 0;
   font-family: Arial, sans-serif;
 
-  overflow-x: hidden; /* Αποφεύγει την οριζόντια κύλιση */
+  overflow-x: hidden; 
 
   /* font-family: 'Poppins', sans-serif; */
 }
@@ -21,7 +21,7 @@ nav {
 
 
 .il {
-    color: #002144; /* ή το επιθυμητό χρώμα */
+    color: #002144; 
 }
 
 
@@ -39,13 +39,13 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2px 15px; /* Προσαρμόστε τα πλάγια περιθώρια */
+    padding: 2px 15px; 
 }
 
 .navbar img {
     height: 32px;
-    margin-top: 5px; /* Μετακίνηση λίγο προς τα πάνω */
-    margin-bottom: -5px; /* Αρνητικό περιθώριο για να μετακινήσετε την εικόνα προς τα πάνω */
+    margin-top: 5px; 
+    margin-bottom: -5px; 
     margin-left: 10px;
     margin-right: 10px;
 }
@@ -54,8 +54,8 @@ nav {
     font-size: 25px;
     margin-top: 15px;
     margin-bottom: auto;
-    margin-left: 6px; /* Αυξήστε το περιθώριο αριστερά για τα εικονίδια */
-    color: #002144; /* Χρώμα εικονιδίων */
+    margin-left: 6px; 
+    color: #002144; 
 }
 
 .navbar-toggler {
@@ -68,13 +68,13 @@ nav {
 
 @media (min-width: 1200px) {
     .navbar .navbar-nav {
-        margin-left: 800px; /* Μετακίνηση των εικονιδίων δεξιά */
+        margin-left: 800px; 
     }
 }
 
 @media (max-width: 767px) {
     .navbar img {
-        height: 28px; /* Μικρότερο μέγεθος εικονιδίων σε μικρές οθόνες */
+        height: 28px; 
     }
 }
 
@@ -88,13 +88,13 @@ nav {
     align-items: center;
     /* height: 10vh; Το ύψος της οθόνης */
 	max-height: 5px;
-	position: relative; /* Χρησιμοποιούμε position: relative; για να διατηρήσουμε το custom-box στη ροή του εγγράφου */
-    z-index: 1; /* Το custom-box είναι πάνω από τα υπόλοιπα στοιχεία */
+	position: relative; 
+    z-index: 1; 
 }
 
 
 .minibox ul {
-    margin: 0 5px; /* Προσθήκη ελαφριάς απόστασης μεταξύ των στοιχείων */
+    margin: 0 5px; 
 }
 
 .mincontaomers{
@@ -107,9 +107,9 @@ nav {
 	background-color: #002144;
 	border-radius: 8px;
 	display: inline-block;
-	margin: 15px; /* Προσθέτει κενό 10px γύρω από το κουτί */
+	margin: 15px; 
 
-    line-height: 50px; /* Κατακόρυφη ευθυγράμμιση στο κέντρο */
+    line-height: 50px; 
 }
 
 
@@ -213,42 +213,42 @@ img {
 .image-container {
 	flex: 1;
 	max-width: 250px;
-	margin-right: 50px; /* Μειώστε το περιθώριο δεξιά */
-	margin-left: 10px; /* Μειώστε το περιθώριο αριστερά */
+	margin-right: 50px; 
+	margin-left: 10px; 
   }
   
   .image-container img {
-	width: 100%; /* Αλλαγή του πλάτους της εικόνας στο 100% */
-	height: auto; /* Αυτόματο ύψος για διατήρηση της αναλογίας */
+	width: 100%; 
+	height: auto;
   }
 
   @media (min-width: 300px) {
 	.image-container img {
-		transform: scale(2.0); /* Αφαιρέστε το μέγιστο πλάτος για να επιτραπεί μεγαλύτερο μέγεθος */
+		transform: scale(2.0); 
 	}
 	}
 
   @media (min-width: 400px) {
 	.image-container img {
-		transform: scale(1.7); /* Αφαιρέστε το μέγιστο πλάτος για να επιτραπεί μεγαλύτερο μέγεθος */
+		transform: scale(1.7); 
 	}
 	}
   
   @media (min-width: 1200px) {
 	.image-container img {
-		transform: scale(1.7);  /* Μεγαλύτερο πλάτος εικόνας για μεγάλες οθόνες */
+		transform: scale(1.7); 
 	}
   }
   
   
   @media (max-width: 700px) {
 	.grid-images {
-	  padding: 20px; /* Περισσότερο μικρότερο padding για μικρότερες οθόνες */
+	  padding: 20px; 
 	}
 	
 	.text-container,
 	.image-container {
-	  order: initial; /* Επαναφέρετε την προκαθορισμένη σειρά εμφάνισης */
+	  order: initial; 
 	}
   }
 
@@ -276,9 +276,9 @@ img {
 
 
 .booking-form {
-    top: 10px; /* Ρυθμίστε την απόσταση που θέλετε η φόρμα να είναι κάτω από το κέντρο της custom-box */
+    top: 10px; 
 	position: relative;
-	background: #ffffff;  /* χρώμα του κουτιου */
+	background: #ffffff;  
 	max-width: 642px;
 	max-height: 450px;
 	width: 100%;
@@ -461,13 +461,13 @@ img {
 /* grid 1 */
 
 .grid-images {
-	padding: 50px; /* Μειώστε το padding στο section */
+	padding: 50px; 
 	width: 100%;
   }
   
   @media (max-width: 768px) {
 	.grid-images {
-	  padding: 20px; /* Περισσότερο μικρότερο padding για μικρότερες οθόνες */
+	  padding: 20px; 
 	}
   }
 
@@ -510,7 +510,7 @@ img {
 .text-container {
   flex: 1;
   padding: 15px;
-  order: 2; /* Αλλάξτε την σειρά εμφάνισης των περιεχομένων */
+  order: 2; 
 }
 
 .text-container h2 {

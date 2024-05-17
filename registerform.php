@@ -19,6 +19,5 @@
 ?>
 
 <script>
-    // Ανακατεύθυνση στην αρχική σελίδα μετά την επιτυχή εγγραφή
     window.location.href = "index.html";
 </script>

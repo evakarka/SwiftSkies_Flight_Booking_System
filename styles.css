@@ -7,17 +7,17 @@
 }
 
 body {
-    background-color: #f8f9fa; /* Bootstrap background color light */
+    background-color: #f8f9fa; 
   }
   .btn-show-flights {
-    background-color: #002144; /* Button color */
-    color: #fff; /* Button text color */
+    background-color: #002144; 
+    color: #fff; 
     
   }
 
   .custom-box {
     background-color: #002144;
-    height: 350px; /* Προσαρμόστε το ύψος όπως επιθυμείτε */
+    height: 350px; 
 }
 
 /* .booking-cta {
@@ -41,9 +41,9 @@ body {
 }
 
 .booking-cta {
-    margin-top: -310px; /* Προσαρμογή της αρνητικής τιμής για να μετακινήσει πάνω το Flight Booking Bar */
-    position: relative; /* Χρησιμοποίησε την σχετική θέση */
-    z-index: 3; /* Αυξήστε το z-index για να εμφανίζεται επάνω από το Flight Booking Bar */
+    margin-top: -310px; 
+    position: relative; 
+    z-index: 3; 
 }
 
 /* .booking-cta {
@@ -60,9 +60,9 @@ body {
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: -160px; /* Προσαρμογή της αρνητικής τιμής για να μετακινήσει πάνω το Flight Booking Bar */
-    position: relative; /* Χρησιμοποίησε την σχετική θέση */
-    z-index: 2; /* Αυξήστε το z-index για να εμφανίζεται πίσω από το κείμενο "Book Your Flight Today" */
+    margin-top: -160px; 
+    position: relative; 
+    z-index: 2; 
 }
 
 .booking-form .form-group {
@@ -100,13 +100,13 @@ body {
 .submit-btn {
     background-image: linear-gradient(-135deg, #f94ca4, #ff4b09, #288CCA, #2B3D91);
     color: #fff;
-    padding: 20px 40px; /* Αλλαγή του padding για να αυξηθεί το μέγεθος οριζόντια και κατακόρυφα */
+    padding: 20px 40px; 
     font-size: 18px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    line-height: 1.5; /* Αλλαγή του line-height για να αυξηθεί το ύψος του κουμπιού */
+    line-height: 1.5; 
 }
 
 .submit-btn:hover {
@@ -125,13 +125,13 @@ body {
     align-items: center;
     /* height: 10vh; Το ύψος της οθόνης */
 	max-height: 5px;
-	position: relative; /* Χρησιμοποιούμε position: relative; για να διατηρήσουμε το custom-box στη ροή του εγγράφου */
-    z-index: 1; /* Το custom-box είναι πάνω από τα υπόλοιπα στοιχεία */
+	position: relative; 
+    z-index: 1; 
 }
 
 
 .minibox ul {
-    margin: 0 5px; /* Προσθήκη ελαφριάς απόστασης μεταξύ των στοιχείων */
+    margin: 0 5px;
 }
 
 .mincontaomers{
@@ -144,9 +144,9 @@ body {
 	background-color: #002144;
 	border-radius: 8px;
 	display: inline-block;
-	margin: 15px; /* Προσθέτει κενό 10px γύρω από το κουτί */
+	margin: 15px; 
 
-    line-height: 50px; /* Κατακόρυφη ευθυγράμμιση στο κέντρο */
+    line-height: 50px; 
 }
 
 

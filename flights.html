@@ -46,7 +46,7 @@
         </tr>
       </thead>
       <tbody>
-        <!-- Εδώ θα προστεθούν δυναμικά οι πληροφορίες πτήσεων -->
+
       </tbody>
     </table>
   </div>
@@ -59,12 +59,10 @@
     crossorigin="anonymous"></script>
   <script>
     $(document).ready(function () {
-      // Χρησιμοποιήστε AJAX εδώ για να φορτώσετε δυναμικά τα δεδομένα της πτήσης σας από τη βάση δεδομένων
       $.ajax({
         url: 'your_php_script_to_fetch_flight_data.php',
         method: 'GET',
         success: function (data) {
-          // Αν τα δεδομένα ανακτηθούν με επιτυχία, ενημερώστε τον πίνακα
           data.forEach(function (flight) {
             var row = $('<tr>');
             row.append($('<td>').text(flight.NUM));

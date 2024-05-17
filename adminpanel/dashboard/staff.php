@@ -1,3 +1,43 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "swiftskies";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $empnum = $_POST["EMPNUM"] ?? '';
+    $surname = $_POST["SURNAME"] ?? '';
+    $name = $_POST["NAME"] ?? '';
+    $address = $_POST["ADDRESS"] ?? '';
+    $phone = $_POST["PHONE"] ?? '';
+    $salary = $_POST["SALARY"] ?? '';
+
+    $sql = "INSERT INTO staff (EMPNUM, SURNAME, NAME, ADDRESS, PHONE, SALARY) VALUES (?, ?, ?, ?, ?, ?)";
+
+    $stmt = $conn->prepare($sql);
+    if ($stmt === false) {
+        die("Error preparing statement: " . $conn->error);
+    }
+
+    $stmt->bind_param("ssssss", $empnum, $surname, $name, $address, $phone, $salary);
+
+    if ($stmt->execute()) {
+        echo "New record created successfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+
+    $stmt->close();
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,35 +52,30 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <!-- Custom CSS for modal -->
     <style>
-        /* Custom styles for the modal */
         .modal-header {
             background-color: #2A2185;
             color: white;
         }
 
-        /* Padding for the main content */
         .main {
             padding: 20px;
         }
 
-        /* Padding for the table */
         table {
             margin-top: 20px;
         }
 
-        /* No padding for certain containers */
         .padding_zero {
             padding: 0;
         }
 
-        /* Hamburger menu styles */
         .hamburger {
             display: none;
             position: absolute;
             top: 20px;
             right: 20px;
             cursor: pointer;
-            z-index: 1001; /* Ensure it's on top of the sidebar */
+            z-index: 1001; 
         }
 
         .hamburger div {
@@ -50,7 +85,6 @@
             margin: 6px 0;
         }
 
-        /* Sidebar styles */
         .sidebar {
             height: 100%;
             width: 250px;
@@ -59,7 +93,7 @@
             left: -250px;
             background-color: #2A2185;
             transition: all 0.3s ease;
-            z-index: 1000; /* Ensure it's below the hamburger menu */
+            z-index: 1000;
         }
 
         .sidebar a {
@@ -216,16 +250,13 @@
         <div class="container">
             <h2>Staff Information</h2>
             <div class="text-end">
-                <!-- Add Staff Button -->
                 <button type="button" class="btn btn-primary" style="background-color: #2A2185;" data-bs-toggle="modal"
                     data-bs-target="#addStaffModal">
                     Add Staff
                 </button>
             </div>
             <div class="table-responsive">
-                <!-- Staff Table -->
                 <table class="table">
-                    <!-- Table Header -->
                     <thead>
                         <tr>
                             <th>EMPNUM</th>
@@ -237,16 +268,33 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <!-- Table Body -->
                     <tbody>
-                        <!-- Data rows will be added here -->
+                        <?php
+                            $sql = "SELECT * FROM staff";
+                            $result = $conn->query($sql);
+
+                            if ($result->num_rows > 0) {
+                                while($row = $result->fetch_assoc()) {
+                                    echo "<tr>";
+                                    echo "<td>".htmlspecialchars($row["EMPNUM"])."</td>";
+                                    echo "<td>".htmlspecialchars($row["SURNAME"])."</td>";
+                                    echo "<td>".htmlspecialchars($row["NAME"])."</td>";
+                                    echo "<td>".htmlspecialchars($row["ADDRESS"])."</td>";
+                                    echo "<td>".htmlspecialchars($row["PHONE"])."</td>";
+                                    echo "<td>".htmlspecialchars($row["SALARY"])."</td>";
+                                    echo "<td><a href='#' class='update-btn' data-bs-toggle='modal' data-bs-target='#updateAirplaneModal'><i class='fas fa-edit'></i></a></td>";
+                                    echo "<td><a href='#' class='delete-btn' data-bs-toggle='modal' data-bs-target='#deleteAirplaneModal'><i class='fas fa-trash-alt'></i></a></td>";
+                                    echo "</tr>";
+                                }
+                            } else {
+                                echo "<tr><td colspan='7'>No results found</td></tr>";
+                            }
+                        ?>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-
-    <!-- Add Staff Modal -->
     <div class="modal fade" id="addStaffModal" tabindex="-1" aria-labelledby="addStaffModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -255,27 +303,26 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <!-- Εδώ μπορείτε να προσθέσετε τα πεδία εισαγωγής για τα στοιχεία του εργαζόμενου -->
                     <form id="addStaffForm">
                         <div class="mb-3">
                             <label for="surname" class="form-label">Surname</label>
-                            <input type="text" class="form-control" id="surname" name="surname">
+                            <input type="text" class="form-control" id="surname" name="SURNAME">
                         </div>
                         <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" name="name">
+                            <input type="text" class="form-control" id="name" name="NAME">
                         </div>
                         <div class="mb-3">
                             <label for="address" class="form-label">Address</label>
-                            <input type="text" class="form-control" id="address" name="address">
+                            <input type="text" class="form-control" id="address" name="ADDRESS">
                         </div>
                         <div class="mb-3">
                             <label for="phone" class="form-label">Phone</label>
-                            <input type="text" class="form-control" id="phone" name="phone">
+                            <input type="text" class="form-control" id="phone" name="PHONE">
                         </div>
                         <div class="mb-3">
                             <label for="salary" class="form-label">Salary</label>
-                            <input type="text" class="form-control" id="salary" name="salary">
+                            <input type="text" class="form-control" id="salary" name="SALARY">
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
@@ -302,15 +349,13 @@
             var formData = $(this).serialize();
             $.ajax({
                 type: "POST",
-                url: "add_staff.php", // Change this to the appropriate URL for handling form submission
+                url: "add_staff.php", 
                 data: formData,
                 success: function(response) {
                     $('#addStaffModal').modal('hide');
                     $('#addStaffForm')[0].reset();
-                    // Refresh table data or perform any other necessary actions
                 },
                 error: function(xhr, status, error) {
-                    // Handle errors here
                     console.error(xhr.responseText);
                 }
             });
@@ -318,6 +363,33 @@
     });
 </script>
 
+
+<script>
+    // DELETE
+    $(document).ready(function () {
+
+    $(".delete-btn").click(function () {
+        var airplaneId = $(this).closest("tr").find("td:eq(0)").text(); 
+        $("#confirmDelete").attr("data-id", StaffId); 
+    });
+
+    $("#confirmDelete").click(function () {
+        var airplaneId = $(this).attr("data-id"); 
+        $.ajax({
+            type: "POST", 
+            url: "delete_Staff.php", 
+            data: { id: airplaneId }, 
+            success: function (response) {
+                $('#deleteStaffModal').modal('hide'); 
+            },
+            error: function (xhr, status, error) {
+
+                console.error(xhr.responseText);
+            }
+        });
+    });
+});
+</script>
 
 <script src="assets/js/main.js"></script>
     <!-- Ionicons -->

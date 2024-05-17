@@ -36,47 +36,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Airplanes Information</title>
+    <title>Staff Information</title>
     <!-- ======= Styles ====== -->
     <link rel="stylesheet" href="assets/css/style.css">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    
-    <!-- Font Awesome -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-
     <!-- Custom CSS for modal -->
     <style>
-        /* Custom styles for the modal */
         .modal-header {
             background-color: #2A2185;
             color: white;
         }
 
-        /* Padding for the main content */
         .main {
             padding: 20px;
         }
 
-        /* Padding for the table */
         table {
             margin-top: 20px;
         }
 
-        /* No padding for certain containers */
         .padding_zero {
             padding: 0;
         }
 
-        /* Hamburger menu styles */
         .hamburger {
             display: none;
             position: absolute;
             top: 20px;
             right: 20px;
             cursor: pointer;
-            z-index: 1001; /* Ensure it's on top of the sidebar */
+            z-index: 1001; 
         }
 
         .hamburger div {
@@ -86,7 +77,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             margin: 6px 0;
         }
 
-        /* Sidebar styles */
         .sidebar {
             height: 100%;
             width: 250px;
@@ -95,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             left: -250px;
             background-color: #2A2185;
             transition: all 0.3s ease;
-            z-index: 1000; /* Ensure it's below the hamburger menu */
+            z-index: 1000;
         }
 
         .sidebar a {
@@ -259,9 +249,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </button>
             </div>
             <div class="table-responsive">
-                <!-- Staff Table -->
                 <table class="table">
-                    <!-- Table Header -->
                     <thead>
                         <tr>
                         <th>id</th>
@@ -272,27 +260,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <th>Actions</th>
                         </tr>
                     </thead>
-                    <?php
-                        $sql = "SELECT * FROM airplanes";
-                        $result = $conn->query($sql);
+                        <?php
+                            $sql = "SELECT * FROM airplanes";
+                            $result = $conn->query($sql);
 
-                        if ($result->num_rows > 0) {
-                            while($row = $result->fetch_assoc()) {
-                                echo "<tr>";
-                                echo "<td>".(isset($row["id"]) ? $row["id"] : "")."</td>";
-                                echo "<td>".$row["SERNUM"]."</td>";
-                                echo "<td>".$row["MANUFACTURER"]."</td>";
-                                echo "<td>".$row["MODEL"]."</td>";
-                                echo "<td>".$row["AIRPLANE_ID"]."</td>";
-                                echo "<td><a href='#' class='update-btn' data-bs-toggle='modal' data-bs-target='#updateAirplaneModal'><i class='fas fa-edit'></i></a></td>";
-                                echo "<td><a href='#' class='delete-btn' data-bs-toggle='modal' data-bs-target='#deleteAirplaneModal'><i class='fas fa-trash-alt'></i></a></td>";
-                                echo "</tr>";
-                            }                                
-                        } else {
-                            echo "0 results";
-                        }
-                        
-                        ?>
+                            if ($result->num_rows > 0) {
+                                while($row = $result->fetch_assoc()) {
+                                    echo "<tr>";
+                                    echo "<td>".(isset($row["id"]) ? $row["id"] : "")."</td>";
+                                    echo "<td>".$row["SERNUM"]."</td>";
+                                    echo "<td>".$row["MANUFACTURER"]."</td>";
+                                    echo "<td>".$row["MODEL"]."</td>";
+                                    echo "<td>".$row["AIRPLANE_ID"]."</td>";
+                                    echo "<td><a href='#' class='update-btn' data-bs-toggle='modal' data-bs-target='#updateAirplaneModal'><i class='fas fa-edit'></i></a></td>";
+                                    echo "<td><a href='#' class='delete-btn' data-bs-toggle='modal' data-bs-target='#deleteAirplaneModal'><i class='fas fa-trash-alt'></i></a></td>";
+                                    echo "</tr>";
+                                }                                
+                            } else {
+                                echo "0 results";
+                            }
+                            
+                            ?>
                     <tbody>
                     </tbody>
                 </table>
@@ -300,7 +288,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
 
-    <!-- Add Staff Modal -->
     <div class="modal fade" id="addAirplaneModal" tabindex="-1" aria-labelledby="addAirplaneModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -309,7 +296,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <!-- Εδώ μπορείτε να προσθέσετε τα πεδία εισαγωγής για τα στοιχεία του εργαζόμενου -->
                     <form id="addAirplaneForm" method="POST" action="">
                         <div class="mb-3">
                             <label for="SERNUM" class="form-label">SERNUM</label>
@@ -335,7 +321,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
     </div>
 
-<!-- Update Airplane Modal -->
+<!-- Update Modal -->
 <div class="modal fade" id="updateAirplaneModal" tabindex="-1" aria-labelledby="updateAirplaneModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -370,8 +356,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </div>
 
 
-<!-- Delete Airplane Confirmation Modal -->
-<!-- Delete Airplane Modal -->
+<!-- Delete Modal -->
 <div class="modal fade" id="deleteAirplaneModal" tabindex="-1" aria-labelledby="deleteAirplaneModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -402,18 +387,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- Custom JavaScript -->
     <script>
         $(document).ready(function () {
-            // Χειρισμός υποβολής της φόρμας
             $("#addAirplaneForm").submit(function (event) {
-                event.preventDefault(); // Αποτροπή προεπιλεγμένης συμπεριφοράς φόρμας
-                var formData = $(this).serialize(); // Παίρνουμε τα δεδομένα της φόρμας
+                event.preventDefault(); 
+                var formData = $(this).serialize(); 
                 $.ajax({
-                    type: "POST", // Μέθοδος HTTP
-                    url: "add_Airplane.php", // Η διεύθυνση URL για την επεξεργασία της φόρμας
-                    data: formData, // Τα δεδομένα που θα σταλούν
+                    type: "POST", 
+                    url: "add_Airplane.php", 
+                    data: formData,
                     success: function(response) {
-                        $('#addAirplaneModal').modal('hide'); // Κλείσιμο του modal
-                        $('#addAirplaneForm')[0].reset(); // Επαναφορά της φόρμας
-                        // Εδώ μπορείτε να κάνετε οποιαδήποτε άλλη ενέργεια χρειάζεται μετά την υποβολή
+                        $('#addAirplaneModal').modal('hide'); 
+                        $('#addAirplaneForm')[0].reset(); 
                     },
                     error: function(xhr, status, error) {
                         // Χειρισμός σφαλμάτων
@@ -427,25 +410,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
     // DELETE
     $(document).ready(function () {
-    // Χειρισμός κλικ στο εικονίδιο διαγραφής
     $(".delete-btn").click(function () {
-        var airplaneId = $(this).closest("tr").find("td:eq(0)").text(); // Παίρνουμε το ID του αεροσκάφους από την πρώτη στήλη
-        $("#confirmDelete").attr("data-id", airplaneId); // Ορίζουμε το attribute data-id του κουμπιού διαγραφής με το ID του αεροσκάφους
+        var airplaneId = $(this).closest("tr").find("td:eq(0)").text(); 
+        $("#confirmDelete").attr("data-id", airplaneId); 
     });
 
-    // Χειρισμός κλικ στο κουμπί διαγραφής μέσα στο modal
     $("#confirmDelete").click(function () {
-        var airplaneId = $(this).attr("data-id"); // Παίρνουμε το ID του αεροσκάφους από το attribute data-id
+        var airplaneId = $(this).attr("data-id");
         $.ajax({
-            type: "POST", // Μέθοδος HTTP
-            url: "delete_Airplane.php", // Η διεύθυνση URL για την επεξεργασία της διαγραφής
-            data: { id: airplaneId }, // Το ID του αεροσκάφους που θα διαγραφεί
+            type: "POST", 
+            url: "delete_Airplane.php", 
+            data: { id: airplaneId }, 
             success: function (response) {
-                $('#deleteAirplaneModal').modal('hide'); // Κλείσιμο του modal
-                // Εδώ μπορείτε να κάνετε οποιαδήποτε άλλη ενέργεια χρειάζεται μετά την διαγραφή
+                $('#deleteAirplaneModal').modal('hide'); 
             },
             error: function (xhr, status, error) {
-                // Χειρισμός σφαλμάτων
                 console.error(xhr.responseText);
             }
         });
@@ -454,7 +433,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 // UPDATE
 $(document).ready(function () {
-    // Χειρισμός κλικ στο εικονίδιο επεξεργασίας
     $(".update-btn").click(function () {
     var airplaneId = $(this).closest("tr").find("td:eq(0)").text();
     var manufacturer = $(this).closest("tr").find("td:eq(2)").text();
@@ -467,21 +445,18 @@ $(document).ready(function () {
     $("#update_AIRPLANE_ID").val(airplaneIdToUpdate);
 });
 
-    // Χειρισμός υποβολής της φόρμας επεξεργασίας
     $("#updateAirplaneForm").submit(function (event) {
-        event.preventDefault(); // Αποτροπή προεπιλεγμένης συμπεριφοράς φόρμας
-        var formData = $(this).serialize(); // Παίρνουμε τα δεδομένα της φόρμας
+        event.preventDefault(); 
+        var formData = $(this).serialize(); 
         $.ajax({
-            type: "POST", // Μέθοδος HTTP
-            url: "update_Airplane.php", // Η διεύθυνση URL για την επεξεργασία της φόρμας
-            data: formData, // Τα δεδομένα που θα σταλούν
+            type: "POST", 
+            url: "update_Airplane.php", 
+            data: formData, 
             success: function(response) {
-                $('#updateAirplaneModal').modal('hide'); // Κλείσιμο του modal
-                $('#updateAirplaneForm')[0].reset(); // Επαναφορά της φόρμας
-                // Εδώ μπορείτε να κάνετε οποιαδήποτε άλλη ενέργεια χρειάζεται μετά την επεξεργασία
+                $('#updateAirplaneModal').modal('hide'); 
+                $('#updateAirplaneForm')[0].reset(); 
             },
             error: function(xhr, status, error) {
-                // Χειρισμός σφαλμάτων
                 console.error(xhr.responseText);
             }
         });

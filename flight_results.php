@@ -23,7 +23,7 @@
             </thead>
             <tbody>
                 <?php
-                // Υποκατάλογος πτήσεων (υποκατάλογος μόνο για επίδειξη)
+
                 $flights = array(
                     array("Flight 1", "ATH", "AMS", "Apr 5", "Apr 8", "$277.99"),
                     array("Flight 2", "ATH", "AUH", "Apr 22", "Apr 30", "$1,030.99"),
@@ -36,7 +36,6 @@
                     array("Flight 9", "ATH", "ARN", "Aug 5", "Aug 11", "$429.99")
                 );
 
-                // Εμφάνιση των αποτελεσμάτων
                 foreach ($flights as $flight) {
                     echo "<tr>";
                     echo "<td>{$flight[0]}</td>";
