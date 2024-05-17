@@ -147,26 +147,42 @@
                                     <img src="img/logo.png" style="height: 60px;" alt="logo">
                                     <div>
                                         <h5 class="card-title"><?php echo isset($row['FLIGHTNUM']) ? $row['FLIGHTNUM'] : ''; ?></h5>
-                                        <span class="flight-price">$<?php echo isset($row['price']) ? $row['price'] : '0'; ?></span>
+                                        <span class="flight-price">$<?php echo isset($row['price']) ? $row['price'] : ''; ?></span>
                                     </div>
                                 </div>
                                 <hr>
                                 <div class="flight-info">
-                                    <p><?php echo isset($row['departure']) ? $row['departure'] : 'Unknown'; ?></p>
+                                    <p><?php echo isset($row['ORIGIN']) ? $row['ORIGIN'] : ''; ?></p>
                                     <i class="fa-solid fa-plane"></i>
-                                    <p><?php echo isset($row['destination']) ? $row['destination'] : 'Unknown'; ?></p>
+                                    <p><?php echo isset($row['DEST']) ? $row['DEST'] : ''; ?></p>
                                 </div>
                                 <div class="flight-info">
-                                    <p><?php echo isset($row['departure_time']) ? $row['departure_time'] : 'Unknown'; ?></p>
-                                    <p><?php echo isset($row['arrival_time']) ? $row['arrival_time'] : 'Unknown'; ?></p>
+                                    <p><?php echo isset($row['ARR_TIME']) ? $row['ARR_TIME'] : ''; ?></p>
+                                    <p><?php echo isset($row['DEP_TIME']) ? $row['DEP_TIME'] : ''; ?></p>
                                 </div>
                                 <div class="flight-time">
-                                    <p>Total Flight Time: <?php echo isset($row['flight_duration']) ? $row['flight_duration'] : 'Unknown'; ?> hours</p>
+                                    <?php
+                                    $flight_duration = isset($row['flight_duration']) ? $row['flight_duration'] : '';
+
+                                    if ($flight_duration != '') {
+                                        $time_parts = explode(":", $flight_duration);
+                                        $hours = $time_parts[0];
+                                        $minutes = $time_parts[1];
+
+                                        $total_minutes = $hours * 60 + $minutes;
+
+                                        $total_hours = floor($total_minutes / 60);
+                                        $remaining_minutes = $total_minutes % 60;
+
+                                        echo "Total Flight Time: " . $total_hours . " hours " . $remaining_minutes . " minutes";
+                                    }
+                                    ?>
                                 </div>
                                 <button class="book-button">Book Now</button>
                             </div>
                         </div>
                     </div>
+
                 <?php
                 }
             } else {
