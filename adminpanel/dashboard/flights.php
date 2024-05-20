@@ -35,10 +35,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $arrTime = $_POST["arrTime"] ?? null;
     $depTime = $_POST["depTime"] ?? null;
     $airplane_id = $_POST["airplane_id"] ?? null;
-    $price = $_POST["price"] ?? null;
+    $price = $_POST["PRICE"] ?? null;
     $airline_name = $_POST["airline_name"] ?? null;
 
-    $stmt->bind_param("sssssssssb", $flightNum, $origin, $destination, $date, $arrTime, $depTime, $airplane_id, $price, $imageData, $airline_name);
+    $stmt->bind_param("sssssssssb", $flightNum, $origin, $destination, $date, $arrTime, $depTime, $airplane_id, $PRICE, $imageData, $airline_name);
 
     if ($stmt->execute()) {
         echo "New Flight created successfully";
@@ -152,7 +152,7 @@ $conn->close();
                                     while ($row = $result->fetch_assoc()) {
                                         echo "<tr>";
                                         echo "<td>" . (isset($row["id"]) ? $row["id"] : "") . "</td>";
-                                        echo "<td><img src='data:image/jpeg;base64," . base64_encode($row['image']) . "' alt='Flight Image' style='width: 100px; height: auto;'/></td>";
+                                        echo "<td><img src='data:image/jpeg;base64," . base64_encode($row['image']) . "' alt='Flight Image' style='width: 40px; height: auto;'/></td>";
                                         echo "<td>" . $row["AIRLINE_NAME"] . "</td>";
                                         echo "<td>" . $row["FLIGHTNUM"] . "</td>";
                                         echo "<td>" . $row["ORIGIN"] . "</td>";
@@ -160,7 +160,7 @@ $conn->close();
                                         echo "<td>" . $row["DATE"] . "</td>";
                                         echo "<td>" . (isset($row["ARR_TIME"]) ? $row["ARR_TIME"] : "") . "</td>";
                                         echo "<td>" . (isset($row["DEP_TIME"]) ? $row["DEP_TIME"] : "") . "</td>";
-                                        echo "<td>" . (isset($row["price"]) ? $row["price"] : "N/A") . "</td>";  // Added null coalescing check
+                                        echo "<td>" . (isset($row["PRICE"]) ? $row["PRICE"] : "") . "</td>";  // Added null coalescing check
                                         echo "<td>" . $row["AIRPLANE_ID"] . "</td>";
                                         echo "</tr>";
                                     }
