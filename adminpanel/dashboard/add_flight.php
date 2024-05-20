@@ -35,10 +35,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $arrTime = $_POST["arrTime"] ?? null;
     $depTime = $_POST["depTime"] ?? null;
     $airplane_id = $_POST["airplane_id"] ?? null;
-    $price = $_POST["PRICE"] ?? null;
+    $price = $_POST["price"] ?? null;
     $airline_name = $_POST["airline_name"] ?? null;
 
-    $stmt->bind_param("sssssssssb", $flightNum, $origin, $destination, $date, $arrTime, $depTime, $airplane_id, $PRICE, $imageData, $airline_name);
+    $stmt->bind_param("sssssssssb", $flightNum, $origin, $destination, $date, $arrTime, $depTime, $airplane_id, $price, $imageData, $airline_name); // Corrected variable name to $price
 
     if ($stmt->execute()) {
         echo "New Flight created successfully";
