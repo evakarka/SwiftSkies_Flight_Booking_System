@@ -60,7 +60,7 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Staff Information</title>
+    <title>Flight Information</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <style>
@@ -152,7 +152,7 @@ $conn->close();
                                     while ($row = $result->fetch_assoc()) {
                                         echo "<tr>";
                                         echo "<td>" . (isset($row["id"]) ? $row["id"] : "") . "</td>";
-                                        echo "<td><img src='data:image/jpeg;base64," . base64_encode($row['image']) . "' alt='Flight Image' style='width: 40px; height: auto;'/></td>";
+                                        echo "<td><img src='data:image/jpeg;base64," . base64_encode($row['image']) . "' alt='Flight Image' style='width: 30px; height: auto;'/></td>";
                                         echo "<td>" . $row["AIRLINE_NAME"] . "</td>";
                                         echo "<td>" . $row["FLIGHTNUM"] . "</td>";
                                         echo "<td>" . $row["ORIGIN"] . "</td>";
