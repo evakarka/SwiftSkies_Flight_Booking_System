@@ -1,0 +1,60 @@
+POST Data: Array
+(
+    [flying_from] => Eleftherios Venizelos Athens International Airport (ATH), Greece
+    [flying_to] => John F. Kennedy International Airport (JFK), New York
+    [departing] => 2024-08-08
+    [returning] => 2024-08-20
+    [adults] => 1
+    [children] => 0
+    [travel_class] => economy
+)
+Departure Query: 
+Return Query: 
+POST Data: Array
+(
+    [flying_from] => Eleftherios Venizelos Athens International Airport (ATH), Greece
+    [flying_to] => John F. Kennedy International Airport (JFK), New York
+    [departing] => 2024-08-08
+    [returning] => 2024-08-20
+    [adults] => 1
+    [children] => 0
+    [travel_class] => economy
+)
+Departure Query: 
+Return Query: 
+POST Data: Array
+(
+    [flying_from] => Eleftherios Venizelos Athens International Airport (ATH), Greece
+    [flying_to] => John F. Kennedy International Airport (JFK), New York
+    [departing] => 2024-08-08
+    [returning] => 2024-08-20
+    [adults] => 1
+    [children] => 0
+    [travel_class] => economy
+)
+Departure Query: 
+Return Query: 
+POST Data: Array
+(
+    [flying_from] => Eleftherios Venizelos Athens International Airport (ATH), Greece
+    [flying_to] => John F. Kennedy International Airport (JFK), New York
+    [departing] => 2024-08-08
+    [returning] => 2024-08-20
+    [adults] => 1
+    [children] => 0
+    [travel_class] => economy
+)
+Departure Query: 
+Return Query: 
+POST Data: Array
+(
+    [flying_from] => Eleftherios Venizelos Athens International Airport (ATH), Greece
+    [flying_to] => John F. Kennedy International Airport (JFK), New York
+    [departing] => 2024-08-08
+    [returning] => 2024-08-20
+    [adults] => 1
+    [children] => 0
+    [travel_class] => economy
+)
+Departure Query: 
+Return Query: 
