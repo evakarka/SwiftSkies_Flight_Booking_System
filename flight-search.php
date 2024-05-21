@@ -123,68 +123,114 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Available Flights</h1>
-        <?php
-        $flights = [
-            [
-                "flightId" => "FL123",
-                "airline" => "Airways X",
-                "airlineImage" => "https://scontent.fath6-1.fna.fbcdn.net/v/t39.30808-6/245329908_10161476255433782_6455420918677781425_n.jpg?_nc_cat=1&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeFz3-DIlH_qoq6J2kb0EagEfrT3ENzUHBl-tPcQ3NQcGdNTtvHY68X2A0SW08Uw52Qcwi-JlxIhZ3ns3jIMNocf&_nc_ohc=8fuTbAHtM0gQ7kNvgHiP8tq&_nc_ht=scontent.fath6-1.fna&oh=00_AYBqi0Hc7YS2fQBzEsoeQg5VQf16Rz8-gUXlSEAZ7LKCYw&oe=66526BB2",
-                "price" => "$300",
-                "departure" => "New York",
-                "arrival" => "Los Angeles",
-                "departureTime" => "2024-05-25 14:30",
-                "returnTime" => "2024-05-30 16:00"
-            ],
-            [
-                "flightId" => "FL456",
-                "airline" => "Airways Y",
-                "airlineImage" => "https://scontent.fath6-1.fna.fbcdn.net/v/t39.30808-6/245329908_10161476255433782_6455420918677781425_n.jpg?_nc_cat=1&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeFz3-DIlH_qoq6J2kb0EagEfrT3ENzUHBl-tPcQ3NQcGdNTtvHY68X2A0SW08Uw52Qcwi-JlxIhZ3ns3jIMNocf&_nc_ohc=8fuTbAHtM0gQ7kNvgHiP8tq&_nc_ht=scontent.fath6-1.fna&oh=00_AYBqi0Hc7YS2fQBzEsoeQg5VQf16Rz8-gUXlSEAZ7LKCYw&oe=66526BB2",
-                "price" => "$400",
-                "departure" => "San Francisco",
-                "arrival" => "Chicago",
-                "departureTime" => "2024-06-10 09:00",
-                "returnTime" => "2024-06-15 11:30"
-            ],
-            [
-                "flightId" => "FL789",
-                "airline" => "Airways Z",
-                "airlineImage" => "https://scontent.fath6-1.fna.fbcdn.net/v/t39.30808-6/245329908_10161476255433782_6455420918677781425_n.jpg?_nc_cat=1&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeFz3-DIlH_qoq6J2kb0EagEfrT3ENzUHBl-tPcQ3NQcGdNTtvHY68X2A0SW08Uw52Qcwi-JlxIhZ3ns3jIMNocf&_nc_ohc=8fuTbAHtM0gQ7kNvgHiP8tq&_nc_ht=scontent.fath6-1.fna&oh=00_AYBqi0Hc7YS2fQBzEsoeQg5VQf16Rz8-gUXlSEAZ7LKCYw&oe=66526BB2",
-                "price" => "$350",
-                "departure" => "Miami",
-                "arrival" => "Dallas",
-                "departureTime" => "2024-07-01 08:00",
-                "returnTime" => "2024-07-07 10:00"
-            ]
-        ];
+<div class="container">
+    <h1>Available Flights</h1>
+    <?php
+    // Database connection settings
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "swiftskies";  // Replace with your actual database name
 
-        foreach ($flights as $index => $flight) {
-            echo "<div class='flight-box' id='flight-$index'>";
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    // Capture form data
+    $flying_from = $_POST['flying_from'];
+    $flying_to = $_POST['flying_to'];
+    $departing = $_POST['departing'];
+    $returning = isset($_POST['returning']) ? $_POST['returning'] : null;
+
+    // SQL query to fetch filtered flight data
+    $sql = "SELECT id, FLIGHTNUM, ORIGIN, DEST, DATE, ARR_TIME, DEP_TIME, AIRPLANE_ID, price, image, AIRLINE_NAME 
+            FROM addflights 
+            WHERE ORIGIN = ? AND DEST = ? AND DATE = ?";
+
+    // Prepare statement
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("sss", $flying_from, $flying_to, $departing);
+
+    // Execute statement
+    $stmt->execute();
+    $result = $stmt->get_result();
+    // Check if there are any results
+    if ($result->num_rows > 0) {
+        // Output data of each row
+        while($flight = $result->fetch_assoc()) {
+            echo "<div class='flight-box' id='flight-{$flight['id']}'>";
             echo "<div class='flight-header'>";
-            echo "<img src='{$flight['airlineImage']}' alt='{$flight['airline']}'>";
-            echo "<h2 class='airline-name'>{$flight['airline']}</h2>"; // Airline name aligned left
+            echo "<img src='data:image/jpeg;base64," . base64_encode($flight['image']) . "' alt='{$flight['AIRLINE_NAME']}'>";
+            echo "<h2 class='airline-name'>{$flight['AIRLINE_NAME']}</h2>";
             echo "</div>";
-            echo "<p><strong>Flight ID:</strong> {$flight['flightId']}</p>";
-            echo "<p><strong>Price:</strong> <span class='price'>{$flight['price']}</span></p>";
+            echo "<br>";
             echo "<h3 class='departure-return'>Departure</h3>";
-            echo "<p><strong>Flying From:</strong> {$flight['departure']}</p>";
-            echo "<p><strong>Flying To:</strong> {$flight['arrival']}</p>";
-            echo "<p><strong>Departure Time:</strong> {$flight['departureTime']}</p>";
-            echo "<h3 class='departure-return'>Return</h3>";
-            echo "<p><strong>Flying From:</strong> {$flight['arrival']}</p>";
-            echo "<p><strong>Flying To:</strong> {$flight['departure']}</p>";
-            echo "<p><strong>Return Time:</strong> {$flight['returnTime']}</p>";
-            echo "<button onclick='closeFlight($index)'>Close</button>";
-            echo "</div>";
-        }
-        ?>
-    </div>
+            echo "<p><strong>Flight ID:</strong> {$flight['FLIGHTNUM']}</p>";
+            echo "<p><strong>Price:</strong> <span class='price'>\${$flight['price']}</span></p>";
+            echo "<p><strong>Flying From:</strong> {$flight['ORIGIN']}</p>";
+            echo "<p><strong>Flying To:</strong> {$flight['DEST']}</p>";
+            echo "<p><strong>Departure Time:</strong> {$flight['DATE']} {$flight['DEP_TIME']}</p>";
 
-    <script>
-        function closeFlight(index) {
-            document.getElementById('flight-' + index).remove();
+            // SQL query to fetch return flight data
+            $return_sql = "SELECT FLIGHTNUM, ORIGIN, DEST, DATE, ARR_TIME, DEP_TIME, AIRPLANE_ID, price, image, AIRLINE_NAME 
+                            FROM addflights 
+                            WHERE ORIGIN = '{$flight['DEST']}' AND DEST = '{$flight['ORIGIN']}' AND DATE = '{$flight['DATE']}'";
+            $return_result = $conn->query($return_sql);
+
+            // Check if there are any return flights
+            if ($return_result->num_rows > 0) {
+                echo "<h3 class='departure-return'>Return</h3>";
+                // Output data of the return flight
+                while ($return_flight = $return_result->fetch_assoc()) {
+                    echo "<p><strong>Flying From:</strong> {$return_flight['DEST']}</p>";
+                    echo "<p><strong>Flying To:</strong> {$return_flight['ORIGIN']}</p>";
+                    echo "<p><strong>Return Time:</strong> {$return_flight['DATE']} {$return_flight['ARR_TIME']}</p>";
+                    echo "<p><strong>Flight ID (Return):</strong> {$return_flight['FLIGHTNUM']}</p>";
+                    echo "<p><strong>Price (Return):</strong> <span class='price'>\${$return_flight['price']}</span></p>";
+                }
+            } else {
+                // If no direct return flight found, check for indirect return flights
+                $indirect_return_sql = "SELECT FLIGHTNUM, ORIGIN, DEST, DATE, ARR_TIME, DEP_TIME, AIRPLANE_ID, price, image, AIRLINE_NAME 
+                                        FROM addflights 
+                                        WHERE ORIGIN = '{$flight['DEST']}' AND DEST = '{$flight['ORIGIN']}'";
+
+                $indirect_return_result = $conn->query($indirect_return_sql);
+
+                if ($indirect_return_result->num_rows > 0) {
+                    echo "<h3 class='departure-return'>Return</h3>";
+                    // Output data of the indirect return flight
+                    while ($indirect_return_flight = $indirect_return_result->fetch_assoc()) {
+                        echo "<img src='data:image/jpeg;base64," . base64_encode($indirect_return_flight['image']) . "' alt='{$indirect_return_flight['AIRLINE_NAME']}' style='width: 40px; height: 40px; border-radius: 50%;'>";
+                        echo "<h2 class='airline-name'>{$indirect_return_flight['AIRLINE_NAME']}</h2>";
+                        echo "<p><strong>Flight ID:</strong> {$indirect_return_flight['FLIGHTNUM']}</p>";
+                        echo "<p><strong>Price:</strong> <span class='price'>\${$indirect_return_flight['price']}</span></p>";
+                        echo "<p><strong>Flying From:</strong> {$indirect_return_flight['DEST']}</p>";
+                        echo "<p><strong>Flying To:</strong> {$indirect_return_flight['ORIGIN']}</p>";
+                        echo "<p><strong>Return Time:</strong> {$indirect_return_flight['DATE']} {$indirect_return_flight['ARR_TIME']}</p>";
+                    }
+                } else {
+                    echo "<p>No return flights found.</p>";
+                }
+            }
+            echo "<button class='book-button' onclick='redirectToPay()'><i class='fas fa-ticket-alt'></i> Book Now</button>";
+            echo "</div>"; // Close flight-box div
         }
-    </script>
+        // Close connection
+        $conn->close();
+    } else {
+        echo "No flights found.";
+    }
+    ?>
+</div>
+
+<script>
+    function redirectToPay() {
+        window.location.href = "bookingticket.php";
+    }
+</script>
 </body>
 </html>

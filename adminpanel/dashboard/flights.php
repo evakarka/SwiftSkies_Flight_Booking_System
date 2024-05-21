@@ -60,7 +60,8 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Staff Information</title>
+    <title>Flight Information</title>
+    <link rel="shortcut icon" href="assets/imgs/aircraft-logo.png" type="image/svg+xml">
     <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>

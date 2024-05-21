@@ -45,6 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Staff Information</title>
+    <link rel="shortcut icon" href="assets/imgs/aircraft-logo.png" type="image/svg+xml">
     <!-- ======= Styles ====== -->
     <link rel="stylesheet" href="assets/css/style.css">
     <!-- Bootstrap CSS -->

@@ -199,59 +199,44 @@
 
       <section class="tour-search">
         <div class="container">
-      
-          <form action="search-flights.php" method="post" class="tour-search-form">
-      
-            <div class="input-wrapper">
-              <label for="flying_from" class="input-label">Flying From*</label>
-              <input type="text" name="flying_from" id="flying_from" required placeholder="Departure City/Airport"
-                class="input-field">
-            </div>
-      
-            <div class="input-wrapper">
-              <label for="flying_to" class="input-label">Flying To*</label>
-              <input type="text" name="flying_to" id="flying_to" required placeholder="Destination City/Airport"
-                class="input-field">
-            </div>
-      
-            <div class="input-wrapper">
-              <label for="departing" class="input-label">Departing*</label>
-              <input type="date" name="departing" id="departing" required class="input-field">
-            </div>
-      
-            <div class="input-wrapper">
-              <label for="returning" class="input-label">Returning</label>
-              <input type="date" name="returning" id="returning" class="input-field">
-            </div>
-      
-            <div class="input-wrapper">
-              <label for="adults" class="input-label">Adults (18+)</label>
-              <input type="number" name="adults" id="adults" min="1" class="input-field">
-            </div>
-      
-            <div class="input-wrapper">
-              <label for="children" class="input-label">Children (0-17)</label>
-              <input type="number" name="children" id="children" min="0" class="input-field">
-            </div>
-      
-            <div class="input-wrapper">
-              <label for="travel_class" class="input-label">Travel Class</label>
-              <select name="travel_class" id="travel_class" class="input-field">
-                <option value="economy">Economy</option>
-                <option value="business">Business</option>
-                <option value="first_class">First Class</option>
-              </select>
-            </div>
-      
-            <form action="search-flights.php" method="post">
-              <button type="submit" class="btn btn-secondary">Search Flights</button>
+            <form action="flight-search.php" method="post" class="tour-search-form">
+                <div class="input-wrapper">
+                    <label for="flying_from" class="input-label">Flying From*</label>
+                    <input type="text" name="flying_from" id="flying_from" required placeholder="Departure City/Airport" class="input-field">
+                </div>
+                <div class="input-wrapper">
+                    <label for="flying_to" class="input-label">Flying To*</label>
+                    <input type="text" name="flying_to" id="flying_to" required placeholder="Destination City/Airport" class="input-field">
+                </div>
+                <div class="input-wrapper">
+                    <label for="departing" class="input-label">Departing*</label>
+                    <input type="date" name="departing" id="departing" required class="input-field">
+                </div>
+                <div class="input-wrapper">
+                    <label for="returning" class="input-label">Returning</label>
+                    <input type="date" name="returning" id="returning" class="input-field">
+                </div>
+                <div class="input-wrapper">
+                    <label for="adults" class="input-label">Adults (18+)</label>
+                    <input type="number" name="adults" id="adults" min="1" class="input-field">
+                </div>
+                <div class="input-wrapper">
+                    <label for="children" class="input-label">Children (0-17)</label>
+                    <input type="number" name="children" id="children" min="0" class="input-field">
+                </div>
+                <div class="input-wrapper">
+                    <label for="travel_class" class="input-label">Travel Class</label>
+                    <select name="travel_class" id="travel_class" class="input-field">
+                        <option value="economy">Economy</option>
+                        <option value="business">Business</option>
+                        <option value="first_class">First Class</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-secondary">Search Flights</button>
             </form>
-          
-      
-          </form>
-      
         </div>
-      </section>
+    </section>
+    
       
 
       <!-- 
