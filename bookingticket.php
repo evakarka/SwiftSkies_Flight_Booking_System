@@ -19,20 +19,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $address = $_POST["ADDRESS"];
     $phone = $_POST["PHONE"];
 
-// Εισαγωγή δεδομένων στη βάση δεδομένων με προετοιμασμένα ερωτήματα
-$sql = "INSERT INTO passenger (SURNAME, NAME, ADDRESS, PHONE) VALUES (?, ?, ?, ?)";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("ssss", $surname, $name, $address, $phone);
+    // Εισαγωγή δεδομένων στη βάση δεδομένων με προετοιμασμένα ερωτήματα
+    $sql = "INSERT INTO passengers (SURNAME, NAME, ADDRESS, PHONE) VALUES (?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ssss", $surname, $name, $address, $phone);
 
-if ($stmt->execute()) {
-    // Αν η εισαγωγή είναι επιτυχής, προχωρήστε στο checkout.php
-    header("Location: checkout.php");
-    exit();
-} else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-}
-$stmt->close();
-
+    if ($stmt->execute()) {
+        // Αν η εισαγωγή είναι επιτυχής, προχωρήστε στο checkout.php
+        header("Location: checkout.php");
+        exit();
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+    $stmt->close();
 }
 
 // Κλείσιμο σύνδεσης με τη βάση δεδομένων
@@ -49,24 +48,38 @@ $conn->close();
     <style>
         body {
             background-color: #f8f9fa;
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
         }
         .form-container {
             margin-top: 50px;
         }
         .card {
             margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: none;
+            border-radius: 10px;
+        }
+        .card-body {
+            padding: 2rem;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
         }
     </style>
 </head>
 <body>
 
 <section class="container form-container">
-    <div class="row">
-        <div class="col-md-6 offset-md-3">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                    <h2>Passenger Booking Details</h2>
+                    <h2 class="text-center mb-4">Passenger Booking Details</h2>
                     <form action="" method="POST">
                         <div class='mb-3'>
                             <label for='SURNAME' class='form-label'>Surname</label>
@@ -84,7 +97,9 @@ $conn->close();
                             <label for='PHONE' class='form-label'>Phone</label>
                             <input type='text' class='form-control' id='PHONE' name='PHONE' required>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
                     </form>
                 </div>
             </div>
