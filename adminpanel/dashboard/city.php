@@ -106,23 +106,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-    <!-- Navigation -->
-    <div class="container-fluid padding_zero">
+<!-- Navigation -->
+<div class="container-fluid padding_zero">
         <div class="navigation">
-            <div class="hamburger" id="hamburger">
+        <div class="hamburger" id="hamburger">
                 <div></div>
                 <div></div>
                 <div></div>
             </div>
             <ul>
                 <li>
-                    <a href="/index.html">
+                    <a href="./index.html">
                         <span class="icon">
                             <img src="assets/imgs/logo.png" alt="logo" style="height: 30px;">
                         </span>
                         <span class="title">SwiftSkies</span>
                     </a>
                 </li>
+
                 <li>
                     <a href="index.html">
                         <span class="icon">
@@ -131,6 +132,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <span class="title">Dashboard</span>
                     </a>
                 </li>
+
                 <li>
                     <a href="passengers.php">
                         <span class="icon">
@@ -139,6 +141,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <span class="title">Passengers</span>
                     </a>
                 </li>
+
                 <li>
                     <a href="flights.php">
                         <span class="icon">
@@ -147,6 +150,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <span class="title">Flights</span>
                     </a>
                 </li>
+
                 <li>
                     <a href="airplanes.php">
                         <span class="icon">
@@ -155,30 +159,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <span class="title">Airplanes</span>
                     </a>
                 </li>
+
                 <li>
                     <a href="staff.php">
                         <span class="icon">
-                            <ion-icon name="person-outline"></ion-icon>
+                            <ion-icon name="person-outline">></ion-icon>
                         </span>
                         <span class="title">Staff</span>
                     </a>
                 </li>
+
                 <li>
                     <a href="city.php">
                         <span class="icon">
-                            <ion-icon name="globe-outline"></ion-icon>
+                            <ion-icon name="globe-outline">></ion-icon>
                         </span>
                         <span class="title">City</span>
                     </a>
                 </li>
+
                 <li>
-                    <a href="adminprofile.php">
+                    <a href="register.php">
                         <span class="icon">
                             <ion-icon name="chatbubble-outline"></ion-icon>
                         </span>
-                        <span class="title">Admin Profile</span>
+                        <span class="title">Admin Panel</span>
                     </a>
                 </li>
+
                 <li>
                     <a href="help.php">
                         <span class="icon">
@@ -187,6 +195,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <span class="title">Help</span>
                     </a>
                 </li>
+
                 <li>
                     <a href="setting.php">
                         <span class="icon">
@@ -195,6 +204,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <span class="title">Settings</span>
                     </a>
                 </li>
+
                 <li>
                     <a href="password.php">
                         <span class="icon">
@@ -203,6 +213,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <span class="title">Password</span>
                     </a>
                 </li>
+
                 <li>
                     <a href="signout.php">
                         <span class="icon">

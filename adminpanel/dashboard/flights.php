@@ -149,11 +149,11 @@ $conn->close();
                 </li>
 
                 <li>
-                    <a href="adminprofile.php">
+                    <a href="register.php">
                         <span class="icon">
                             <ion-icon name="chatbubble-outline"></ion-icon>
                         </span>
-                        <span class="title">Admin Profile</span>
+                        <span class="title">Admin Panel</span>
                     </a>
                 </li>
 

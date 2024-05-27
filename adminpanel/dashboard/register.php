@@ -127,90 +127,125 @@ $result = $conn->query($sqlFetchUsers);
 <div class="notification" id="notification">
     <?php echo $message; ?>
 </div>
-
 <!-- Navigation -->
 <div class="container-fluid padding_zero">
-    <div class="navigation">
+        <div class="navigation">
         <div class="hamburger" id="hamburger">
-            <div></div>
-            <div></div>
-            <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <ul>
+                <li>
+                    <a href="./index.html">
+                        <span class="icon">
+                            <img src="assets/imgs/logo.png" alt="logo" style="height: 30px;">
+                        </span>
+                        <span class="title">SwiftSkies</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="index.html">
+                        <span class="icon">
+                            <ion-icon name="home-outline"></ion-icon>
+                        </span>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="passengers.php">
+                        <span class="icon">
+                            <ion-icon name="people-outline"></ion-icon>
+                        </span>
+                        <span class="title">Passengers</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="flights.php">
+                        <span class="icon">
+                            <ion-icon name="airplane-outline"></ion-icon>
+                        </span>
+                        <span class="title">Flights</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="airplanes.php">
+                        <span class="icon">
+                            <ion-icon name="airplane-outline" style="transform: rotate(-45deg);"></ion-icon>
+                        </span>
+                        <span class="title">Airplanes</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="staff.php">
+                        <span class="icon">
+                            <ion-icon name="person-outline">></ion-icon>
+                        </span>
+                        <span class="title">Staff</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="city.php">
+                        <span class="icon">
+                            <ion-icon name="globe-outline">></ion-icon>
+                        </span>
+                        <span class="title">City</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="register.php">
+                        <span class="icon">
+                            <ion-icon name="chatbubble-outline"></ion-icon>
+                        </span>
+                        <span class="title">Admin Panel</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="help.php">
+                        <span class="icon">
+                            <ion-icon name="help-outline"></ion-icon>
+                        </span>
+                        <span class="title">Help</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="setting.php">
+                        <span class="icon">
+                            <ion-icon name="settings-outline"></ion-icon>
+                        </span>
+                        <span class="title">Settings</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="password.php">
+                        <span class="icon">
+                            <ion-icon name="lock-closed-outline"></ion-icon>
+                        </span>
+                        <span class="title">Password</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="signout.php">
+                        <span class="icon">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                        </span>
+                        <span class="title">Sign Out</span>
+                    </a>
+                </li>
+            </ul>
         </div>
-        <ul>
-            <li>
-                <a href="./index.html">
-                    <span class="icon">
-                        <img src="assets/imgs/logo.png" alt="logo" style="height: 30px;">
-                    </span>
-                    <span class="title">SwiftSkies</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="index.html">
-                    <span class="icon">
-                        <ion-icon name="home-outline"></ion-icon>
-                    </span>
-                    <span class="title">Dashboard</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="passengers.php">
-                    <span class="icon">
-                        <ion-icon name="people-outline"></ion-icon>
-                    </span>
-                    <span class="title">Passengers</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="crew.html">
-                    <span class="icon">
-                        <ion-icon name="people-outline"></ion-icon>
-                    </span>
-                    <span class="title">Crew Members</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="flight_information.html">
-                    <span class="icon">
-                        <ion-icon name="information-circle-outline"></ion-icon>
-                    </span>
-                    <span class="title">Flight Information</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="admin.html">
-                    <span class="icon">
-                        <ion-icon name="settings-outline"></ion-icon>
-                    </span>
-                    <span class="title">Admin</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="user-profile.html">
-                    <span class="icon">
-                        <ion-icon name="person-outline"></ion-icon>
-                    </span>
-                    <span class="title">Profile</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="logout.html">
-                    <span class="icon">
-                        <ion-icon name="log-out-outline"></ion-icon>
-                    </span>
-                    <span class="title">Logout</span>
-                </a>
-            </li>
-        </ul>
     </div>
-</div>
 
 <!-- Main Content -->
 <div class="main">

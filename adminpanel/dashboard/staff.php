@@ -107,8 +107,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-    <!-- Navigation -->
-    <div class="container-fluid padding_zero">
+<!-- Navigation -->
+<div class="container-fluid padding_zero">
         <div class="navigation">
         <div class="hamburger" id="hamburger">
                 <div></div>
@@ -117,12 +117,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <ul>
                 <li>
-                    <a href="/index.html">
+                    <a href="./index.html">
                         <span class="icon">
                             <img src="assets/imgs/logo.png" alt="logo" style="height: 30px;">
                         </span>
                         <span class="title">SwiftSkies</span>
-                        
                     </a>
                 </li>
 
@@ -181,11 +180,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </li>
 
                 <li>
-                    <a href="adminprofile.php">
+                    <a href="register.php">
                         <span class="icon">
                             <ion-icon name="chatbubble-outline"></ion-icon>
                         </span>
-                        <span class="title">Admin Profile</span>
+                        <span class="title">Admin Panel</span>
                     </a>
                 </li>
 
