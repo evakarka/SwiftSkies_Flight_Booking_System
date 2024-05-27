@@ -86,7 +86,7 @@ $conn->close();
             </div>
             <ul>
                 <li>
-                    <a href="./index.html">
+                    <a href="./index.php">
                         <span class="icon">
                             <img src="assets/imgs/logo.png" alt="logo" style="height: 30px;">
                         </span>
@@ -95,7 +95,7 @@ $conn->close();
                 </li>
 
                 <li>
-                    <a href="index.html">
+                    <a href="index.php">
                         <span class="icon">
                             <ion-icon name="home-outline"></ion-icon>
                         </span>

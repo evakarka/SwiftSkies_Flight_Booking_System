@@ -109,7 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <ul>
                 <li>
-                    <a href="./index.html">
+                    <a href="./index.php">
                         <span class="icon">
                             <img src="assets/imgs/logo.png" alt="logo" style="height: 30px;">
                         </span>
@@ -118,7 +118,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </li>
 
                 <li>
-                    <a href="index.html">
+                    <a href="index.php">
                         <span class="icon">
                             <ion-icon name="home-outline"></ion-icon>
                         </span>
