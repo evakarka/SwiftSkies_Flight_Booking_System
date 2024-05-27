@@ -89,35 +89,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <div class="forms-container">
         <div class="signin-signup">
           <!-- login -->
-          <form action="#" class="sign-in-form">
-            <h2 class="title">Sign in</h2>
-            <div class="input-field">
-              <i class="fas fa-user"></i>
-              <input type="email" placeholder="Email" aria-label="Email" />
-            </div>
-            <div class="input-field">
-              <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" aria-label="Password" />
-            </div>
-            <a href="forgot-password.php" class="text-body">Forgot password?</a>
-            <input type="submit" value="Login" class="btn solid" />
-            <a href="adminlogin.php" style="text-decoration: none;">Sign in as admin</a>
-            <p class="social-text">Or Sign in with social platforms</p>
-            <div class="social-media">
-              <a href="#" class="social-icon">
-                <i class="fab fa-facebook-f"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-twitter"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-google"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-instagram"></i>
-              </a>
-            </div>
-          </form>
+<!-- login -->
+<form action="#" class="sign-in-form" method="POST" id="login-form">
+    <h2 class="title">Sign in</h2>
+    <div class="input-field">
+        <i class="fas fa-user"></i>
+        <input type="email" name="email" id="login-email" placeholder="Email" aria-label="Email" />
+    </div>
+    <div class="input-field">
+        <i class="fas fa-lock"></i>
+        <input type="password" name="password" id="login-password" placeholder="Password" aria-label="Password" />
+    </div>
+    <a href="forgot-password.php" class="text-body">Forgot password?</a>
+    <input type="submit" value="Login" class="btn solid" />
+    <a href="adminlogin.php" style="text-decoration: none;">Sign in as admin</a>
+    <p class="social-text">Or Sign in with social platforms</p>
+    <div class="social-media">
+        <a href="#" class="social-icon">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="#" class="social-icon">
+            <i class="fab fa-twitter"></i>
+        </a>
+        <a href="#" class="social-icon">
+            <i class="fab fa-google"></i>
+        </a>
+        <a href="#" class="social-icon">
+            <i class="fab fa-instagram"></i>
+        </a>
+    </div>
+</form>
+
           <!-- sign up -->
           <form action="" method="POST" class="sign-up-form">
     <h2 class="title">Sign up</h2>
@@ -196,5 +198,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       });
 
     </script>
+
+<script>
+    document.getElementById('login-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Αποτροπή της προεπιλεγμένης συμπεριφοράς υποβολής φόρμας
+
+        // Παίρνουμε τις τιμές των πεδίων email και password
+        var email = document.getElementById('login-email').value;
+        var password = document.getElementById('login-password').value;
+
+        // Κάνουμε fetch τον PHP κώδικα για να ελέγξουμε τα διαπιστευτήρια του χρήστη
+        fetch('login.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: 'email=' + encodeURIComponent(email) + '&password=' + encodeURIComponent(password),
+        })
+        .then(response => response.text())
+        .then(data => {
+            // Εμφανίζουμε το μήνυμα ανάλογα με την απάντηση του PHP κώδικα
+            if (data.trim() === 'Successful login') {
+              alert(data); // Εδώ μπορείτε να χρησιμοποιήσετε μια πιο κατάλληλη αντίδραση, όπως η μεταφορά στην index.html
+                window.location.href = "index.html"; // Μεταφορά στην index.html μετά από επιτυχημένη σύνδεση
+            } else {
+                alert(data); // Εμφάνιση μηνύματος λάθους από τον PHP κώδικα
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
+</script>
   </body>
 </html>

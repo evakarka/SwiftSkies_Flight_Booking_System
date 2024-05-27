@@ -1,44 +1,36 @@
 <?php
-$servername = "localhost"; 
-$username = "root"; 
-$password = ""; 
+$servername = "localhost";
+$username = "root";
+$password = "";
 $database = "SwiftSkies";
 
 $conn = new mysqli($servername, $username, $password, $database);
 
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    die("Σύνδεση απέτυχε: " . $conn->connect_error);
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
-    $adminUsername = $_POST["username"];
-    $adminPassword = $_POST["password"];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST["username"];
+    $password = $_POST["password"];
 
-    $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
-    if ($stmt) {
-        $stmt->bind_param("s", $adminUsername);
-        $stmt->execute();
-        $result = $stmt->get_result();
+    $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
+    $result = $conn->query($sql);
 
-        if ($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-            if (password_verify($adminPassword, $row['password'])) {
-                header("Location: http://localhost/air/adminpanel/dashboard/index.html");
-                exit();
-            } else {
-                echo "Wrong Password!";
-            }
-        } else {
-            echo "Wrong Username!";
-        }
-        $stmt->close();
+
+    if ($result->num_rows > 0) {
+        header("Location: http://localhost/air//adminpanel/dashboard/index.html");
+        exit();
+
+
     } else {
-        echo "Error in preparing statement: " . $conn->error;
+        echo "Wrong Password or Username!";
     }
 }
 
 $conn->close();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
