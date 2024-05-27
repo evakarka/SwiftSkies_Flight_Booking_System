@@ -31,24 +31,25 @@ if ($conn->query($sqlCreateUsersTable) !== TRUE) {
     echo "Error creating users table: " . $conn->error . "<br>";
 }
 
+$message = "";
 // Check if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if(isset($_POST['approve'])){
         $userId = $_POST['user_id'];
         $sqlApproveUser = "UPDATE signup SET approved = TRUE WHERE id = $userId";
         if ($conn->query($sqlApproveUser) === TRUE) {
-            echo "User approved successfully<br>";
+            $message = "User approved successfully";
         } else {
-            echo "Error approving user: " . $conn->error . "<br>";
+            $message = "Error approving user: " . $conn->error;
         }
     }
     if(isset($_POST['delete'])){
         $userId = $_POST['user_id'];
         $sqlDeleteUser = "DELETE FROM signup WHERE id = $userId";
         if ($conn->query($sqlDeleteUser) === TRUE) {
-            echo "User deleted successfully<br>";
+            $message = "User deleted successfully";
         } else {
-            echo "Error deleting user: " . $conn->error . "<br>";
+            $message = "Error deleting user: " . $conn->error;
         }
     }
 }
@@ -109,10 +110,24 @@ $result = $conn->query($sqlFetchUsers);
             margin-bottom: 0;
             line-height: 1.5;
         }
-        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #2A2185;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: none;
+        }
     </style>
 </head>
 <body>
+<!-- Notification -->
+<div class="notification" id="notification">
+    <?php echo $message; ?>
+</div>
+
 <!-- Navigation -->
 <div class="container-fluid padding_zero">
     <div class="navigation">
@@ -241,21 +256,7 @@ $result = $conn->query($sqlFetchUsers);
     </div>
 </div>
 
-<!-- Footer -->
-<div class="footer">
-    <div class="footer-content">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <p>&copy; 2023 SwiftSkies. All Rights Reserved.</p>
-                </div>
-                <div class="col-md-6 text-md-right">
-                    <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/@ionic/core@5.9.1/dist/ionic/ionic.esm.js" type="module"></script>
