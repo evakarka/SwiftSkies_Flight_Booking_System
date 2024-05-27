@@ -37,13 +37,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Encrypt the password
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
+            // Set approved status based on role
+            $approved = ($role === 'user') ? true : false;
+
             // Prepare SQL statement
-            $stmt = $conn->prepare("INSERT INTO signup (fullName, email, phone, password, role) VALUES (?, ?, ?, ?, ?)");
-            $stmt->bind_param("sssss", $fullName, $email, $phone, $hashedPassword, $role);
+            $stmt = $conn->prepare("INSERT INTO signup (fullName, email, phone, password, role, approved) VALUES (?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("sssssi", $fullName, $email, $phone, $hashedPassword, $role, $approved);
 
             // Execute the statement and check for errors
             if ($stmt->execute()) {
-                echo "Successful registration";
+                if ($approved) {
+                    echo "Successful registration";
+                } else {
+                    echo "Registration successful. Your account needs to be approved by an admin before you can log in.";
+                }
             } else {
                 echo "Error: " . $stmt->error;
             }
@@ -61,22 +68,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $password = $_POST['password'];
 
             // Prepare SQL statement to fetch user
-            $stmt = $conn->prepare("SELECT password FROM signup WHERE email = ?");
+            $stmt = $conn->prepare("SELECT password, approved FROM signup WHERE email = ?");
             $stmt->bind_param("s", $email);
             $stmt->execute();
             $stmt->store_result();
-            
+
             if ($stmt->num_rows > 0) {
-                $stmt->bind_result($hashedPassword);
+                $stmt->bind_result($hashedPassword, $approved);
                 $stmt->fetch();
 
                 // Verify the password
                 if (password_verify($password, $hashedPassword)) {
-                    // Set session variable
-                    $_SESSION['user_email'] = $email;
-                    // Redirect to index.html
-                    header("Location: index.html");
-                    exit();
+                    if ($approved) {
+                        // Set session variable
+                        $_SESSION['user_email'] = $email;
+                        // Redirect to index.html
+                        header("Location: index.html");
+                        exit();
+                    } else {
+                        echo "Your account needs to be approved by an admin before you can log in.";
+                    }
                 } else {
                     echo "Wrong Password or Username!";
                 }
@@ -95,6 +106,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Close connection
 $conn->close();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -143,8 +155,9 @@ $conn->close();
                         <input type="password" name="password" placeholder="Password" aria-label="Password" required />
                     </div>
                     <input type="hidden" name="action" value="login">
-                    <input type="submit" value="Login" class="btn solid" />
                     <a href="forgot-password.php" class="text-body">Forgot password?</a>
+                    <input type="submit" value="Login" class="btn solid" />
+                    <a href="adminlogin.php" style="text-decoration: none;">Sign in as admin</a>
                     <p class="social-text">Or Sign in with social platforms</p>
                     <div class="social-media">
                         <a href="#" class="social-icon">
