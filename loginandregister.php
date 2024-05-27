@@ -1,49 +1,49 @@
 <?php
-// Enable error reporting for debugging
+// Ενεργοποίηση της αναφοράς σφαλμάτων για αποσφαλμάτωση
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Check if all required POST data is set
-    if (isset($_POST['fullName']) && isset($_POST['email']) && isset($_POST['gender']) && isset($_POST['phone']) && isset($_POST['password']) && isset($_POST['role'])) {
+    // Έλεγχος αν όλα τα απαιτούμενα δεδομένα POST είναι ορισμένα
+    if (isset($_POST['fullName']) && isset($_POST['email']) && isset($_POST['phone']) && isset($_POST['password']) && isset($_POST['role'])) {
         $fullName = $_POST['fullName'];
         $email = $_POST['email'];
-        $gender = $_POST['gender'];
         $phone = $_POST['phone'];
         $password = $_POST['password'];
         $role = $_POST['role'];
 
-        // Hash the password
+        // Κρυπτογράφηση του κωδικού πρόσβασης
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-        // Connect to the database
+        // Σύνδεση στη βάση δεδομένων
         $conn = new mysqli('localhost', 'root', '', 'swiftskies');
 
-        // Check for connection errors
+        // Έλεγχος για σφάλματα σύνδεσης
         if ($conn->connect_error) {
-            die('Connection Failed: ' . $conn->connect_error);
+            die('Connection failed: ' . $conn->connect_error);
         } else {
-            // Prepare the SQL statement
-            $stmt = $conn->prepare("INSERT INTO signup (fullName, email, phone, gender, password, role) VALUES (?, ?, ?, ?, ?, ?)");
-            $stmt->bind_param("ssssss", $fullName, $email, $phone, $gender, $hashedPassword, $role);
+            // Προετοιμασία της SQL δήλωσης
+            $stmt = $conn->prepare("INSERT INTO signup (fullName, email, phone, password, role) VALUES (?, ?, ?, ?, ?)");
+            $stmt->bind_param("sssss", $fullName, $email, $phone, $hashedPassword, $role);
 
-            // Execute the statement and check for errors
+            // Εκτέλεση της δήλωσης και έλεγχος για σφάλματα
             if ($stmt->execute()) {
-                echo "Registration Successfully...";
+                echo "Successful registration";
             } else {
                 echo "Error: " . $stmt->error;
             }
 
-            // Close the statement and connection
+            // Κλείσιμο της δήλωσης και της σύνδεσης
             $stmt->close();
             $conn->close();
         }
     } else {
-        echo "All fields are required.";
+        echo "Όλα τα πεδία είναι υποχρεωτικά.";
     }
 }
 ?>
+
 
 <!-- <script>
     window.location.href = "index.html";
@@ -58,6 +58,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/styleloginandregister.css" />
     <title>Sign in & Sign up Form</title>
+
+    <style>
+      .input-field select {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif; 
+  color: #ccc; 
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.input-field select option {
+  background-color: #f0f0f0;
+  font-weight: bold;
+  color: #ccc;
+}
+
+    </style>
   </head>
   <body>
     <div class="container">
@@ -76,6 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <a href="forgot-password.php" class="text-body">Forgot password?</a>
             <input type="submit" value="Login" class="btn solid" />
+            <a href="adminlogin.php" style="text-decoration: none;">Sign in as admin</a>
             <p class="social-text">Or Sign in with social platforms</p>
             <div class="social-media">
               <a href="#" class="social-icon">
@@ -88,7 +114,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <i class="fab fa-google"></i>
               </a>
               <a href="#" class="social-icon">
-                <i class="fab fa-linkedin-in"></i>
+                <i class="fab fa-instagram"></i>
               </a>
             </div>
           </form>
@@ -112,13 +138,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="password" id="password" class="form-control form-control-lg" placeholder="Password" name="password" aria-label="Password">
     </div>
     <div class="input-field">
-        <i class="fas fa-user"></i>
-        <input type="text" id="gender" class="form-control form-control-lg" placeholder="Gender" name="gender" aria-label="Gender">
-    </div>
-    <div class="input-field">
-        <i class="fas fa-lock"></i>
-        <input type="text" id="role" class="form-control form-control-lg" placeholder="Role" name="role" aria-label="Role">
-    </div>
+    <i class="fas fa-lock"></i>
+    <select id="role" class="form-control form-control-lg custom-dropdown" name="role" aria-label="Role">
+        <option value="user">User</option>
+        <option value="pilot">Pilot</option>
+        <option value="staff">Staff</option>
+        <option value="purser">Purser</option>
+    </select>
+</div>
+
     <input type="submit" class="btn" value="Sign up" />
 </form>
 
@@ -131,8 +159,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <div class="content">
             <h3>New here ?</h3>
             <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
-              ex ratione. Aliquid!
+            Welcome to SwiftSkies! Whether you're a frequent traveler or embarking on your first journey, we're here to make your experience unforgettable.
             </p>
             <button class="btn transparent" id="sign-up-btn">
               Sign up
@@ -144,8 +171,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <div class="content">
             <h3>One of us ?</h3>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
-              laboriosam ad deleniti.
+            Are you ready to join the SwiftSkies family? Discover seamless travel experiences and personalized service with us.
             </p>
             <button class="btn transparent" id="sign-in-btn">
               Sign in
