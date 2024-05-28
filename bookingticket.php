@@ -4,32 +4,26 @@ $username = "root";
 $password = "";
 $dbname = "swiftskies";
 
-// Σύνδεση στη βάση δεδομένων
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Έλεγχος αν έχουν υποβληθεί δεδομένα από τη φόρμα POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Λήψη δεδομένων από τη φόρμα και ελέγχουμε αν είναι ορισμένα
     $surname = isset($_POST["surname"]) ? $_POST["surname"] : "";
     $name = isset($_POST["name"]) ? $_POST["name"] : "";
     $address = isset($_POST["address"]) ? $_POST["address"] : "";
     $phone = isset($_POST["phone"]) ? $_POST["phone"] : "";
 
-    // Έλεγχος εάν οι απαραίτητες τιμές έχουν οριστεί
     if (empty($surname) || empty($name) || empty($address) || empty($phone)) {
         echo "All fields are required.";
     } else {
-        // Εισαγωγή δεδομένων στη βάση δεδομένων με προετοιμασμένα ερωτήματα
         $sql = "INSERT INTO passengers (SURNAME, NAME, ADDRESS, PHONE) VALUES (?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("ssss", $surname, $name, $address, $phone);
 
         if ($stmt->execute()) {
-            // Αν η εισαγωγή είναι επιτυχής, προχωρήστε στο checkout.php
             header("Location: checkout.php");
             exit();
         } else {
@@ -39,7 +33,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-// Κλείσιμο σύνδεσης με τη βάση δεδομένων
 $conn->close();
 ?>
 

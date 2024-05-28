@@ -1,32 +1,26 @@
 <?php
-// Enable error reporting for debugging
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-// Database connection parameters
 $servername = "localhost";
 $username = "root";
 $password = "";
 $database = "swiftskies";
 
-// Create connection
 $conn = new mysqli($servername, $username, $password, $database);
 
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Start session
 session_start();
 
-// Check if user is admin
 if (!isset($_SESSION['user_email']) || $_SESSION['user_role'] !== 'admin') {
     die("Access denied.");
 }
 
-// Handle admin actions
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $userId = $_POST['user_id'];
     $action = $_POST['action'];
@@ -34,40 +28,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($action === 'approve' || $action === 'deny') {
         $status = ($action === 'approve') ? 'approved' : 'denied';
 
-        // Prepare SQL statement
         $stmt = $conn->prepare("UPDATE signup SET status = ? WHERE id = ?");
         $stmt->bind_param("si", $status, $userId);
 
-        // Execute the statement and check for errors
         if ($stmt->execute()) {
             echo "User $action successful.";
         } else {
             echo "Error: " . $stmt->error;
         }
 
-        // Close statement
+
         $stmt->close();
     } elseif ($action === 'delete') {
-        // Prepare SQL statement
+
         $stmt = $conn->prepare("DELETE FROM signup WHERE id = ?");
         $stmt->bind_param("i", $userId);
 
-        // Execute the statement and check for errors
         if ($stmt->execute()) {
             echo "User deletion successful.";
         } else {
             echo "Error: " . $stmt->error;
         }
 
-        // Close statement
+  
         $stmt->close();
     }
 }
 
-// Fetch pending registrations
 $result = $conn->query("SELECT id, fullName, email, role FROM signup WHERE role IN ('pilot', 'staff', 'purser') AND status = 'pending'");
 
-// Close connection
 $conn->close();
 ?>
 

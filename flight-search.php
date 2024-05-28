@@ -1,5 +1,4 @@
 <?php
-// Σύνδεση με τη βάση δεδομένων
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -10,7 +9,6 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Λήψη των δεδομένων από τη φόρμα αναζήτησης
 $flying_from = $_POST['flying_from'];
 $flying_to = $_POST['flying_to'];
 $departing = $_POST['departing'];
@@ -19,7 +17,6 @@ $adults = isset($_POST['adults']) ? $_POST['adults'] : 1;
 $children = isset($_POST['children']) ? $_POST['children'] : 0;
 $travel_class = isset($_POST['travel_class']) ? $_POST['travel_class'] : 'economy';
 
-// Δημιουργία του SQL ερωτήματος με φίλτρα
 $sql = "SELECT * FROM addflights WHERE ORIGIN = '$flying_from' AND DEST = '$flying_to' AND DATE = '$departing'";
 $result = $conn->query($sql);
 ?>

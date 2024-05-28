@@ -20,14 +20,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Error: " . $conn->error);
     }
 
-    // Handle image upload
     if(isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
         $imageData = file_get_contents($_FILES['image']['tmp_name']);
     } else {
         $imageData = null;
     }
 
-    // Prepare data for insertion
     $flightNum = $_POST["flightNum"] ?? null;
     $origin = $_POST["origin"] ?? null;
     $destination = $_POST["destination"] ?? null;
