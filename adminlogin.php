@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     if ($result->num_rows > 0) {
-        header("Location: http://localhost/air//adminpanel/dashboard/index.html");
+        header("Location: http://localhost/air//adminpanel/dashboard/index.php");
         exit();
 
 
@@ -57,7 +57,7 @@ $conn->close();
                         <input type="password" name="password" placeholder="Password" aria-label="Password" required>
                     </div>
                     <input type="submit" name="login" value="Login" class="btn solid">
-                    <a href="index.html" style="text-decoration: none;">Back to Home</a>
+                    <a href="index.php" style="text-decoration: none;">Back to Home</a>
                 </form>
 
                 <!-- Register new user (for testing purposes) -->

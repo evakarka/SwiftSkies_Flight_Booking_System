@@ -13,30 +13,36 @@ if ($conn->connect_error) {
 
 // Έλεγχος αν έχουν υποβληθεί δεδομένα από τη φόρμα POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Λήψη δεδομένων από τη φόρμα
-    $surname = $_POST["SURNAME"];
-    $name = $_POST["NAME"];
-    $address = $_POST["ADDRESS"];
-    $phone = $_POST["PHONE"];
+    // Λήψη δεδομένων από τη φόρμα και ελέγχουμε αν είναι ορισμένα
+    $surname = isset($_POST["surname"]) ? $_POST["surname"] : "";
+    $name = isset($_POST["name"]) ? $_POST["name"] : "";
+    $address = isset($_POST["address"]) ? $_POST["address"] : "";
+    $phone = isset($_POST["phone"]) ? $_POST["phone"] : "";
 
-    // Εισαγωγή δεδομένων στη βάση δεδομένων με προετοιμασμένα ερωτήματα
-    $sql = "INSERT INTO passengers (SURNAME, NAME, ADDRESS, PHONE) VALUES (?, ?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssss", $surname, $name, $address, $phone);
-
-    if ($stmt->execute()) {
-        // Αν η εισαγωγή είναι επιτυχής, προχωρήστε στο checkout.php
-        header("Location: checkout.php");
-        exit();
+    // Έλεγχος εάν οι απαραίτητες τιμές έχουν οριστεί
+    if (empty($surname) || empty($name) || empty($address) || empty($phone)) {
+        echo "All fields are required.";
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        // Εισαγωγή δεδομένων στη βάση δεδομένων με προετοιμασμένα ερωτήματα
+        $sql = "INSERT INTO passengers (SURNAME, NAME, ADDRESS, PHONE) VALUES (?, ?, ?, ?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ssss", $surname, $name, $address, $phone);
+
+        if ($stmt->execute()) {
+            // Αν η εισαγωγή είναι επιτυχής, προχωρήστε στο checkout.php
+            header("Location: checkout.php");
+            exit();
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+        $stmt->close();
     }
-    $stmt->close();
 }
 
 // Κλείσιμο σύνδεσης με τη βάση δεδομένων
 $conn->close();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -83,19 +89,19 @@ $conn->close();
                     <form action="" method="POST">
                         <div class='mb-3'>
                             <label for='SURNAME' class='form-label'>Surname</label>
-                            <input type='text' class='form-control' id='SURNAME' name='SURNAME' required>
+                            <input type='text' class='form-control' id='SURNAME' name='surname' required>
                         </div>
                         <div class='mb-3'>
                             <label for='NAME' class='form-label'>Name</label>
-                            <input type='text' class='form-control' id='NAME' name='NAME' required>
+                            <input type='text' class='form-control' id='NAME' name='name' required>
                         </div>
                         <div class='mb-3'>
                             <label for='ADDRESS' class='form-label'>Address</label>
-                            <input type='text' class='form-control' id='ADDRESS' name='ADDRESS' required>
+                            <input type='text' class='form-control' id='ADDRESS' name='address' required>
                         </div>
                         <div class='mb-3'>
                             <label for='PHONE' class='form-label'>Phone</label>
-                            <input type='text' class='form-control' id='PHONE' name='PHONE' required>
+                            <input type='text' class='form-control' id='PHONE' name='phone' required>
                         </div>
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary">Submit</button>

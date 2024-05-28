@@ -50,20 +50,18 @@ class PDF extends FPDF
     }
 }
 
-
 $pdf = new PDF();
 $pdf->AddPage();
 $pdf->SetFont('Arial', '', 12);
 
-
 $ticket = [
-    'Passenger Name' => 'John Doe',
-    'Flight Number' => 'AB1234',
-    'Departure' => 'New York (JFK)',
-    'Arrival' => 'London (LHR)',
-    'Date' => '2024-05-20',
-    'Departure Time' => '10:00 AM',
-    'Arrival Time' => '10:00 PM',
+    'Passenger Name' => 'Eva Kar',
+    'Flight Number' => 'A123',
+    'Departure' => 'Athens  (ATH)',
+    'Arrival' => 'New York (JFK)',
+    'Date' => '2024-08-08',
+    'Departure Time' => '10:00:00',
+    'Arrival Time' => '12:10:00',
     'Seat' => '12A',
     'Gate' => '22',
     'Class' => 'Economy',
