@@ -4,10 +4,8 @@ $username = "root";
 $password = "";
 $dbname = "swiftskies";
 
-// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
@@ -20,14 +18,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Error: " . $conn->error);
     }
 
-    // Handle image upload
     if(isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
         $imageData = file_get_contents($_FILES['image']['tmp_name']);
     } else {
         $imageData = null;
     }
 
-    // Prepare data for insertion
     $flightNum = $_POST["flightNum"] ?? null;
     $origin = $_POST["origin"] ?? null;
     $destination = $_POST["destination"] ?? null;
@@ -393,7 +389,7 @@ $conn->close();
 
         <script>
             $(document).ready(function () {
-                // Handle form submissions for adding and updating flights...
+
             });
 
             function deleteFlight(id) {
