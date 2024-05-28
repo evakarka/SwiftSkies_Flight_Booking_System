@@ -32,14 +32,12 @@
   <!-- jQuery UI library -->
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
   <style>
-    /* Default logo */
 .logo img {
   content: url('./assets/images/trace.svg');
 }
 
-/* Logo for mobile menu */
 .logo.mobile-open img {
-  content: url('./assets/images/blue.svg'); /* Η εικόνα που θέλετε όταν ανοίγει το μενού */
+  content: url('./assets/images/blue.svg'); 
 }
 
   </style>
@@ -47,9 +45,7 @@
 
 <body id="top">
 
-  <!-- 
-    - #HEADER
-  -->
+  <!--- #HEADER -->
 
   <header class="header" data-header>
 
@@ -185,9 +181,7 @@
   <main>
     <article>
 
-      <!-- 
-        - #HERO
-      -->
+      <!--- #HERO -->
 
       <section class="hero" id="home">
         <div class="container">
@@ -211,9 +205,7 @@
 
 
 
-      <!-- 
-        - #TOUR SEARCH
-      -->
+      <!--- #TOUR SEARCH -->
 
       <section class="tour-search">
         <div class="container">
@@ -257,9 +249,7 @@
     
       
 
-      <!-- 
-        - #POPULAR
-      -->
+      <!--- #POPULAR -->
 
       <section class="popular" id="destination">
         <div class="container">
@@ -387,9 +377,7 @@
 
 
 
-      <!-- 
-        - #PACKAGE
-      -->
+      <!--- #PACKAGE -->
 
       <section class="package" id="package">
         <div class="container">
@@ -661,7 +649,7 @@
                     <li class="card-meta-item">
                       <div class="meta-box">
                         <ion-icon name="location"></ion-icon>
-s\
+
                         <p class="text">Greece</p>
                       </div>
                     </li>
@@ -709,9 +697,7 @@ s\
 
 
 
-      <!-- 
-        - #GALLERY
-      -->
+      <!--- #GALLERY -->
 
       <section class="gallery" id="gallery">
         <div class="container">
@@ -803,9 +789,7 @@ s\
 
 
 
-      <!-- 
-        - #CTA
-      -->
+      <!--- #CTA -->
 
       <section class="cta" id="contact">
         <div class="container">
@@ -832,9 +816,7 @@ s\
 
 
 
-  <!-- 
-    - #FOOTER
-  -->
+  <!--- #FOOTER -->
 
   <footer class="footer">
 
@@ -934,9 +916,7 @@ s\
 
 
 
-  <!-- 
-    - #GO TO TOP
-  -->
+  <!--- #GO TO TOP -->
 
   <a href="#top" class="go-top" data-go-top>
     <ion-icon name="chevron-up-outline"></ion-icon>
@@ -946,14 +926,10 @@ s\
 
 
 
-  <!-- 
-    - custom js link
-  -->
+  <!--- custom js link -->
   <script src="./assets/js/script.js"></script>
 
-  <!-- 
-    - ionicon link
-  -->
+  <!--- ionicon link -->
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
@@ -979,14 +955,11 @@ s\
         "Charles de Gaulle Airport (CDG), Paris, France"
       ];
 
-      // Initialize autocomplete for flying_from and flying_to input fields
       $("#flying_from, #flying_to").autocomplete({
         source: availableAirports
       });
     });
   </script>
 
-
-</body>
-
+  </body>
 </html>
