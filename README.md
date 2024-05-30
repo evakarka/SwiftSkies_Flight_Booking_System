@@ -15,7 +15,7 @@ The SwiftSkies application provides a complete and functional system for both us
 ## Overview
 This web application is developed using PHP for server-side scripting, MySQL for the database, and Bootstrap for front-end design. It is hosted locally using XAMPP Control Panel. The application allows users to manage flight information, including adding, updating, deleting, and viewing flights. It incorporates various features such as file upload handling for flight images, prepared statements for SQL queries to prevent SQL injection, AJAX requests for real-time updates, error handling for database operations, and more.
 
-## Features
+## Implementation Features
 - **Front-End Design:** Developed with Bootstrap for responsive design and jQuery for interactivity.
 - **File Upload Handling:** Supports .png, .jpg, .jpeg formats for flight images.
 - **Prepared Statements:** Used for SQL queries to prevent SQL injection.
