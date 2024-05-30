@@ -1,22 +1,17 @@
 <?php
-// Database connection parameters
 $servername = "localhost";
 $username = "root";
 $password = "";
 $database = "swiftskies";
 
-// Create connection
 $conn = new mysqli($servername, $username, $password);
 
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Select database
 $conn->select_db($database);
 
-// Create users table
 $sqlCreateUsersTable = "CREATE TABLE IF NOT EXISTS signup (
     id INT AUTO_INCREMENT PRIMARY KEY,
     fullName VARCHAR(255) NOT NULL,
@@ -32,7 +27,6 @@ if ($conn->query($sqlCreateUsersTable) !== TRUE) {
 }
 
 $message = "";
-// Check if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if(isset($_POST['approve'])){
         $userId = $_POST['user_id'];
@@ -54,7 +48,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-// Fetch unapproved users
 $sqlFetchUsers = "SELECT * FROM signup WHERE approved = FALSE";
 $result = $conn->query($sqlFetchUsers);
 
@@ -300,6 +293,6 @@ $result = $conn->query($sqlFetchUsers);
 </body>
 </html>
 <?php
-// Close connection
+
 $conn->close();
 ?>
