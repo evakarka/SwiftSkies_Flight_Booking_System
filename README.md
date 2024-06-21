@@ -1,6 +1,6 @@
 # Flight Boking System 
 
-## FEATURES
+## 🌟 Features
 The SwiftSkies application provides a complete and functional system for both users and administrators. In this application, there can be an admin who will manage flights and view passengers, staff, flights, airplanes, and cities. The admin can also approve users who want to register as staff, pilots, and pursers. If someone wants to register as a regular user, they do not need admin approval. Users can search for flights and book the flight they desire. To complete the booking, the user must enter their details and pay by card, after which they will receive their ticket.
 - Complete system for both users and administrators
 - Admin management of flights, passengers, staff, airplanes, and cities
@@ -12,10 +12,10 @@ The SwiftSkies application provides a complete and functional system for both us
 
 # Web Application with PHP, MySQL, and Bootstrap
 
-## Overview
+## ✈️ Overview
 This web application is developed using PHP for server-side scripting, MySQL for the database, and Bootstrap for front-end design. It is hosted locally using XAMPP Control Panel. The application allows users to manage flight information, including adding, updating, deleting, and viewing flights. It incorporates various features such as file upload handling for flight images, prepared statements for SQL queries to prevent SQL injection, AJAX requests for real-time updates, error handling for database operations, and more.
 
-## Implementation Features
+## ✨ Implementation Features
 - **Front-End Design:** Developed with Bootstrap for responsive design and jQuery for interactivity.
 - **File Upload Handling:** Supports .png, .jpg, .jpeg formats for flight images.
 - **Prepared Statements:** Used for SQL queries to prevent SQL injection.
@@ -30,23 +30,23 @@ This web application is developed using PHP for server-side scripting, MySQL for
 - **Form Validation:** Ensures required fields and correct data types.
 - **Cross-browser Compatibility:** Compatible with all modern browsers and responsive design for various devices.
 
-## Requirements
+## 🤔 Requirements
 - XAMPP Control Panel
 - Modern Web Browser
 
-## Setup
+## 🚀 Setup
 1. Clone the repository to your local machine.
 2. Import the SQL database file.
 3. Configure database connection in the PHP files.
 4. Open XAMPP Control Panel and start Apache and MySQL.
 5. Open a web browser and navigate to the application's URL.
 
-## Usage
+## 🔨 Usage
 - Navigate through the application using the responsive navigation menu.
 - Add, update, delete, and view flights using the provided functionality.
 - Upload flight images and view them in the application.
 
-## Screenshots
+## 📸 Screenshots
 ![Screenshot 2024-05-28 224036](https://github.com/evakarka/SwiftSkies_Flight_Booking_System/assets/126707187/db6b27e6-e8f4-432a-a772-2dbd5f98a4f0)
 ![Screenshot 2024-05-28 224051](https://github.com/evakarka/SwiftSkies_Flight_Booking_System/assets/126707187/40c0c71f-19d9-4afe-b44d-2be29eaee57e)
 ![Screenshot 2024-05-28 224103](https://github.com/evakarka/SwiftSkies_Flight_Booking_System/assets/126707187/18bc03b1-bd76-4601-9496-4b186ce25ed0)
@@ -58,9 +58,9 @@ This web application is developed using PHP for server-side scripting, MySQL for
 ![Screenshot 2024-05-28 224211](https://github.com/evakarka/SwiftSkies_Flight_Booking_System/assets/126707187/083b6f84-f61b-473b-a42f-dca611fbd532)
 ![Screenshot 2024-05-28 224223](https://github.com/evakarka/SwiftSkies_Flight_Booking_System/assets/126707187/e3ba846b-4784-47c2-9cab-88553b4292d1)
 
-## Contributors
+## 👨‍💻 Contributors
 - [Karka Evangelia](https://github.com/evakarka) - Developer
 
-## License
+## 📜 License
 Live website hosted - see the [LICENSE.md](LICENSE.md) file for details.
 
